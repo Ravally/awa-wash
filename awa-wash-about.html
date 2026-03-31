@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | Awa Wash</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   DESIGN SYSTEM — Awa Wash × Pink's Windows DNA
+   ============================================ */
+:root {
+  --cream: #F5F0E8;
+  --cream-dark: #EDE6D9;
+  --gold: #FFD600;
+  --gold-light: #FFE44D;
+  --gold-dim: rgba(255, 214, 0, 0.15);
+  --dark: #1A1710;
+  --dark-mid: #2B2820;
+  --charcoal: #3A3630;
+  --forest: #2D5A3D;
+  --forest-light: rgba(45, 90, 61, 0.12);
+  --text-dark: #1A1710;
+  --text-body: rgba(26, 23, 16, 0.7);
+  --text-light: rgba(26, 23, 16, 0.45);
+  --white: #FFFFFF;
+
+  --font-display: 'Bungee', 'Impact', cursive;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+}
+
+/* RESET */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--text-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ============================================
+   NAVIGATION — Matches V2 exactly
+   ============================================ */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--cream);
+  border-bottom: 3px solid var(--dark);
+  padding: 0;
+}
+
+.nav-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 72px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 8px;
+}
+
+.nav-links a {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--dark);
+  padding: 8px 16px;
+  transition: color 0.2s;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.nav-links a:hover {
+  color: var(--gold);
+  text-decoration-color: var(--gold);
+}
+
+.nav-links a.active {
+  color: var(--gold);
+  text-decoration-color: var(--gold);
+}
+
+.nav-logo {
+  margin: 0 32px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.nav-logo-mark {
+  width: 52px;
+  height: 52px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 3px solid var(--dark);
+}
+
+.nav-logo-mark svg {
+  width: 26px;
+  height: 26px;
+}
+
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-size: 32px;
+  color: var(--dark);
+  margin-left: 10px;
+  line-height: 1;
+}
+
+.nav-logo-sub {
+  font-family: var(--font-display);
+  font-size: 10px;
+  color: var(--text-light);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-left: 12px;
+  margin-top: -2px;
+}
+
+.nav-links-right {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nav-cta-wrap {
+  margin-left: 16px;
+}
+
+/* Buttons */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 12px 28px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+
+.btn-pill:hover { transform: translateY(-2px); }
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--dark);
+  border: 2px solid var(--dark);
+}
+.btn-gold:hover { box-shadow: 4px 4px 0 var(--dark); }
+
+.btn-dark {
+  background: var(--dark);
+  color: var(--cream);
+  border: 2px solid var(--dark);
+}
+.btn-dark:hover { box-shadow: 4px 4px 0 var(--gold); }
+
+.btn-outline-cream {
+  background: transparent;
+  color: var(--cream);
+  border: 2px solid var(--cream);
+}
+.btn-outline-cream:hover {
+  background: var(--cream);
+  color: var(--dark);
+  box-shadow: 4px 4px 0 rgba(255,255,255,0.2);
+}
+
+/* ============================================
+   HERO — Dark section, big statement
+   ============================================ */
+.about-hero {
+  background: var(--dark);
+  padding: 100px 0 180px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  min-height: 550px;
+  display: flex;
+  align-items: center;
+}
+
+.about-hero::before {
+  content: 'AWA';
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: clamp(200px, 30vw, 500px);
+  color: var(--cream);
+  opacity: 0.03;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Subtle repeating pattern overlay */
+.about-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image:
+    repeating-linear-gradient(45deg, transparent, transparent 20px, var(--cream) 20px, var(--cream) 21px),
+    repeating-linear-gradient(-45deg, transparent, transparent 20px, var(--cream) 20px, var(--cream) 21px);
+  pointer-events: none;
+}
+
+.about-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.about-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 64px);
+  color: var(--white);
+  text-transform: uppercase;
+  line-height: 1.15;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-hero h1 .gold-text {
+  color: var(--gold);
+}
+
+.hero-sparkle {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 24px auto 0;
+  position: relative;
+}
+
+.hero-sparkle::before,
+.hero-sparkle::after {
+  content: '';
+  position: absolute;
+  background: var(--gold);
+}
+
+.hero-sparkle::before {
+  width: 2px;
+  height: 20px;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.hero-sparkle::after {
+  width: 20px;
+  height: 2px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+/* Curved bottom edge */
+.hero-curve {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  z-index: 2;
+}
+
+.hero-curve svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ============================================
+   FOUNDER SECTION — Oval photo + big quote
+   ============================================ */
+.founder-section {
+  padding: 100px 0 80px;
+  background: var(--cream);
+  text-align: center;
+}
+
+.founder-photo {
+  width: clamp(300px, 50vw, 550px);
+  height: clamp(220px, 35vw, 380px);
+  margin: 0 auto 60px;
+  border-radius: 50% / 45%;
+  overflow: hidden;
+  border: 4px solid var(--dark);
+  box-shadow: 8px 8px 0 var(--gold);
+}
+
+.founder-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.founder-quote {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4.5vw, 60px);
+  color: var(--gold);
+  text-transform: uppercase;
+  line-height: 1.15;
+  max-width: 900px;
+  margin: 0 auto 40px;
+}
+
+.founder-text {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--text-body);
+}
+
+.founder-text p + p {
+  margin-top: 20px;
+}
+
+/* ============================================
+   VALUES SECTION — Three cards
+   ============================================ */
+.values-section {
+  padding: 80px 0;
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.values-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image:
+    repeating-linear-gradient(45deg, transparent, transparent 20px, var(--cream) 20px, var(--cream) 21px),
+    repeating-linear-gradient(-45deg, transparent, transparent 20px, var(--cream) 20px, var(--cream) 21px);
+  pointer-events: none;
+}
+
+.values-header {
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.values-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 44px);
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.values-header p {
+  color: rgba(245, 240, 232, 0.6);
+  font-size: 17px;
+  margin-top: 12px;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.value-card {
+  background: var(--dark-mid);
+  border: 2px solid var(--charcoal);
+  border-radius: 16px;
+  padding: 40px 28px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.value-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.value-icon {
+  width: 72px;
+  height: 72px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 32px;
+  border: 3px solid var(--cream);
+}
+
+.value-card h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--cream);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.value-card p {
+  color: rgba(245, 240, 232, 0.6);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ============================================
+   KURT'S STORY — Image + text side by side
+   ============================================ */
+.story-section {
+  padding: 100px 0;
+  background: var(--cream);
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.story-image {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 4px solid var(--dark);
+  box-shadow: 8px 8px 0 var(--gold);
+  aspect-ratio: 4/5;
+}
+
+.story-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story-content h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 44px);
+  color: var(--dark);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  line-height: 1.1;
+}
+
+.story-content h2 .gold-text {
+  color: var(--gold);
+  display: block;
+}
+
+.story-content p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--text-body);
+  margin-bottom: 20px;
+}
+
+.story-content .highlight-block {
+  background: var(--gold-dim);
+  border-left: 4px solid var(--gold);
+  padding: 20px 24px;
+  border-radius: 0 12px 12px 0;
+  margin: 28px 0;
+  font-style: italic;
+  color: var(--dark);
+  font-weight: 500;
+}
+
+/* ============================================
+   COMMUNITY SECTION — Full-bleed green
+   ============================================ */
+.community-section {
+  padding: 80px 0;
+  background: var(--forest);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.community-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('photos/633793496_122159593688805937_3233896902258295987_n.jpg') center/cover no-repeat;
+  opacity: 0.12;
+  z-index: 0;
+}
+
+.community-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.community-content h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 52px);
+  color: var(--white);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.community-content p {
+  color: rgba(255,255,255,0.8);
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.community-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-top: 48px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 56px);
+  color: var(--gold);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+/* ============================================
+   JOIN SECTION — Image + CTA
+   ============================================ */
+.join-section {
+  padding: 100px 0;
+  background: var(--cream);
+}
+
+.join-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.join-image {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 4px solid var(--dark);
+  max-height: 500px;
+}
+
+.join-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.join-content h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 44px);
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.join-content p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--text-body);
+  margin-bottom: 20px;
+}
+
+/* ============================================
+   FOOTER — Matches V2 exactly
+   ============================================ */
+footer {
+  padding: 60px 0 32px;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+  border-top: 3px solid var(--dark);
+}
+
+footer::before {
+  content: 'AWA';
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: 400px;
+  color: var(--dark);
+  opacity: 0.02;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+
+.footer-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-cta h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 44px);
+  color: var(--dark);
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.footer-cta h2 .highlight {
+  background: var(--gold);
+  padding: 2px 12px;
+  display: inline-block;
+  transform: rotate(-1deg);
+}
+
+.footer-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 32px;
+}
+
+.footer-nav a {
+  font-family: var(--font-display);
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--dark);
+  transition: color 0.2s;
+}
+
+.footer-nav a:hover { color: var(--gold); }
+
+.footer-bottom {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 2px solid var(--dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-light);
+  position: relative;
+  z-index: 1;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-socials a {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--dark);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.footer-socials a:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.33, 1, 0.68, 1),
+              transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* Hero load animation */
+.hero-animate { animation: fadeUp 0.8s ease-out both; }
+.hero-animate:nth-child(2) { animation-delay: 0.15s; }
+.hero-animate:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 900px) {
+  .values-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+  .story-grid, .join-grid { grid-template-columns: 1fr; }
+  .story-image { max-height: 400px; aspect-ratio: auto; }
+  .community-stats { gap: 32px; }
+}
+
+@media (max-width: 768px) {
+  .nav-links, .nav-links-right { display: none; }
+  .nav-inner { grid-template-columns: 1fr; justify-items: center; }
+  .nav-logo { margin: 0; }
+  .about-hero { padding: 60px 0 120px; min-height: 400px; }
+  .founder-photo { width: 280px; height: 200px; }
+  .founder-quote { font-size: clamp(22px, 5vw, 36px); }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== NAVIGATION ========== -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <ul class="nav-links">
+        <li><a href="awa-wash-v2.html#about" class="active">About Us</a></li>
+        <li><a href="awa-wash-v2.html#services">Services</a></li>
+        <li><a href="awa-wash-v2.html#promise">Our Promise</a></li>
+      </ul>
+
+      <a href="awa-wash-v2.html" class="nav-logo">
+        <div class="nav-logo-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1A1710" stroke-width="2.5" stroke-linecap="round">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="nav-logo-text">AWA WASH</div>
+          <div class="nav-logo-sub">House Washing</div>
+        </div>
+      </a>
+
+      <div class="nav-links-right">
+        <ul class="nav-links">
+          <li><a href="awa-wash-v2.html#photos">Gallery</a></li>
+          <li><a href="awa-wash-v2.html#testimonials">Reviews</a></li>
+        </ul>
+        <div class="nav-cta-wrap">
+          <a href="awa-wash-v2.html#contact" class="btn-pill btn-gold">Get a Quote!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="about-hero">
+  <div class="container">
+    <h1 class="hero-animate">Built on <span class="gold-text">faith, family,</span> and a pressure washer.</h1>
+    <div class="hero-sparkle hero-animate"></div>
+  </div>
+  <div class="hero-curve">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" fill="var(--cream)">
+      <ellipse cx="720" cy="100" rx="900" ry="100"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ========== FOUNDER ========== -->
+<section class="founder-section">
+  <div class="container">
+    <div class="founder-photo reveal">
+      <img src="photos/548176518_122143091078805937_6584774532385541826_n.jpg" alt="Kurt, founder of Awa Wash, pressure washing a driveway">
+    </div>
+
+    <h2 class="founder-quote reveal">"I just want to do honest work for good people."</h2>
+
+    <div class="founder-text reveal">
+      <p>Awa Wash started the way most good things do — with a bloke, a trailer, and a determination to do things properly. Kurt grew up on the Kapiti Coast, where the salt air hits everything and the houses need a good scrub more often than most. He saw an industry full of no-shows, half-jobs, and people who didn't care. So he picked up a pressure washer and decided to be different.</p>
+      <p>A proud husband and father, Kurt brings the same care to every job that he brings to his family. His faith grounds everything he does — show up when you say you will, treat people's homes like your own, leave the place better than you found it. No shortcuts. No excuses. Just hard work done with integrity.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== VALUES ========== -->
+<section class="values-section">
+  <div class="container">
+    <div class="values-header">
+      <h2 class="reveal">What We Stand For</h2>
+      <p class="reveal">Three things guide every job we take on.</p>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal reveal-delay-1">
+        <div class="value-icon">✝</div>
+        <h3>Faith First</h3>
+        <p>Kurt's Christian faith isn't just personal — it's the backbone of how Awa Wash operates. Honesty, humility, and treating every person with dignity. That's not a marketing line. That's how we live.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-2">
+        <div class="value-icon">🏠</div>
+        <h3>Your Home, Our Pride</h3>
+        <p>We treat every property like it's our own. Whether it's a weatherboard villa or a brand new build, we show up on time, protect your garden, and don't leave until the job's done right.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-3">
+        <div class="value-icon">🌿</div>
+        <h3>Kiwi to the Core</h3>
+        <p>Born and raised in Aotearoa. We use eco-friendly products, support local suppliers, and genuinely care about leaving our corner of New Zealand cleaner than we found it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== KURT'S STORY ========== -->
+<section class="story-section">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-image reveal">
+        <img src="photos/616167407_122157264914805937_4631097223670218646_n.jpg" alt="Awa Wash working on a Wellington home">
+      </div>
+      <div class="story-content">
+        <h2 class="reveal">From the Kapiti Coast <span class="gold-text">to your doorstep</span></h2>
+        <p class="reveal">Growing up on the Kapiti Coast gave Kurt an appreciation for the outdoors that's never left. The hills, the coastline, the bush — it's all part of why he does what he does. Keeping homes clean isn't just a job, it's about preserving the places where families make their memories.</p>
+        <div class="highlight-block reveal">
+          "When I finish a job and the homeowner comes outside and just goes 'wow' — that's it. That's the whole reason I do this."
+        </div>
+        <p class="reveal">What started as a one-man operation with a pressure washer and a ute has grown into a trusted Wellington-area service that homeowners recommend to their neighbours. But the core hasn't changed — Kurt still personally oversees every job, still answers the phone, and still believes a handshake means something.</p>
+        <a href="awa-wash-v2.html#contact" class="btn-pill btn-dark reveal">Get Your Free Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== COMMUNITY ========== -->
+<section class="community-section">
+  <div class="container">
+    <div class="community-content">
+      <h2 class="reveal">Rooted in Community</h2>
+      <p class="reveal">Awa Wash isn't just a business — it's part of the neighbourhood. Kurt and his family are active in their local church, coach kids' sport, and believe that building a business means building up the people around you. When you hire Awa Wash, you're supporting a local family that puts everything back into the community.</p>
+      <div class="community-stats reveal">
+        <div class="stat">
+          <div class="stat-number">200+</div>
+          <div class="stat-label">Homes Washed</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Kiwi Owned</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">5★</div>
+          <div class="stat-label">Google Rating</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== JOIN THE TEAM ========== -->
+<section class="join-section">
+  <div class="container">
+    <div class="join-grid">
+      <div class="join-image reveal">
+        <img src="photos/589183314_122151239858805937_2138606787587082385_n.jpg" alt="Awa Wash deck cleaning">
+      </div>
+      <div class="join-content">
+        <h2 class="reveal">Join the Team</h2>
+        <p class="reveal">We're always looking for good people who take pride in hard work. Experience helps, but character matters more. If you're reliable, respectful, and not afraid of an early start — we want to hear from you.</p>
+        <p class="reveal">Whether you've been in the trade for years or you're looking for a fresh start, Awa Wash is a place where you'll be treated right and learn a craft you can be proud of.</p>
+        <a href="mailto:kurt@awawash.com" class="btn-pill btn-dark reveal">Get In Touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-cta">
+        <h2><span class="highlight">Quote</span> Within<br>1 Business Day</h2>
+      </div>
+      <div class="footer-nav">
+        <a href="awa-wash-v2.html#about">About Us</a>
+        <a href="awa-wash-v2.html#services">Services</a>
+        <a href="awa-wash-v2.html#promise">Our Promise</a>
+        <a href="awa-wash-v2.html#testimonials">Reviews</a>
+        <a href="awa-wash-v2.html#photos">Gallery</a>
+        <a href="awa-wash-v2.html#contact" class="btn-pill btn-gold" style="grid-column: 1/-1; text-align: center; margin-top: 8px;">Get a Quote!</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Awa Wash Ltd. All Rights Reserved.</span>
+      <div class="footer-socials">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">ig</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== SCRIPTS ========== -->
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
