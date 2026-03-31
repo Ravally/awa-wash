@@ -1187,6 +1187,31 @@ footer::before {
   .footer-nav { justify-items: center; }
 }
 
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: var(--dark);
+  padding: 16px 24px 24px;
+  gap: 0;
+  border-top: 3px solid var(--gold);
+}
+.mobile-menu a {
+  font-family: var(--font-display);
+  font-size: 16px;
+  text-transform: uppercase;
+  color: var(--cream);
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  transition: color 0.2s;
+}
+.mobile-menu a:hover { color: var(--gold); }
+.mobile-menu-cta { margin-top: 16px; text-align: center; border-bottom: none !important; }
+.mobile-menu.open { display: flex; }
+.nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.nav-toggle.active span:nth-child(2) { opacity: 0; }
+.nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
 @media (max-width: 600px) {
   .photo-item { width: 150px; height: 150px; font-size: 36px; }
   .footer-bottom { flex-direction: column; gap: 12px; }
@@ -1237,6 +1262,14 @@ footer::before {
         <span></span><span></span><span></span>
       </button>
     </div>
+  </div>
+  <div class="mobile-menu">
+    <a href="awa-wash-v2.html">Home</a>
+    <a href="awa-wash-about.html">About Us</a>
+    <a href="awa-wash-services.html">Services</a>
+    <a href="awa-wash-promise.html">Our Promise</a>
+    <a href="awa-wash-contact.html">Contact</a>
+    <a href="awa-wash-contact.html" class="btn-pill btn-gold mobile-menu-cta">Get a Free Quote!</a>
   </div>
 </nav>
 
@@ -1527,6 +1560,22 @@ footer::before {
 
 <!-- ========== SCRIPTS ========== -->
 <script>
+// Mobile menu toggle
+const navToggle = document.querySelector('.nav-toggle');
+const mobileMenu = document.querySelector('.mobile-menu');
+if (navToggle && mobileMenu) {
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.classList.remove('active');
+      mobileMenu.classList.remove('open');
+    });
+  });
+}
+
 // Scroll reveal
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
