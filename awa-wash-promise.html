@@ -52,7 +52,7 @@ nav {
 }
 .nav-inner {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr auto 1fr auto;
   align-items: center;
   height: 72px;
 }
@@ -83,7 +83,7 @@ nav {
   color: var(--text-light); letter-spacing: 2px;
   text-transform: uppercase; margin-left: 12px; margin-top: -2px;
 }
-.nav-links-right { display: flex; gap: 8px; justify-content: flex-end; align-items: center; }
+.nav-links-right { display: flex; align-items: center; }
 .nav-cta-wrap { margin-left: 16px; }
 
 /* Buttons */
@@ -696,9 +696,10 @@ footer::before {
           <li><a href="#" class="active">Our Promise</a></li>
           <li><a href="awa-wash-contact.html">Contact</a></li>
         </ul>
-        <div class="nav-cta-wrap">
-          <a href="awa-wash-contact.html" class="btn-pill btn-gold">Get a Quote!</a>
-        </div>
+      </div>
+
+      <div class="nav-cta-wrap">
+        <a href="awa-wash-contact.html" class="btn-pill btn-gold">Get a Quote!</a>
       </div>
     </div>
   </div>
