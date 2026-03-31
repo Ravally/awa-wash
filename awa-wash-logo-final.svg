@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 80">
+  <!-- Awa Wash Final Logo — The River A -->
+  <!-- Bold A with water stream flowing through, representing "awa" (water in Te Reo) -->
+
+  <!-- Gold circle mark -->
+  <circle cx="38" cy="40" r="35" fill="#FFD600" stroke="#1A1710" stroke-width="3"/>
+
+  <!-- Bold A letterform -->
+  <path d="M20 62 L34 14 L42 14 L56 62 L48 62 L44.5 50 L31.5 50 L28 62Z" fill="#1A1710"/>
+  <!-- A counter (triangle hole) -->
+  <path d="M33.5 44 L38 26 L42.5 44Z" fill="#FFD600"/>
+
+  <!-- Water stream flowing through the A -->
+  <path d="M16 36 Q24 30 32 36 Q38 41 44 36 Q50 31 58 36" fill="none" stroke="#FFD600" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M20 44 Q28 38 36 44 Q42 49 48 44 Q54 39 60 44" fill="none" stroke="#FFD600" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Small water drops -->
+  <circle cx="60" cy="34" r="2.2" fill="#1A1710"/>
+  <circle cx="63" cy="40" r="1.6" fill="#1A1710"/>
+
+  <!-- AWA wordmark -->
+  <text x="86" y="38" font-family="'Bungee', Impact, sans-serif" font-size="36" fill="#1A1710" letter-spacing="2">AWA</text>
+
+  <!-- WASH wordmark with gold stroke accent -->
+  <text x="200" y="38" font-family="'Bungee', Impact, sans-serif" font-size="36" fill="#1A1710" letter-spacing="2" stroke="#FFD600" stroke-width="0.8">WASH</text>
+
+  <!-- HOUSE WASHING subtitle -->
+  <text x="86" y="56" font-family="'DM Sans', Arial, sans-serif" font-size="9.5" fill="#1A1710" letter-spacing="4.5" opacity="0.4">HOUSE WASHING</text>
+
+  <!-- Double underline accent -->
+  <line x1="86" y1="64" x2="210" y2="64" stroke="#1A1710" stroke-width="2" stroke-linecap="round"/>
+  <line x1="86" y1="69" x2="160" y2="69" stroke="#FFD600" stroke-width="2" stroke-linecap="round"/>
+</svg>
