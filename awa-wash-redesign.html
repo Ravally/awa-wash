@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Awa Wash | House Cleaning with Purpose</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   CSS CUSTOM PROPERTIES
+   ============================================ */
+:root {
+  --color-bg: #0A0A0A;
+  --color-bg-elevated: #141414;
+  --color-bg-card: #1A1A1A;
+  --color-dominant: #FFD600;
+  --color-dominant-dim: rgba(255, 214, 0, 0.12);
+  --color-dominant-glow: rgba(255, 214, 0, 0.25);
+  --color-white: #FFFFFF;
+  --color-text: #B0B0B0;
+  --color-text-dim: #666666;
+  --color-green: #4CAF50;
+  --color-green-dim: rgba(76, 175, 80, 0.15);
+  --font-display: 'Bebas Neue', 'Impact', sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 20px 0;
+  transition: all 0.4s ease;
+  background: transparent;
+}
+
+nav.scrolled {
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(12px);
+  padding: 12px 0;
+  box-shadow: 0 1px 0 rgba(255, 214, 0, 0.1);
+}
+
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-logo-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--color-dominant);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  position: relative;
+}
+
+.nav-logo-icon::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 6px;
+  right: 6px;
+  height: 2px;
+  background: var(--color-bg);
+  border-radius: 2px;
+}
+
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-size: 28px;
+  letter-spacing: 3px;
+  color: var(--color-white);
+}
+
+.nav-logo-text span {
+  color: var(--color-dominant);
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-text);
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--color-dominant);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-dominant);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.nav-cta {
+  background: var(--color-dominant) !important;
+  color: var(--color-bg) !important;
+  padding: 10px 24px;
+  border-radius: 4px;
+  font-weight: 600 !important;
+  letter-spacing: 1.5px !important;
+  transition: transform 0.2s, box-shadow 0.2s !important;
+}
+
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--color-dominant-glow);
+}
+
+.nav-cta::after { display: none !important; }
+
+/* Mobile nav toggle */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.nav-toggle span {
+  width: 24px;
+  height: 2px;
+  background: var(--color-dominant);
+  transition: all 0.3s;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 0 80px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Subtle geometric patterns */
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, var(--color-dominant-dim) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: -5%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--color-dominant-dim) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+/* Diagonal accent lines */
+.hero-lines {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.04;
+}
+
+.hero-lines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 200px;
+  width: 1px;
+  height: 150%;
+  background: var(--color-dominant);
+  transform: rotate(15deg);
+  transform-origin: top center;
+}
+
+.hero-lines::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 300px;
+  width: 1px;
+  height: 150%;
+  background: var(--color-dominant);
+  transform: rotate(15deg);
+  transform-origin: top center;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-green-dim);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  color: var(--color-green);
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.hero-badge svg {
+  width: 16px;
+  height: 16px;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(56px, 8vw, 96px);
+  line-height: 0.95;
+  color: var(--color-white);
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--color-dominant);
+  display: block;
+}
+
+.hero-sub {
+  font-size: 18px;
+  color: var(--color-text);
+  margin: 20px 0 32px;
+  max-width: 480px;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--color-dominant);
+  color: var(--color-bg);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 8px 30px var(--color-dominant-glow);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-white);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-dominant);
+  color: var(--color-dominant);
+}
+
+/* Hero visual - house illustration with CSS */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-house {
+  width: 380px;
+  height: 340px;
+  position: relative;
+}
+
+/* House body */
+.house-body {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 200px;
+  background: var(--color-bg-card);
+  border: 2px solid rgba(255, 214, 0, 0.15);
+  border-radius: 8px 8px 4px 4px;
+}
+
+/* Roof */
+.house-roof {
+  position: absolute;
+  bottom: 190px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 170px solid transparent;
+  border-right: 170px solid transparent;
+  border-bottom: 120px solid var(--color-dominant);
+}
+
+.house-roof::after {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: -140px;
+  width: 0;
+  height: 0;
+  border-left: 140px solid transparent;
+  border-right: 140px solid transparent;
+  border-bottom: 95px solid var(--color-bg-elevated);
+}
+
+/* Windows */
+.house-window {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 214, 0, 0.15);
+  border: 2px solid rgba(255, 214, 0, 0.3);
+  border-radius: 4px;
+}
+
+.house-window-1 { bottom: 110px; left: calc(50% - 90px); }
+.house-window-2 { bottom: 110px; left: calc(50% + 40px); }
+
+/* Door */
+.house-door {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 70px;
+  background: var(--color-dominant);
+  border-radius: 4px 4px 0 0;
+}
+
+.house-door::after {
+  content: '';
+  position: absolute;
+  top: 32px;
+  right: 8px;
+  width: 6px;
+  height: 6px;
+  background: var(--color-bg);
+  border-radius: 50%;
+}
+
+/* Water spray effect */
+.spray-container {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  width: 100px;
+  height: 200px;
+}
+
+.spray-drop {
+  position: absolute;
+  width: 4px;
+  height: 12px;
+  background: var(--color-dominant);
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: sprayDrop 2s infinite;
+}
+
+.spray-drop:nth-child(1) { left: 10px; animation-delay: 0s; }
+.spray-drop:nth-child(2) { left: 30px; animation-delay: 0.3s; }
+.spray-drop:nth-child(3) { left: 50px; animation-delay: 0.6s; }
+.spray-drop:nth-child(4) { left: 70px; animation-delay: 0.9s; }
+.spray-drop:nth-child(5) { left: 20px; animation-delay: 1.2s; }
+.spray-drop:nth-child(6) { left: 60px; animation-delay: 0.15s; }
+
+@keyframes sprayDrop {
+  0% { transform: translateY(0) scale(1); opacity: 0.7; }
+  100% { transform: translateY(160px) scale(0.3); opacity: 0; }
+}
+
+/* Sparkle elements */
+.sparkle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--color-dominant);
+  border-radius: 50%;
+  animation: sparkle 3s infinite;
+}
+
+.sparkle:nth-child(1) { top: 80px; left: 60px; animation-delay: 0s; }
+.sparkle:nth-child(2) { top: 140px; left: 280px; animation-delay: 1s; }
+.sparkle:nth-child(3) { top: 40px; left: 200px; animation-delay: 2s; }
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+/* ============================================
+   TRUST BAR
+   ============================================ */
+.trust-bar {
+  padding: 40px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--color-bg-elevated);
+}
+
+.trust-bar .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-text-dim);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.trust-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: var(--color-dominant-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trust-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--color-dominant);
+}
+
+/* ============================================
+   SERVICES SECTION
+   ============================================ */
+.services {
+  padding: 120px 0;
+  position: relative;
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-dominant);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5vw, 64px);
+  color: var(--color-white);
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+.section-desc {
+  font-size: 16px;
+  color: var(--color-text);
+  max-width: 520px;
+  margin-bottom: 60px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.service-card {
+  background: var(--color-bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 36px 28px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-dominant);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 214, 0, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.service-card:hover::before {
+  transform: scaleX(1);
+}
+
+.service-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: var(--color-dominant-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.service-card h3 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--color-white);
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+
+.service-card p {
+  font-size: 14px;
+  color: var(--color-text);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.service-price {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--color-dominant);
+  letter-spacing: 1px;
+}
+
+.service-price span {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--color-text-dim);
+  letter-spacing: 0;
+}
+
+/* ============================================
+   WHY US / FEATURES
+   ============================================ */
+.why-us {
+  padding: 120px 0;
+  background: var(--color-bg-elevated);
+  position: relative;
+}
+
+.why-us-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.why-us-visual {
+  position: relative;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.stat-card {
+  background: var(--color-bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 28px 24px;
+  text-align: center;
+}
+
+.stat-card .number {
+  font-family: var(--font-display);
+  font-size: 48px;
+  color: var(--color-dominant);
+  letter-spacing: 1px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-card .label {
+  font-size: 13px;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.stat-card.green .number {
+  color: var(--color-green);
+}
+
+.why-features {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.why-feature {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.why-feature-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 10px;
+  background: var(--color-dominant-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.why-feature h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-white);
+  margin-bottom: 6px;
+}
+
+.why-feature p {
+  font-size: 14px;
+  color: var(--color-text);
+  line-height: 1.7;
+}
+
+/* ============================================
+   ECO SECTION
+   ============================================ */
+.eco {
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.eco-inner {
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(76, 175, 80, 0.02));
+  border: 1px solid rgba(76, 175, 80, 0.15);
+  border-radius: 20px;
+  padding: 60px;
+  text-align: center;
+  position: relative;
+}
+
+.eco-inner::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(76, 175, 80, 0.1), transparent 70%);
+  border-radius: 50%;
+}
+
+.eco-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.eco h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4vw, 52px);
+  color: var(--color-white);
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+.eco h2 span {
+  color: var(--color-green);
+}
+
+.eco p {
+  font-size: 16px;
+  color: var(--color-text);
+  max-width: 600px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+}
+
+.eco-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.eco-stat {
+  text-align: center;
+}
+
+.eco-stat .big {
+  font-family: var(--font-display);
+  font-size: 40px;
+  color: var(--color-green);
+  letter-spacing: 1px;
+}
+
+.eco-stat .small {
+  font-size: 13px;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ============================================
+   PRICING
+   ============================================ */
+.pricing {
+  padding: 120px 0;
+  background: var(--color-bg-elevated);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.price-card {
+  background: var(--color-bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.price-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.price-card.featured {
+  border-color: var(--color-dominant);
+  position: relative;
+}
+
+.price-card.featured::before {
+  content: 'MOST POPULAR';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-dominant);
+  color: var(--color-bg);
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 8px;
+}
+
+.price-card-body {
+  padding: 40px 32px;
+}
+
+.price-card.featured .price-card-body {
+  padding-top: 56px;
+}
+
+.price-card h3 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: var(--color-white);
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;
+}
+
+.price-card .size-info {
+  font-size: 13px;
+  color: var(--color-text-dim);
+  margin-bottom: 24px;
+}
+
+.price-amount {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+
+.price-amount .dollar {
+  font-family: var(--font-display);
+  font-size: 48px;
+  color: var(--color-dominant);
+  line-height: 1;
+}
+
+.price-amount .gst {
+  font-size: 14px;
+  color: var(--color-text-dim);
+}
+
+.price-features {
+  list-style: none;
+  margin-bottom: 28px;
+}
+
+.price-features li {
+  padding: 8px 0;
+  font-size: 14px;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.price-features li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--color-dominant);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.price-card .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+.cta {
+  padding: 120px 0;
+  text-align: center;
+  position: relative;
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--color-dominant-dim) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.cta .container {
+  position: relative;
+}
+
+.cta h2 {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6vw, 80px);
+  color: var(--color-white);
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+.cta h2 span {
+  color: var(--color-dominant);
+}
+
+.cta p {
+  font-size: 18px;
+  color: var(--color-text);
+  margin-bottom: 36px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+  padding: 60px 0 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--color-bg-elevated);
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+.footer-brand {
+  max-width: 280px;
+}
+
+.footer-brand .nav-logo {
+  margin-bottom: 16px;
+}
+
+.footer-brand p {
+  font-size: 14px;
+  color: var(--color-text-dim);
+  line-height: 1.7;
+}
+
+.footer-col h4 {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-white);
+  margin-bottom: 16px;
+}
+
+.footer-col a {
+  display: block;
+  font-size: 14px;
+  color: var(--color-text-dim);
+  padding: 4px 0;
+  transition: color 0.3s;
+}
+
+.footer-col a:hover {
+  color: var(--color-dominant);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 13px;
+  color: var(--color-text-dim);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.33, 1, 0.68, 1),
+              transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-animate {
+  animation: fadeUp 0.8s ease-out both;
+}
+
+.hero-animate:nth-child(2) { animation-delay: 0.15s; }
+.hero-animate:nth-child(3) { animation-delay: 0.3s; }
+.hero-animate:nth-child(4) { animation-delay: 0.45s; }
+.hero-animate:nth-child(5) { animation-delay: 0.6s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 900px) {
+  .hero .container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-sub { margin-left: auto; margin-right: auto; }
+  .hero-actions { justify-content: center; }
+  .hero-visual { display: none; }
+
+  .services-grid,
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .why-us-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+
+  .eco-inner { padding: 40px 24px; }
+}
+
+@media (max-width: 600px) {
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .trust-bar .container { gap: 24px; }
+  .stat-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== NAVIGATION ========== -->
+<nav>
+  <div class="container">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon"></div>
+      <div class="nav-logo-text"><span>AWA</span> WASH</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services" class="active">Services</a></li>
+      <li><a href="#why-us">Why Us</a></li>
+      <li><a href="#pricing">Prices</a></li>
+      <li><a href="#eco">Eco Mission</a></li>
+      <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-lines"></div>
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge hero-animate">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm3.5 5.5a.75.75 0 0 0-1.06 0L7 8.94 5.56 7.5a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l4-4a.75.75 0 0 0-.06-1.06z"/></svg>
+        5,000+ native trees planted each year
+      </div>
+      <h1 class="hero-animate">
+        CLEAN HOME.
+        <em>GREENER AOTEAROA.</em>
+      </h1>
+      <p class="hero-sub hero-animate">Wellington's trusted house washing company. Soft washing, roof cleaning, gutter clearing, and more &mdash; with every job planting native trees across New Zealand.</p>
+      <div class="hero-actions hero-animate">
+        <a href="#contact" class="btn btn-primary">Get Free Quote</a>
+        <a href="#services" class="btn btn-outline">Our Services</a>
+      </div>
+    </div>
+    <div class="hero-visual hero-animate">
+      <div class="hero-house">
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="house-roof"></div>
+        <div class="house-body">
+          <div class="house-window house-window-1"></div>
+          <div class="house-window house-window-2"></div>
+          <div class="house-door"></div>
+        </div>
+        <div class="spray-container">
+          <div class="spray-drop"></div>
+          <div class="spray-drop"></div>
+          <div class="spray-drop"></div>
+          <div class="spray-drop"></div>
+          <div class="spray-drop"></div>
+          <div class="spray-drop"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TRUST BAR ========== -->
+<section class="trust-bar">
+  <div class="container">
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+      </div>
+      Fully Insured
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      </div>
+      Site Safe Certified
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H11.5v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.65c.09 1.72 1.38 2.69 2.85 2.99V19h1.73v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.65-3.42z"/></svg>
+      </div>
+      NZ Owned &amp; Operated
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+      </div>
+      Same-Week Booking
+    </div>
+  </div>
+</section>
+
+<!-- ========== SERVICES ========== -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-label reveal">What We Do</div>
+    <h2 class="section-title reveal">OUR SERVICES</h2>
+    <p class="section-desc reveal">Professional exterior cleaning for homes across the Wellington region. Every service uses eco-friendly products safe for your family and the environment.</p>
+
+    <div class="services-grid">
+      <div class="service-card reveal" data-delay="0">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD600" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>House Soft Washing</h3>
+        <p>Low-pressure cleaning that's gentle on your cladding but tough on grime, mould, and dirt. Safe for all exterior surfaces.</p>
+        <div class="service-price">From $325 <span>+GST</span></div>
+      </div>
+      <div class="service-card reveal" data-delay="1">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD600" stroke-width="2"><path d="M3 9l9-7 9 7"/><path d="M21 9v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9"/></svg>
+        </div>
+        <h3>Roof Cleaning</h3>
+        <p>Remove moss, lichen, and built-up debris to protect and extend the life of your roof. Careful treatment, visible results.</p>
+        <div class="service-price">From $300 <span>+GST</span></div>
+      </div>
+      <div class="service-card reveal" data-delay="2">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD600" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <h3>Gutter Cleaning</h3>
+        <p>Clear leaves, silt, and blockages so water flows freely. Prevents overflow, leaks, and costly damage.</p>
+        <div class="service-price">From $180 <span>+GST</span></div>
+      </div>
+      <div class="service-card reveal" data-delay="3">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD600" stroke-width="2"><rect x="1" y="6" width="22" height="12" rx="2"/><line x1="1" y1="12" x2="23" y2="12"/></svg>
+        </div>
+        <h3>Driveway &amp; Paths</h3>
+        <p>High-pressure concrete and paving cleaning that makes driveways, paths, and patios look brand new again.</p>
+        <div class="service-price">From $200 <span>+GST</span></div>
+      </div>
+      <div class="service-card reveal" data-delay="4">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD600" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </div>
+        <h3>Solar Panel Cleaning</h3>
+        <p>Restore efficiency with safe, streak-free panel cleaning. Dirty panels lose up to 25% output.</p>
+        <div class="service-price">From $25 <span>+GST per panel</span></div>
+      </div>
+      <div class="service-card reveal" data-delay="5">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD600" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </div>
+        <h3>Moss &amp; Mould Treatment</h3>
+        <p>Long-lasting chemical treatment that kills moss and mould at the root. Prevents regrowth for months.</p>
+        <div class="service-price">From $260 <span>+GST</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== WHY US ========== -->
+<section class="why-us" id="why-us">
+  <div class="container">
+    <div class="why-us-grid">
+      <div class="why-us-visual reveal">
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="number">500+</div>
+            <div class="label">Homes Washed</div>
+          </div>
+          <div class="stat-card green">
+            <div class="number">5K+</div>
+            <div class="label">Trees Planted</div>
+          </div>
+          <div class="stat-card">
+            <div class="number">4.9</div>
+            <div class="label">Star Rating</div>
+          </div>
+          <div class="stat-card">
+            <div class="number">100%</div>
+            <div class="label">Eco Products</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label reveal">Why Awa Wash</div>
+        <h2 class="section-title reveal">BUILT DIFFERENT</h2>
+        <div class="why-features">
+          <div class="why-feature reveal">
+            <div class="why-feature-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFD600" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <h4>Fully Insured &amp; Certified</h4>
+              <p>Site Safe certified with full public liability insurance. Your property is in safe hands.</p>
+            </div>
+          </div>
+          <div class="why-feature reveal">
+            <div class="why-feature-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFD600" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+            </div>
+            <div>
+              <h4>Soft Wash Technology</h4>
+              <p>Low-pressure methods protect your cladding, paint, and surfaces while delivering spotless results.</p>
+            </div>
+          </div>
+          <div class="why-feature reveal">
+            <div class="why-feature-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66L7 18h4l-2 6h2l4.5-8H18l-2 4h2l3.3-5.72A9.06 9.06 0 0 0 17 8z"/></svg>
+            </div>
+            <div>
+              <h4>Every Wash Plants Trees</h4>
+              <p>We fund native tree planting across New Zealand with every single job. Over 5,000 trees planted and growing.</p>
+            </div>
+          </div>
+          <div class="why-feature reveal">
+            <div class="why-feature-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFD600" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <div>
+              <h4>Transparent Pricing</h4>
+              <p>Clear prices upfront based on your home size. No hidden fees, no surprise charges after the job.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ECO MISSION ========== -->
+<section class="eco" id="eco">
+  <div class="container">
+    <div class="eco-inner reveal">
+      <div class="eco-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="1.5"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66L7 18h4l-2 6h2l4.5-8H18l-2 4h2l3.3-5.72A9.06 9.06 0 0 0 17 8z"/><path d="M12 2a10 10 0 0 0-3.3.56"/></svg>
+      </div>
+      <h2>CLEAN HOME. <span>GREENER FUTURE.</span></h2>
+      <p>With every wash, Awa Wash funds native tree planting across Aotearoa. We use only eco-friendly, biodegradable cleaning products that are safe for your garden, your family, and our waterways.</p>
+      <div class="eco-stats">
+        <div class="eco-stat">
+          <div class="big">5,000+</div>
+          <div class="small">Trees Planted Annually</div>
+        </div>
+        <div class="eco-stat">
+          <div class="big">100%</div>
+          <div class="small">Eco-Friendly Products</div>
+        </div>
+        <div class="eco-stat">
+          <div class="big">0</div>
+          <div class="small">Harmful Runoff</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PRICING ========== -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="section-label reveal">Simple Pricing</div>
+    <h2 class="section-title reveal">HOUSE WASH PRICES</h2>
+    <p class="section-desc reveal">Based on floor area. All prices exclude GST. Includes full exterior soft wash, cobweb removal, and window frame rinse.</p>
+
+    <div class="pricing-grid">
+      <div class="price-card reveal" data-delay="0">
+        <div class="price-card-body">
+          <h3>SMALL</h3>
+          <div class="size-info">Up to 150 m&sup2;</div>
+          <div class="price-amount">
+            <span class="dollar">$325</span>
+            <span class="gst">+GST</span>
+          </div>
+          <ul class="price-features">
+            <li>Full exterior soft wash</li>
+            <li>Cobweb removal</li>
+            <li>Window frame rinse</li>
+            <li>Eco-friendly products</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline">Get Quote</a>
+        </div>
+      </div>
+      <div class="price-card featured reveal" data-delay="1">
+        <div class="price-card-body">
+          <h3>MEDIUM</h3>
+          <div class="size-info">Up to 180 m&sup2;</div>
+          <div class="price-amount">
+            <span class="dollar">$400</span>
+            <span class="gst">+GST</span>
+          </div>
+          <ul class="price-features">
+            <li>Full exterior soft wash</li>
+            <li>Cobweb removal</li>
+            <li>Window frame rinse</li>
+            <li>Eco-friendly products</li>
+            <li>Free gutter check</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Get Quote</a>
+        </div>
+      </div>
+      <div class="price-card reveal" data-delay="2">
+        <div class="price-card-body">
+          <h3>LARGE</h3>
+          <div class="size-info">Up to 250 m&sup2;</div>
+          <div class="price-amount">
+            <span class="dollar">$500</span>
+            <span class="gst">+GST</span>
+          </div>
+          <ul class="price-features">
+            <li>Full exterior soft wash</li>
+            <li>Cobweb removal</li>
+            <li>Window frame rinse</li>
+            <li>Eco-friendly products</li>
+            <li>Free gutter check</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline">Get Quote</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<section class="cta" id="contact">
+  <div class="container">
+    <h2 class="reveal">READY FOR A <span>CLEAN HOME?</span></h2>
+    <p class="reveal">Get a free no-obligation quote. We'll get back to you within 24 hours.</p>
+    <div class="reveal">
+      <a href="mailto:info@awawash.com" class="btn btn-primary" style="font-size:16px; padding: 18px 40px;">Get Your Free Quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <div class="nav-logo-icon"></div>
+          <div class="nav-logo-text"><span>AWA</span> WASH</div>
+        </div>
+        <p>Wellington's eco-friendly house washing company. Clean home, greener Aotearoa.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#">House Soft Washing</a>
+        <a href="#">Roof Cleaning</a>
+        <a href="#">Gutter Cleaning</a>
+        <a href="#">Driveway Cleaning</a>
+        <a href="#">Solar Panel Cleaning</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Our Eco Mission</a>
+        <a href="#">Reviews</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Get in Touch</h4>
+        <a href="#">Wellington, NZ</a>
+        <a href="#">info@awawash.com</a>
+        <a href="#">Facebook</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Awa Wash Ltd. All rights reserved.</span>
+      <span>NZ Owned &amp; Operated</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== SCRIPTS ========== -->
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const delay = entry.target.dataset.delay || 0;
+      setTimeout(() => entry.target.classList.add('visible'), delay * 120);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Nav scroll behavior
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
