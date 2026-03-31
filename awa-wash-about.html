@@ -73,24 +73,19 @@ nav {
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 2px;
-}
-
-.nav-inner > .nav-links {
-  justify-content: flex-end;
+  gap: 8px;
 }
 
 .nav-links a {
   font-family: var(--font-display);
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   color: var(--dark);
-  padding: 8px 10px;
+  padding: 8px 16px;
   transition: color 0.2s;
   text-decoration: underline;
   text-underline-offset: 3px;
-  white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -104,7 +99,7 @@ nav {
 }
 
 .nav-logo {
-  margin: 0 20px;
+  margin: 0 32px;
   display: flex;
   align-items: center;
   gap: 0;
@@ -147,13 +142,13 @@ nav {
 
 .nav-links-right {
   display: flex;
-  gap: 4px;
+  gap: 8px;
   justify-content: flex-end;
   align-items: center;
 }
 
 .nav-cta-wrap {
-  margin-left: 8px;
+  margin-left: 16px;
 }
 
 /* Buttons */
@@ -768,7 +763,8 @@ footer::before {
     <div class="nav-inner">
       <ul class="nav-links">
         <li><a href="awa-wash-v2.html#about" class="active">About Us</a></li>
-        <li><a href="awa-wash-v2.html#services">Services</a></li>
+        <li><a href="awa-wash-services.html">Services</a></li>
+        <li><a href="awa-wash-promise.html">Our Promise</a></li>
       </ul>
 
       <a href="awa-wash-v2.html" class="nav-logo">
@@ -785,7 +781,6 @@ footer::before {
 
       <div class="nav-links-right">
         <ul class="nav-links">
-          <li><a href="awa-wash-promise.html">Our Promise</a></li>
           <li><a href="awa-wash-contact.html">Contact</a></li>
         </ul>
         <div class="nav-cta-wrap">
