@@ -589,8 +589,14 @@ footer::before {
 }
 @media (max-width: 768px) {
   .nav-links, .nav-links-right { display: none; }
-  .nav-inner { grid-template-columns: 1fr; justify-items: center; }
+  .nav-inner { display: flex; justify-content: space-between; align-items: center; padding: 0 8px; }
   .nav-logo { margin: 0; }
+  .nav-logo-mark { width: 40px; height: 40px; }
+  .nav-logo-mark svg { width: 40px; height: 40px; }
+  .nav-logo-text { font-size: 22px; margin-left: 8px; }
+  .nav-logo-sub { font-size: 8px; margin-left: 9px; letter-spacing: 1.5px; }
+  .nav-cta-wrap { margin-left: auto; }
+  .nav-cta-wrap .btn-pill { font-size: 11px; padding: 8px 16px; }
   .contact-hero { padding: 60px 0 120px; min-height: 350px; }
   .contact-form-card { padding: 32px 24px; }
 }
