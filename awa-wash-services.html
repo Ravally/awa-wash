@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services | Awa Wash</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   DESIGN SYSTEM — Awa Wash × Pink's Windows DNA
+   ============================================ */
+:root {
+  --cream: #F5F0E8;
+  --cream-dark: #EDE6D9;
+  --gold: #FFD600;
+  --gold-light: #FFE44D;
+  --gold-dim: rgba(255, 214, 0, 0.15);
+  --dark: #1A1710;
+  --dark-mid: #2B2820;
+  --charcoal: #3A3630;
+  --forest: #2D5A3D;
+  --forest-light: rgba(45, 90, 61, 0.12);
+  --text-dark: #1A1710;
+  --text-body: rgba(26, 23, 16, 0.7);
+  --text-light: rgba(26, 23, 16, 0.45);
+  --white: #FFFFFF;
+
+  --font-display: 'Bungee', 'Impact', cursive;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--text-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--cream);
+  border-bottom: 3px solid var(--dark);
+  padding: 0;
+}
+
+.nav-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 72px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 8px;
+}
+
+.nav-links a {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--dark);
+  padding: 8px 16px;
+  transition: color 0.2s;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.nav-links a:hover {
+  color: var(--gold);
+  text-decoration-color: var(--gold);
+}
+
+.nav-links a.active {
+  color: var(--gold);
+  text-decoration-color: var(--gold);
+}
+
+.nav-logo {
+  margin: 0 32px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo-mark {
+  width: 52px;
+  height: 52px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--dark);
+}
+
+.nav-logo-mark svg {
+  width: 26px;
+  height: 26px;
+}
+
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-size: 32px;
+  color: var(--dark);
+  margin-left: 10px;
+  line-height: 1;
+}
+
+.nav-logo-sub {
+  font-family: var(--font-display);
+  font-size: 10px;
+  color: var(--text-light);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-left: 12px;
+  margin-top: -2px;
+}
+
+.nav-links-right {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nav-cta-wrap { margin-left: 16px; }
+
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 12px 28px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+
+.btn-pill:hover { transform: translateY(-2px); }
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--dark);
+  border: 2px solid var(--dark);
+}
+.btn-gold:hover { box-shadow: 4px 4px 0 var(--dark); }
+
+.btn-dark {
+  background: var(--dark);
+  color: var(--cream);
+  border: 2px solid var(--dark);
+}
+.btn-dark:hover { box-shadow: 4px 4px 0 var(--gold); }
+
+.btn-outline-cream {
+  background: transparent;
+  color: var(--cream);
+  border: 2px solid var(--cream);
+}
+.btn-outline-cream:hover {
+  background: var(--cream);
+  color: var(--dark);
+}
+
+/* ============================================
+   HERO — Dark section with statement
+   ============================================ */
+.services-hero {
+  background: var(--dark);
+  padding: 80px 0 160px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  min-height: 450px;
+  display: flex;
+  align-items: center;
+}
+
+.services-hero::before {
+  content: 'WASH';
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: clamp(200px, 30vw, 500px);
+  color: var(--cream);
+  opacity: 0.03;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.services-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image:
+    repeating-linear-gradient(45deg, transparent, transparent 20px, var(--cream) 20px, var(--cream) 21px),
+    repeating-linear-gradient(-45deg, transparent, transparent 20px, var(--cream) 20px, var(--cream) 21px);
+  pointer-events: none;
+}
+
+.services-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.services-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 64px);
+  color: var(--gold);
+  text-transform: uppercase;
+  line-height: 1.15;
+  max-width: 700px;
+  margin: 0 auto 20px;
+}
+
+.services-hero p {
+  color: rgba(245, 240, 232, 0.7);
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hero-sparkle {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 20px auto 0;
+  position: relative;
+}
+.hero-sparkle::before,
+.hero-sparkle::after {
+  content: '';
+  position: absolute;
+  background: var(--gold);
+}
+.hero-sparkle::before {
+  width: 2px; height: 20px;
+  left: 50%; top: 0;
+  transform: translateX(-50%);
+}
+.hero-sparkle::after {
+  width: 20px; height: 2px;
+  top: 50%; left: 0;
+  transform: translateY(-50%);
+}
+
+.hero-curve {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  z-index: 2;
+}
+.hero-curve svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ============================================
+   SERVICES LIST — Pink's style horizontal rows
+   ============================================ */
+.services-list {
+  padding: 80px 0 40px;
+  background: var(--cream);
+}
+
+.service-row {
+  display: grid;
+  grid-template-columns: 250px 1fr 140px;
+  gap: 40px;
+  align-items: center;
+  padding: 48px 0;
+  border-bottom: 2px solid rgba(26, 23, 16, 0.1);
+}
+
+.service-row:first-child {
+  padding-top: 0;
+}
+
+.service-name h2 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 38px);
+  color: var(--dark);
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.service-details {
+  padding-right: 20px;
+}
+
+.service-details p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-body);
+  margin-bottom: 16px;
+}
+
+.service-price-tag {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  background: var(--gold);
+  padding: 6px 16px;
+  border-radius: 100px;
+  border: 2px solid var(--dark);
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--dark);
+}
+
+.service-price-tag small {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  opacity: 0.7;
+}
+
+.service-includes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.service-includes span {
+  font-size: 13px;
+  padding: 4px 12px;
+  background: var(--gold-dim);
+  border-radius: 100px;
+  color: var(--dark);
+  font-weight: 500;
+}
+
+.service-thumb {
+  width: 140px;
+  height: 140px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 3px solid var(--dark);
+  flex-shrink: 0;
+}
+
+.service-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============================================
+   PRICING TABLE — Full overview
+   ============================================ */
+.pricing-section {
+  padding: 80px 0;
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image:
+    repeating-linear-gradient(45deg, transparent, transparent 20px, var(--cream) 20px, var(--cream) 21px),
+    repeating-linear-gradient(-45deg, transparent, transparent 20px, var(--cream) 20px, var(--cream) 21px);
+  pointer-events: none;
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.pricing-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 44px);
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.pricing-header p {
+  color: rgba(245, 240, 232, 0.6);
+  font-size: 17px;
+  margin-top: 12px;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.pricing-card {
+  background: var(--dark-mid);
+  border: 2px solid var(--charcoal);
+  border-radius: 16px;
+  padding: 32px 28px;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  border-color: var(--gold);
+}
+
+.pricing-card.popular {
+  border-color: var(--gold);
+}
+
+.popular-badge {
+  position: absolute;
+  top: 16px;
+  right: -32px;
+  background: var(--gold);
+  color: var(--dark);
+  font-family: var(--font-display);
+  font-size: 11px;
+  text-transform: uppercase;
+  padding: 4px 40px;
+  transform: rotate(45deg);
+}
+
+.pricing-card-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.pricing-card h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--cream);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.pricing-card .price {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3vw, 36px);
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.pricing-card .price small {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: rgba(245, 240, 232, 0.5);
+  font-weight: 400;
+}
+
+.pricing-card .price-note {
+  font-size: 13px;
+  color: rgba(245, 240, 232, 0.4);
+  margin-bottom: 16px;
+}
+
+.pricing-card ul {
+  list-style: none;
+  margin-bottom: 24px;
+}
+
+.pricing-card li {
+  font-size: 14px;
+  color: rgba(245, 240, 232, 0.7);
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(245, 240, 232, 0.06);
+  padding-left: 20px;
+  position: relative;
+}
+
+.pricing-card li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.pricing-card .btn-pill {
+  width: 100%;
+  justify-content: center;
+  font-size: 13px;
+  padding: 10px 20px;
+}
+
+/* ============================================
+   PROCESS SECTION — How it works
+   ============================================ */
+.process-section {
+  padding: 80px 0;
+  background: var(--cream);
+}
+
+.process-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.process-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 44px);
+  color: var(--dark);
+  text-transform: uppercase;
+}
+
+.process-header p {
+  color: var(--text-body);
+  font-size: 17px;
+  margin-top: 12px;
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  position: relative;
+}
+
+/* Connecting line */
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 60px;
+  right: 60px;
+  height: 3px;
+  background: var(--gold);
+  z-index: 0;
+}
+
+.process-step {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.step-number {
+  width: 80px;
+  height: 80px;
+  background: var(--dark);
+  border: 3px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: var(--gold);
+}
+
+.process-step h3 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--dark);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.process-step p {
+  font-size: 14px;
+  color: var(--text-body);
+  line-height: 1.6;
+}
+
+/* ============================================
+   ECO SECTION
+   ============================================ */
+.eco-section {
+  padding: 60px 0;
+  background: var(--forest);
+  text-align: center;
+}
+
+.eco-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.eco-content h2 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 36px);
+  color: var(--white);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.eco-content p {
+  color: rgba(255,255,255,0.8);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.eco-badges {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.eco-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.eco-badge-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+.cta-section {
+  padding: 80px 0;
+  background: var(--cream);
+  text-align: center;
+}
+
+.cta-content h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 52px);
+  color: var(--dark);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.cta-content h2 .gold-text {
+  color: var(--gold);
+}
+
+.cta-content p {
+  font-size: 18px;
+  color: var(--text-body);
+  max-width: 600px;
+  margin: 0 auto 32px;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+  padding: 60px 0 32px;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+  border-top: 3px solid var(--dark);
+}
+
+footer::before {
+  content: 'AWA';
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: 400px;
+  color: var(--dark);
+  opacity: 0.02;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+
+.footer-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-cta h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 44px);
+  color: var(--dark);
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.footer-cta h2 .highlight {
+  background: var(--gold);
+  padding: 2px 12px;
+  display: inline-block;
+  transform: rotate(-1deg);
+}
+
+.footer-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 32px;
+}
+
+.footer-nav a {
+  font-family: var(--font-display);
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--dark);
+  transition: color 0.2s;
+}
+.footer-nav a:hover { color: var(--gold); }
+
+.footer-bottom {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 2px solid var(--dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-light);
+  position: relative;
+  z-index: 1;
+}
+
+.footer-socials { display: flex; gap: 12px; }
+
+.footer-socials a {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--dark);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+.footer-socials a:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.33, 1, 0.68, 1),
+              transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+.hero-animate { animation: fadeUp 0.8s ease-out both; }
+.hero-animate:nth-child(2) { animation-delay: 0.15s; }
+.hero-animate:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .service-row {
+    grid-template-columns: 200px 1fr 120px;
+    gap: 24px;
+  }
+  .service-thumb { width: 120px; height: 120px; }
+}
+
+@media (max-width: 900px) {
+  .service-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    text-align: center;
+  }
+  .service-thumb {
+    width: 100%;
+    height: 200px;
+    border-radius: 12px;
+    order: -1;
+  }
+  .service-details { padding-right: 0; }
+  .service-includes { justify-content: center; }
+  .process-steps {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 24px;
+  }
+  .process-steps::before { display: none; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
+}
+
+@media (max-width: 768px) {
+  .nav-links, .nav-links-right { display: none; }
+  .nav-inner { grid-template-columns: 1fr; justify-items: center; }
+  .nav-logo { margin: 0; }
+  .services-hero { padding: 60px 0 120px; min-height: 350px; }
+  .process-steps { grid-template-columns: 1fr; max-width: 300px; margin: 0 auto; }
+  .eco-badges { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== NAVIGATION ========== -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <ul class="nav-links">
+        <li><a href="awa-wash-about.html">About Us</a></li>
+        <li><a href="#" class="active">Services</a></li>
+        <li><a href="awa-wash-v2.html#promise">Our Promise</a></li>
+      </ul>
+
+      <a href="awa-wash-v2.html" class="nav-logo">
+        <div class="nav-logo-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1A1710" stroke-width="2.5" stroke-linecap="round">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="nav-logo-text">AWA WASH</div>
+          <div class="nav-logo-sub">House Washing</div>
+        </div>
+      </a>
+
+      <div class="nav-links-right">
+        <ul class="nav-links">
+          <li><a href="awa-wash-v2.html#photos">Gallery</a></li>
+          <li><a href="awa-wash-v2.html#testimonials">Reviews</a></li>
+        </ul>
+        <div class="nav-cta-wrap">
+          <a href="awa-wash-v2.html#contact" class="btn-pill btn-gold">Get a Quote!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="services-hero">
+  <div class="container">
+    <h1 class="hero-animate">We Look Forward to Serving You</h1>
+    <p class="hero-animate">Everything your home's exterior needs, done properly with eco-friendly products and honest pricing.</p>
+    <div class="hero-sparkle hero-animate"></div>
+  </div>
+  <div class="hero-curve">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" fill="var(--cream)">
+      <ellipse cx="720" cy="100" rx="900" ry="100"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ========== SERVICES LIST — Pink's style rows ========== -->
+<section class="services-list">
+  <div class="container">
+
+    <div class="service-row reveal">
+      <div class="service-name">
+        <h2>House Soft Washing</h2>
+      </div>
+      <div class="service-details">
+        <p>Gentle low-pressure wash safe for all cladding types — weatherboard, plaster, brick, and more. Removes years of grime, mould, and algae without damaging your home's finish. Your house will look like it just got a fresh coat of paint.</p>
+        <div class="service-price-tag">From $325 <small>+GST</small></div>
+        <div class="service-includes">
+          <span>All cladding types</span>
+          <span>Eco-friendly</span>
+          <span>Fascia &amp; soffits</span>
+        </div>
+      </div>
+      <div class="service-thumb">
+        <img src="photos/590801077_122151241430805937_3205712944377846609_n.jpg" alt="Clean house exterior">
+      </div>
+    </div>
+
+    <div class="service-row reveal">
+      <div class="service-name">
+        <h2>Roof Cleaning</h2>
+      </div>
+      <div class="service-details">
+        <p>Professional moss, lichen, and debris removal to protect your roof and extend its life. We clear the build-up that causes damage and keeps your home looking tired. Safe for all roof types including tile, longrun, and butynol.</p>
+        <div class="service-price-tag">From $300 <small>+GST</small></div>
+        <div class="service-includes">
+          <span>Moss removal</span>
+          <span>All roof types</span>
+          <span>Debris cleared</span>
+        </div>
+      </div>
+      <div class="service-thumb">
+        <img src="photos/571451425_122148229688805937_3426700249324105902_n.jpg" alt="Clean red roof">
+      </div>
+    </div>
+
+    <div class="service-row reveal">
+      <div class="service-name">
+        <h2>Gutter Cleaning</h2>
+      </div>
+      <div class="service-details">
+        <p>Clear blockages, flush downpipes, and prevent leaks and overflow. In Wellington's wet climate, clogged gutters are a recipe for water damage. We recommend cleaning at least twice a year.</p>
+        <div class="service-price-tag">From $180 <small>+GST</small></div>
+        <div class="service-includes">
+          <span>Downpipe flush</span>
+          <span>Blockage removal</span>
+          <span>Visual inspection</span>
+        </div>
+      </div>
+      <div class="service-thumb">
+        <img src="photos/572793880_122148229802805937_6333763777700577181_n.jpg" alt="Clean roof with gutters">
+      </div>
+    </div>
+
+    <div class="service-row reveal">
+      <div class="service-name">
+        <h2>Drive &amp; Paths</h2>
+      </div>
+      <div class="service-details">
+        <p>High-pressure wash that makes concrete, pavers, and exposed aggregate look brand new. Instant curb appeal. We also treat for moss regrowth so your paths stay cleaner for longer.</p>
+        <div class="service-price-tag">From $200 <small>+GST</small></div>
+        <div class="service-includes">
+          <span>Concrete &amp; pavers</span>
+          <span>High pressure</span>
+          <span>Moss treatment</span>
+        </div>
+      </div>
+      <div class="service-thumb">
+        <img src="photos/540109979_122140665374805937_2377236371450216382_n.jpg" alt="Driveway washing">
+      </div>
+    </div>
+
+    <div class="service-row reveal">
+      <div class="service-name">
+        <h2>Solar Panel Cleaning</h2>
+      </div>
+      <div class="service-details">
+        <p>Streak-free cleaning that restores up to 25% lost efficiency from dirt, bird droppings, and salt build-up. Protect your investment and keep those energy savings coming in.</p>
+        <div class="service-price-tag">From $25 <small>+GST / panel</small></div>
+        <div class="service-includes">
+          <span>Streak-free</span>
+          <span>Efficiency boost</span>
+          <span>Gentle clean</span>
+        </div>
+      </div>
+      <div class="service-thumb">
+        <img src="photos/561392564_122146523870805937_4957866817415367493_n.jpg" alt="Solar panels on roof">
+      </div>
+    </div>
+
+    <div class="service-row reveal">
+      <div class="service-name">
+        <h2>Moss &amp; Mould Treatment</h2>
+      </div>
+      <div class="service-details">
+        <p>Long-lasting chemical treatment that kills growth at the root and prevents regrowth for months. Applied after a wash for maximum effect — keeps your surfaces cleaner, longer.</p>
+        <div class="service-price-tag">From $260 <small>+GST</small></div>
+        <div class="service-includes">
+          <span>Long-lasting</span>
+          <span>Kills at root</span>
+          <span>Prevents regrowth</span>
+        </div>
+      </div>
+      <div class="service-thumb">
+        <img src="photos/540913192_122140662638805937_4374679230397331289_n.jpg" alt="Roof tiles cleaned">
+      </div>
+    </div>
+
+    <div class="service-row reveal">
+      <div class="service-name">
+        <h2>Spider Treatment</h2>
+      </div>
+      <div class="service-details">
+        <p>Professional spider barrier treatment around your home's exterior. Keeps the creepy crawlies out and your family comfortable. Effective for months after application.</p>
+        <div class="service-price-tag">From $200 <small>+GST</small></div>
+        <div class="service-includes">
+          <span>Exterior barrier</span>
+          <span>Long-lasting</span>
+          <span>Family safe</span>
+        </div>
+      </div>
+      <div class="service-thumb">
+        <img src="photos/618163137_122157264902805937_8730814500387382144_n.jpg" alt="House exterior">
+      </div>
+    </div>
+
+    <div class="service-row reveal">
+      <div class="service-name">
+        <h2>White Tail Treatment</h2>
+      </div>
+      <div class="service-details">
+        <p>Targeted white tail spider treatment for homes in affected areas. White tails are no joke in New Zealand — we apply a specialised barrier that keeps them away from your living spaces.</p>
+        <div class="service-price-tag">From $300 <small>+GST</small></div>
+        <div class="service-includes">
+          <span>Targeted treatment</span>
+          <span>Interior &amp; exterior</span>
+          <span>Peace of mind</span>
+        </div>
+      </div>
+      <div class="service-thumb">
+        <img src="photos/637316578_122159593724805937_2741837688150560406_n.jpg" alt="Modern house exterior">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== PRICING CARDS ========== -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="pricing-header">
+      <h2 class="reveal">Transparent Pricing</h2>
+      <p class="reveal">No hidden fees. No surprises. All prices exclude GST.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <div class="pricing-card popular reveal reveal-delay-1">
+        <div class="popular-badge">Popular</div>
+        <div class="pricing-card-icon">🏠</div>
+        <h3>House Soft Wash</h3>
+        <div class="price">$325+ <small>+GST</small></div>
+        <div class="price-note">Depends on size &amp; condition</div>
+        <ul>
+          <li>Full exterior soft wash</li>
+          <li>All cladding types</li>
+          <li>Fascia, soffits &amp; window frames</li>
+          <li>Eco-friendly products</li>
+          <li>Free re-wash guarantee</li>
+        </ul>
+        <a href="awa-wash-v2.html#contact" class="btn-pill btn-gold">Get a Quote</a>
+      </div>
+
+      <div class="pricing-card reveal reveal-delay-2">
+        <div class="pricing-card-icon">🏗</div>
+        <h3>Roof Cleaning</h3>
+        <div class="price">$300+ <small>+GST</small></div>
+        <div class="price-note">Based on roof area</div>
+        <ul>
+          <li>Moss &amp; lichen removal</li>
+          <li>Debris clearance</li>
+          <li>All roof types</li>
+          <li>Gutter flush included</li>
+        </ul>
+        <a href="awa-wash-v2.html#contact" class="btn-pill btn-dark">Get a Quote</a>
+      </div>
+
+      <div class="pricing-card reveal reveal-delay-3">
+        <div class="pricing-card-icon">🌿</div>
+        <h3>Moss &amp; Mould</h3>
+        <div class="price">$260+ <small>+GST</small></div>
+        <div class="price-note">Chemical treatment</div>
+        <ul>
+          <li>Kills growth at root</li>
+          <li>Prevents regrowth for months</li>
+          <li>Safe for all surfaces</li>
+          <li>Best paired with a wash</li>
+        </ul>
+        <a href="awa-wash-v2.html#contact" class="btn-pill btn-dark">Get a Quote</a>
+      </div>
+
+      <div class="pricing-card reveal reveal-delay-1">
+        <div class="pricing-card-icon">🚿</div>
+        <h3>Driveway &amp; Paths</h3>
+        <div class="price">$200+ <small>+GST</small></div>
+        <div class="price-note">Based on area</div>
+        <ul>
+          <li>High-pressure wash</li>
+          <li>Concrete, pavers &amp; aggregate</li>
+          <li>Moss treatment included</li>
+          <li>Instant curb appeal</li>
+        </ul>
+        <a href="awa-wash-v2.html#contact" class="btn-pill btn-dark">Get a Quote</a>
+      </div>
+
+      <div class="pricing-card reveal reveal-delay-2">
+        <div class="pricing-card-icon">💧</div>
+        <h3>Gutter Cleaning</h3>
+        <div class="price">$180+ <small>+GST</small></div>
+        <div class="price-note">Single &amp; two storey</div>
+        <ul>
+          <li>Full gutter clearance</li>
+          <li>Downpipe flush</li>
+          <li>Visual condition check</li>
+          <li>Debris removed from site</li>
+        </ul>
+        <a href="awa-wash-v2.html#contact" class="btn-pill btn-dark">Get a Quote</a>
+      </div>
+
+      <div class="pricing-card reveal reveal-delay-3">
+        <div class="pricing-card-icon">☀️</div>
+        <h3>Solar Panels</h3>
+        <div class="price">$25+ <small>+GST / panel</small></div>
+        <div class="price-note">Minimum applies</div>
+        <ul>
+          <li>Streak-free clean</li>
+          <li>Restores up to 25% efficiency</li>
+          <li>Safe for all panel types</li>
+          <li>Bird dropping removal</li>
+        </ul>
+        <a href="awa-wash-v2.html#contact" class="btn-pill btn-dark">Get a Quote</a>
+      </div>
+
+      <div class="pricing-card reveal reveal-delay-1">
+        <div class="pricing-card-icon">🕷</div>
+        <h3>Spider Treatment</h3>
+        <div class="price">$200+ <small>+GST</small></div>
+        <div class="price-note">Exterior barrier</div>
+        <ul>
+          <li>Professional barrier spray</li>
+          <li>Months of protection</li>
+          <li>Safe for families &amp; pets</li>
+          <li>All exterior surfaces</li>
+        </ul>
+        <a href="awa-wash-v2.html#contact" class="btn-pill btn-dark">Get a Quote</a>
+      </div>
+
+      <div class="pricing-card reveal reveal-delay-2">
+        <div class="pricing-card-icon">⚠️</div>
+        <h3>White Tail</h3>
+        <div class="price">$300+ <small>+GST</small></div>
+        <div class="price-note">Targeted treatment</div>
+        <ul>
+          <li>Specialised white tail barrier</li>
+          <li>Interior &amp; exterior treatment</li>
+          <li>High-risk area focus</li>
+          <li>Peace of mind guaranteed</li>
+        </ul>
+        <a href="awa-wash-v2.html#contact" class="btn-pill btn-dark">Get a Quote</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== HOW IT WORKS ========== -->
+<section class="process-section">
+  <div class="container">
+    <div class="process-header">
+      <h2 class="reveal">How It Works</h2>
+      <p class="reveal">From enquiry to sparkling finish — four simple steps.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal reveal-delay-1">
+        <div class="step-number">1</div>
+        <h3>Get in Touch</h3>
+        <p>Call, email, or fill out our online form. Tell us what needs washing and we'll get back to you within one business day.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="step-number">2</div>
+        <h3>Free Quote</h3>
+        <p>We'll give you an honest, no-obligation quote based on your property. No hidden fees, no surprises.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="step-number">3</div>
+        <h3>We Get to Work</h3>
+        <p>Kurt and the team show up on time, treat your property with care, and get the job done right. Every time.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-4">
+        <div class="step-number">4</div>
+        <h3>You Say Wow</h3>
+        <p>Walk outside to a home that looks brand new. If you're not happy, we'll come back and make it right — guaranteed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ECO SECTION ========== -->
+<section class="eco-section">
+  <div class="container">
+    <div class="eco-content">
+      <h2 class="reveal">Clean Home. Greener Aotearoa.</h2>
+      <p class="reveal">With every wash, we fund native tree planting across New Zealand. We use only eco-friendly, biodegradable products that are safe for your garden, your kids, and our waterways.</p>
+      <div class="eco-badges reveal">
+        <div class="eco-badge">
+          <div class="eco-badge-icon">🌱</div>
+          5,000+ trees planted each year
+        </div>
+        <div class="eco-badge">
+          <div class="eco-badge-icon">🧴</div>
+          Biodegradable products only
+        </div>
+        <div class="eco-badge">
+          <div class="eco-badge-icon">💚</div>
+          Waterway safe
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2 class="reveal">Ready for a <span class="gold-text">Fresh Start?</span></h2>
+      <p class="reveal">Get your free, no-obligation quote within one business day. We'll take care of the rest.</p>
+      <a href="awa-wash-v2.html#contact" class="btn-pill btn-gold reveal">Get a Quote!</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-cta">
+        <h2><span class="highlight">Quote</span> Within<br>1 Business Day</h2>
+      </div>
+      <div class="footer-nav">
+        <a href="awa-wash-about.html">About Us</a>
+        <a href="awa-wash-v2.html#services">Services</a>
+        <a href="awa-wash-v2.html#promise">Our Promise</a>
+        <a href="awa-wash-v2.html#testimonials">Reviews</a>
+        <a href="awa-wash-v2.html#photos">Gallery</a>
+        <a href="awa-wash-v2.html#contact" class="btn-pill btn-gold" style="grid-column: 1/-1; text-align: center; margin-top: 8px;">Get a Quote!</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Awa Wash Ltd. All Rights Reserved.</span>
+      <div class="footer-socials">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">ig</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== SCRIPTS ========== -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
