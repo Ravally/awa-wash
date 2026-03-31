@@ -50,6 +50,7 @@ nav {
   align-items: center; height: 72px;
 }
 .nav-links { display: flex; list-style: none; gap: 8px; }
+.nav-inner > .nav-links { justify-content: flex-end; }
 .nav-links a {
   font-family: var(--font-display); font-size: 14px;
   letter-spacing: 0.5px; text-transform: uppercase;
@@ -605,7 +606,6 @@ footer::before {
       <ul class="nav-links">
         <li><a href="awa-wash-about.html">About Us</a></li>
         <li><a href="awa-wash-services.html">Services</a></li>
-        <li><a href="awa-wash-promise.html">Our Promise</a></li>
       </ul>
       <a href="awa-wash-v2.html" class="nav-logo">
         <div class="nav-logo-mark">
@@ -620,6 +620,7 @@ footer::before {
       </a>
       <div class="nav-links-right">
         <ul class="nav-links">
+          <li><a href="awa-wash-promise.html">Our Promise</a></li>
           <li><a href="#" class="active">Contact</a></li>
         </ul>
         <div class="nav-cta-wrap">
