@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tūī Trail Co. — Walk Where the Wild Things Are</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --color-bg: #f5f4ef;
+  --color-bg-warm: #eee7df;
+  --color-dark: #272220;
+  --color-dark-deep: #1a1716;
+  --color-green: #486734;
+  --color-green-light: #5a7a42;
+  --color-text: #272220;
+  --color-text-muted: #9e9790;
+  --color-text-light: rgba(255,255,255,0.7);
+  --color-white: #fff;
+  --color-card-bg: #f9f9f9;
+  --font: 'Rethink Sans', Helvetica, Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+button { font-family: var(--font); cursor: pointer; border: none; background: none; }
+
+/* ========== ANNOUNCEMENT BAR ========== */
+.announcement-bar {
+  background: var(--color-dark);
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+/* ========== NAV ========== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.4s ease, padding 0.4s ease, transform 0.4s ease;
+  transform: translateY(-100%);
+}
+
+.nav.visible {
+  transform: translateY(0);
+}
+
+.nav.scrolled {
+  background: var(--color-bg);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+  padding: 12px 40px;
+}
+
+.nav__left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav__season {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid var(--color-text);
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.nav__logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.nav__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-book {
+  background: var(--color-green);
+  color: var(--color-white);
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-book:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(72,103,52,0.3);
+}
+
+.btn-menu {
+  background: var(--color-dark);
+  color: var(--color-white);
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s ease;
+}
+
+.btn-menu:hover { transform: translateY(-1px); }
+
+.btn-menu span {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 18px;
+}
+
+.btn-menu span i {
+  display: block;
+  height: 1.5px;
+  background: var(--color-white);
+  border-radius: 2px;
+}
+
+/* ========== HERO ========== */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  background: var(--color-dark);
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(to top, rgba(26,23,22,0.7) 0%, rgba(26,23,22,0.1) 50%, rgba(26,23,22,0.3) 100%);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 3;
+  padding: 0 40px 60px;
+  max-width: 900px;
+}
+
+.hero__toggle {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.hero__toggle-btn {
+  color: rgba(255,255,255,0.4);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 0;
+  border-bottom: 1.5px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.hero__toggle-btn.active {
+  color: var(--color-white);
+  border-bottom-color: var(--color-white);
+}
+
+.hero__title {
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--color-white);
+  margin-bottom: 20px;
+}
+
+.hero__title em {
+  font-style: italic;
+}
+
+.hero__booking {
+  position: absolute;
+  z-index: 3;
+  right: 40px;
+  bottom: 60px;
+}
+
+.hero__book-btn {
+  background: var(--color-dark);
+  color: var(--color-white);
+  padding: 16px 48px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero__book-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+/* ========== HERO LOAD ANIMATION ========== */
+.hero-animate { animation: fadeUp 0.8s ease-out both; }
+.hero-animate:nth-child(2) { animation-delay: 0.15s; }
+.hero-animate:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== INTRO SECTION ========== */
+.intro {
+  background: var(--color-bg-warm);
+  padding: 100px 40px;
+  text-align: center;
+}
+
+.intro__text {
+  max-width: 820px;
+  margin: 0 auto;
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.7;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+.intro__text strong {
+  font-weight: 600;
+}
+
+/* ========== TRIPS CAROUSEL ========== */
+.trips {
+  padding: 100px 0 80px;
+  position: relative;
+}
+
+.trips__header {
+  display: flex;
+  align-items: flex-start;
+  padding: 0 0 40px 0;
+}
+
+.trips__vertical-title {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: clamp(60px, 8vw, 80px);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  padding: 0 20px 0 40px;
+  color: var(--color-text);
+  position: sticky;
+  top: 120px;
+  align-self: flex-start;
+}
+
+.trips__carousel-wrapper {
+  flex: 1;
+  overflow: hidden;
+}
+
+.trips__carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 24px;
+  padding: 0 40px 30px 0;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.trips__carousel::-webkit-scrollbar { display: none; }
+
+.trip-card {
+  flex-shrink: 0;
+  width: 380px;
+  scroll-snap-align: start;
+  cursor: pointer;
+}
+
+.trip-card__image {
+  width: 100%;
+  height: 320px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.trip-card__image img {
+  transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.trip-card:hover .trip-card__image img {
+  transform: scale(1.05);
+}
+
+.trip-card__tags {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+
+.trip-card__tag {
+  background: rgba(245,244,239,0.9);
+  backdrop-filter: blur(4px);
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.trip-card__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+
+.trip-card__name {
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.trip-card__price {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.trip-card__desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.trips__progress {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.trips__progress-bar {
+  width: 160px;
+  height: 3px;
+  background: rgba(0,0,0,0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.trips__progress-fill {
+  width: 30%;
+  height: 100%;
+  background: var(--color-green);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+/* ========== LOCATIONS ========== */
+.locations {
+  padding: 80px 40px;
+}
+
+.location-block {
+  margin-bottom: 80px;
+}
+
+.location-block__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  gap: 60px;
+}
+
+.location-block__label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+}
+
+.location-block__label::before {
+  content: '';
+  width: 24px;
+  height: 1.5px;
+  background: var(--color-text-muted);
+}
+
+.location-block__name {
+  font-size: clamp(48px, 6vw, 72px);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.location-block__info {
+  max-width: 380px;
+  flex-shrink: 0;
+}
+
+.location-block__desc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+}
+
+.location-block__link {
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.2s ease;
+}
+
+.location-block__link:hover { gap: 10px; }
+
+.location-block__images {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+  height: 400px;
+}
+
+.location-block__images.reverse {
+  grid-template-columns: 1fr 2fr;
+}
+
+.location-block__img {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.location-block__img img {
+  transition: transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.location-block__img:hover img {
+  transform: scale(1.03);
+}
+
+/* ========== PRESS / QUOTE SECTION ========== */
+.press {
+  background: var(--color-dark-deep);
+  padding: 80px 40px 100px;
+  color: var(--color-white);
+  text-align: center;
+  overflow: hidden;
+}
+
+.press__logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  margin-bottom: 60px;
+  opacity: 0.4;
+  flex-wrap: wrap;
+}
+
+.press__logo {
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.press__quote {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.55;
+  font-weight: 400;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: -0.01em;
+}
+
+.press__quote-source {
+  margin-top: 24px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.press__cta {
+  margin-top: 50px;
+}
+
+.press__cta a {
+  display: inline-block;
+  padding: 10px 24px;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--color-bg);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.press__cta a:hover {
+  background: var(--color-bg);
+  color: var(--color-dark);
+}
+
+/* ========== REVIEWS ========== */
+.reviews {
+  background: var(--color-bg-warm);
+  padding: 80px 0;
+  overflow: hidden;
+}
+
+.reviews__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  margin-bottom: 50px;
+}
+
+.reviews__title {
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  font-style: italic;
+}
+
+.reviews__nav {
+  display: flex;
+  gap: 8px;
+}
+
+.reviews__nav-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: background 0.2s ease;
+}
+
+.reviews__nav-btn:hover {
+  background: var(--color-white);
+}
+
+.reviews__carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 0 40px 20px;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.reviews__carousel::-webkit-scrollbar { display: none; }
+
+.review-card {
+  flex-shrink: 0;
+  width: 420px;
+  background: var(--color-white);
+  border-radius: 16px;
+  padding: 36px 32px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 320px;
+}
+
+.review-card__icon {
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: var(--color-green);
+}
+
+.review-card__text {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--color-text);
+  flex: 1;
+  margin-bottom: 24px;
+}
+
+.review-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.review-card__footer strong {
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+/* ========== SAFETY SECTION ========== */
+.safety {
+  padding: 60px 40px 80px;
+}
+
+.safety__card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--color-dark);
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 420px;
+}
+
+.safety__image {
+  position: relative;
+}
+
+.safety__image img {
+  height: 100%;
+}
+
+.safety__content {
+  padding: 60px 50px;
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.safety__heading {
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.safety__text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 28px;
+  max-width: 420px;
+}
+
+.safety__link {
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-white);
+  transition: gap 0.2s ease;
+}
+
+.safety__link:hover { gap: 10px; }
+
+/* ========== FOOTER ========== */
+.footer {
+  padding: 60px 40px 30px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  margin-top: 20px;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1.3fr;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.footer__brand-name {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.footer__address {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin-bottom: 20px;
+}
+
+.footer__socials {
+  display: flex;
+  gap: 16px;
+}
+
+.footer__social {
+  font-size: 16px;
+  color: var(--color-text);
+  transition: opacity 0.2s ease;
+}
+
+.footer__social:hover { opacity: 0.6; }
+
+.footer__col-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+}
+
+.footer__links {
+  list-style: none;
+}
+
+.footer__links li { margin-bottom: 8px; }
+
+.footer__links a {
+  font-size: 14px;
+  color: var(--color-text);
+  transition: color 0.2s ease;
+}
+
+.footer__links a:hover { color: var(--color-green); }
+
+.footer__newsletter {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__newsletter-btn {
+  background: var(--color-white);
+  color: var(--color-text);
+  padding: 12px 24px;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.1);
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  transition: transform 0.2s ease;
+}
+
+.footer__newsletter-btn:hover { transform: translateY(-1px); }
+
+.footer__signup {
+  background: var(--color-dark);
+  border-radius: 12px;
+  padding: 28px 24px;
+  color: var(--color-white);
+}
+
+.footer__signup-title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.footer__signup-btn {
+  display: block;
+  width: 100%;
+  background: var(--color-green);
+  color: var(--color-white);
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.footer__signup-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(72,103,52,0.3);
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.footer__bottom-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer__bottom-links a {
+  color: var(--color-text-muted);
+  transition: color 0.2s ease;
+}
+
+.footer__bottom-links a:hover { color: var(--color-text); }
+
+/* ========== SCROLL REVEAL ========== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.33, 1, 0.68, 1),
+              transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal[data-delay="1"] { transition-delay: 0.12s; }
+.reveal[data-delay="2"] { transition-delay: 0.24s; }
+.reveal[data-delay="3"] { transition-delay: 0.36s; }
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+  .hero__content { padding: 0 24px 40px; }
+  .hero__booking { right: 24px; bottom: 40px; }
+  .nav { padding: 12px 24px; }
+  .trips__vertical-title { font-size: 60px; padding-left: 24px; }
+  .trip-card { width: 320px; }
+  .location-block__header { flex-direction: column; gap: 20px; }
+  .location-block__images { height: 300px; }
+  .safety__card { grid-template-columns: 1fr; }
+  .safety__image { height: 280px; }
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+}
+
+@media (max-width: 768px) {
+  .hero__title { font-size: clamp(36px, 10vw, 56px); }
+  .hero__booking { position: static; padding: 20px 24px 0; }
+  .hero__content { max-width: 100%; }
+  .trips__header { flex-direction: column; }
+  .trips__vertical-title { writing-mode: horizontal-tb; padding: 0 40px 20px; position: static; }
+  .trip-card { width: 280px; }
+  .location-block__images { grid-template-columns: 1fr; height: auto; }
+  .location-block__images.reverse { grid-template-columns: 1fr; }
+  .location-block__img { height: 250px; }
+  .review-card { width: 300px; min-height: auto; padding: 28px 24px; }
+  .footer__grid { grid-template-columns: 1fr; }
+  .footer__bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .press__logos { gap: 30px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Announcement Bar -->
+<div class="announcement-bar">
+  Book midweek for up to 15% off selected guided trails.
+</div>
+
+<!-- Navigation -->
+<nav class="nav" id="mainNav">
+  <div class="nav__left">
+    <span class="nav__season">🌿 Autumn</span>
+  </div>
+  <a href="#" class="nav__logo">Tūī Trail</a>
+  <div class="nav__right">
+    <a href="#" class="btn-book">Book now</a>
+    <button class="btn-menu">
+      <span><i></i><i></i></span>
+      Menu
+    </button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero__media">
+    <img src="https://picsum.photos/id/15/1920/1080" alt="Mountain landscape at golden hour">
+  </div>
+  <div class="hero__overlay"></div>
+  <div class="hero__content">
+    <div class="hero__toggle hero-animate">
+      <button class="hero__toggle-btn active">Day hikes</button>
+      <button class="hero__toggle-btn">Overnight</button>
+    </div>
+    <h1 class="hero__title hero-animate">Guided adventures in the heart of <em>Queenstown</em></h1>
+  </div>
+  <div class="hero__booking hero-animate">
+    <button class="hero__book-btn">Book Now →</button>
+  </div>
+</section>
+
+<!-- Intro -->
+<section class="intro">
+  <p class="intro__text reveal">
+    <strong>Discover Tūī Trail Co.:</strong> guided hiking and adventure tours through Queenstown's most breathtaking landscapes. From alpine ridgelines to ancient beech forest, every trail is led by local guides who know these mountains like home. Small groups, big views, and a deep respect for the land beneath your boots.
+  </p>
+</section>
+
+<!-- Trips Carousel -->
+<section class="trips">
+  <div class="trips__header">
+    <div class="trips__vertical-title">Our trails</div>
+    <div class="trips__carousel-wrapper">
+      <div class="trips__carousel" id="tripsCarousel">
+
+        <div class="trip-card reveal" data-delay="0">
+          <div class="trip-card__image">
+            <img src="https://picsum.photos/id/29/800/640" alt="Mountain trail">
+            <div class="trip-card__tags">
+              <span class="trip-card__tag">Full day</span>
+              <span class="trip-card__tag">Alpine</span>
+            </div>
+          </div>
+          <div class="trip-card__meta">
+            <span class="trip-card__name">Ben Lomond</span>
+            <span class="trip-card__price">From $189</span>
+          </div>
+          <p class="trip-card__desc">A legendary summit hike with panoramic views across Lake Wakatipu and the Remarkables. Ascend through native bush into the alpine zone for a full day of stunning ridgeline walking.</p>
+        </div>
+
+        <div class="trip-card reveal" data-delay="1">
+          <div class="trip-card__image">
+            <img src="https://picsum.photos/id/167/800/640" alt="Forest trail">
+            <div class="trip-card__tags">
+              <span class="trip-card__tag">Half day</span>
+              <span class="trip-card__tag">Lakeshore</span>
+            </div>
+          </div>
+          <div class="trip-card__meta">
+            <span class="trip-card__name">Bob's Cove</span>
+            <span class="trip-card__price">From $95</span>
+          </div>
+          <p class="trip-card__desc">A peaceful lakeside walk through ancient rata and beech forest. Perfect for photography lovers, with hidden beaches and views of the Remarkables reflected in still water.</p>
+        </div>
+
+        <div class="trip-card reveal" data-delay="2">
+          <div class="trip-card__image">
+            <img src="https://picsum.photos/id/235/800/640" alt="Valley hike">
+            <div class="trip-card__tags">
+              <span class="trip-card__tag">2 days</span>
+              <span class="trip-card__tag">Overnight</span>
+            </div>
+          </div>
+          <div class="trip-card__meta">
+            <span class="trip-card__name">Routeburn Track</span>
+            <span class="trip-card__price">From $495</span>
+          </div>
+          <p class="trip-card__desc">Two days on one of New Zealand's Great Walks. Cross mountain passes, traverse hanging valleys, and sleep in a backcountry hut beneath the stars. An unforgettable overnight adventure.</p>
+        </div>
+
+        <div class="trip-card reveal" data-delay="3">
+          <div class="trip-card__image">
+            <img src="https://picsum.photos/id/421/800/640" alt="River trail">
+            <div class="trip-card__tags">
+              <span class="trip-card__tag">Full day</span>
+              <span class="trip-card__tag">River valley</span>
+            </div>
+          </div>
+          <div class="trip-card__meta">
+            <span class="trip-card__name">Moonlight Track</span>
+            <span class="trip-card__price">From $165</span>
+          </div>
+          <p class="trip-card__desc">Descend through old gold-mining country along the Shotover River. Rocky gorges, swing bridges, and wide-open tussock basins — a trail rich with history and wild beauty.</p>
+        </div>
+
+        <div class="trip-card reveal" data-delay="3">
+          <div class="trip-card__image">
+            <img src="https://picsum.photos/id/433/800/640" alt="Mountain sunrise">
+            <div class="trip-card__tags">
+              <span class="trip-card__tag">Half day</span>
+              <span class="trip-card__tag">Sunrise</span>
+            </div>
+          </div>
+          <div class="trip-card__meta">
+            <span class="trip-card__name">Queenstown Hill</span>
+            <span class="trip-card__price">From $85</span>
+          </div>
+          <p class="trip-card__desc">Catch the first light breaking over the Remarkables on our early-morning guided climb. A short but rewarding ascent with 360-degree views and fresh coffee at the summit.</p>
+        </div>
+
+        <div class="trip-card reveal" data-delay="3">
+          <div class="trip-card__image">
+            <img src="https://picsum.photos/id/517/800/640" alt="Snow peaks">
+            <div class="trip-card__tags">
+              <span class="trip-card__tag">3 days</span>
+              <span class="trip-card__tag">Multi-day</span>
+            </div>
+          </div>
+          <div class="trip-card__meta">
+            <span class="trip-card__name">Greenstone Caples</span>
+            <span class="trip-card__price">From $695</span>
+          </div>
+          <p class="trip-card__desc">A three-day loop through two stunning valleys. Wide river flats, mossy beech forest, and a mountain pass connecting the Greenstone and Caples valleys — classic backcountry tramping.</p>
+        </div>
+
+      </div>
+      <div class="trips__progress">
+        <div class="trips__progress-bar">
+          <div class="trips__progress-fill" id="tripsFill"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Locations -->
+<section class="locations">
+
+  <div class="location-block reveal">
+    <div class="location-block__header">
+      <div>
+        <div class="location-block__label">Our Regions</div>
+        <h2 class="location-block__name">Queenstown Basin</h2>
+      </div>
+      <div class="location-block__info">
+        <p class="location-block__desc">Queenstown sits in a dramatic basin carved by ancient glaciers, ringed by the Remarkables and framed by Lake Wakatipu. Our day hikes depart from the town centre and climb into alpine country within minutes. Crystal-clear rivers, dense beech forest, and gold-rush history at every turn.</p>
+        <a href="#" class="location-block__link">See available trails →</a>
+      </div>
+    </div>
+    <div class="location-block__images">
+      <div class="location-block__img">
+        <img src="https://picsum.photos/id/16/1200/600" alt="Queenstown basin landscape">
+      </div>
+      <div class="location-block__img">
+        <img src="https://picsum.photos/id/28/600/600" alt="Lake Wakatipu">
+      </div>
+    </div>
+  </div>
+
+  <div class="location-block reveal">
+    <div class="location-block__header">
+      <div>
+        <div class="location-block__label">Our Regions</div>
+        <h2 class="location-block__name">Glenorchy &amp; Beyond</h2>
+      </div>
+      <div class="location-block__info">
+        <p class="location-block__desc">Forty-five minutes from Queenstown along one of the world's most scenic drives, Glenorchy is the gateway to Mt Aspiring National Park and the start of New Zealand's Great Walks. Wide braided rivers, towering peaks, and landscapes so pristine they've doubled for Middle-earth.</p>
+        <a href="#" class="location-block__link">See available trails →</a>
+      </div>
+    </div>
+    <div class="location-block__images reverse">
+      <div class="location-block__img">
+        <img src="https://picsum.photos/id/41/600/600" alt="Glenorchy valley">
+      </div>
+      <div class="location-block__img">
+        <img src="https://picsum.photos/id/47/1200/600" alt="Mountain peaks">
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- Press / Quote -->
+<section class="press">
+  <div class="press__logos reveal">
+    <span class="press__logo">NZ Herald</span>
+    <span class="press__logo">Lonely Planet</span>
+    <span class="press__logo">stuff</span>
+    <span class="press__logo">Tourism NZ</span>
+    <span class="press__logo">Wilderness</span>
+    <span class="press__logo">RNZ</span>
+  </div>
+  <blockquote class="press__quote reveal">
+    "Between the mountains and the lake, two guides have built something rare — a hiking company that treats the trail as a living thing. Small groups, slow mornings, and the kind of local knowledge that turns a walk into a story. Queenstown's best-kept secret for anyone who'd rather earn their views."
+  </blockquote>
+  <p class="press__quote-source reveal">— Wilderness Magazine</p>
+  <div class="press__cta reveal">
+    <a href="#">See all press →</a>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="reviews">
+  <div class="reviews__header">
+    <h2 class="reviews__title reveal">What our hikers say</h2>
+    <div class="reviews__nav">
+      <button class="reviews__nav-btn" onclick="document.querySelector('.reviews__carousel').scrollBy({left:-440,behavior:'smooth'})">←</button>
+      <button class="reviews__nav-btn" onclick="document.querySelector('.reviews__carousel').scrollBy({left:440,behavior:'smooth'})">→</button>
+    </div>
+  </div>
+  <div class="reviews__carousel">
+
+    <div class="review-card reveal">
+      <div>
+        <div class="review-card__icon">🌿</div>
+        <p class="review-card__text">"We did the Ben Lomond summit hike and it was extraordinary. Our guide Hana knew every plant, every bird call. She adjusted the pace perfectly for our group and the packed lunch at the top — fresh sourdough, local cheese — was a lovely touch."</p>
+      </div>
+      <div class="review-card__footer">
+        <span>Sarah — <strong>Autumn</strong></span>
+        <span>Ben Lomond Summit</span>
+      </div>
+    </div>
+
+    <div class="review-card reveal">
+      <div>
+        <div class="review-card__icon">🌿</div>
+        <p class="review-card__text">"The Routeburn overnight was the highlight of our entire New Zealand trip. Waking up in the hut to that view of the Hollyford Valley — I'll never forget it. Everything was organised, the guide was exceptional, and the food was surprisingly gourmet."</p>
+      </div>
+      <div class="review-card__footer">
+        <span>James &amp; Yuki — <strong>Summer</strong></span>
+        <span>Routeburn Track</span>
+      </div>
+    </div>
+
+    <div class="review-card reveal">
+      <div>
+        <div class="review-card__icon">🌿</div>
+        <p class="review-card__text">"Took our kids (8 and 11) on the Bob's Cove walk. Perfect length, gorgeous scenery, and our guide made it fun with stories about the old sawmill and local wildlife. Both kids are already asking when we can go back."</p>
+      </div>
+      <div class="review-card__footer">
+        <span>The Ngatas — <strong>Spring</strong></span>
+        <span>Bob's Cove Walk</span>
+      </div>
+    </div>
+
+    <div class="review-card reveal">
+      <div>
+        <div class="review-card__icon">🌿</div>
+        <p class="review-card__text">"I've hiked all over the world and Tūī Trail stands out for the quality of guiding. Not just fitness and navigation — real storytelling, Māori history, ecology. You leave knowing the landscape in a way you never would solo."</p>
+      </div>
+      <div class="review-card__footer">
+        <span>Marco — <strong>Winter</strong></span>
+        <span>Moonlight Track</span>
+      </div>
+    </div>
+
+    <div class="review-card reveal">
+      <div>
+        <div class="review-card__icon">🌿</div>
+        <p class="review-card__text">"The sunrise hike up Queenstown Hill was magical. Coffee at the top, watching the light hit the Remarkables — honestly the best $85 I've ever spent. Perfect way to start a day in Queenstown."</p>
+      </div>
+      <div class="review-card__footer">
+        <span>Lisette — <strong>Summer</strong></span>
+        <span>Queenstown Hill Sunrise</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Safety Info -->
+<section class="safety">
+  <div class="safety__card reveal">
+    <div class="safety__image">
+      <img src="https://picsum.photos/id/109/800/600" alt="Guide on mountain trail">
+    </div>
+    <div class="safety__content">
+      <h2 class="safety__heading">Safety &amp; Sustainability</h2>
+      <p class="safety__text">Every Tūī Trail guide holds wilderness first aid certification and carries a PLB. We operate under DOC concession, follow Leave No Trace principles, and offset every trip's carbon footprint. Your safety and the health of these mountains are never compromised — so you can focus on the walk ahead.</p>
+      <a href="#" class="safety__link">Learn more →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer__grid">
+    <div>
+      <div class="footer__brand-name">Tūī Trail</div>
+      <div class="footer__address">
+        Tūī Trail Co. Ltd<br>
+        12 Camp Street<br>
+        Queenstown 9300 — New Zealand<br>
+        hello@tuitrail.co.nz
+      </div>
+      <div class="footer__socials">
+        <a href="#" class="footer__social" aria-label="Instagram">IG</a>
+        <a href="#" class="footer__social" aria-label="Facebook">FB</a>
+        <a href="#" class="footer__social" aria-label="TikTok">TK</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="footer__col-title">Trails</div>
+      <ul class="footer__links">
+        <li><a href="#">Ben Lomond</a></li>
+        <li><a href="#">Bob's Cove</a></li>
+        <li><a href="#">Routeburn Track</a></li>
+        <li><a href="#">Moonlight Track</a></li>
+        <li><a href="#">Queenstown Hill</a></li>
+        <li><a href="#">Greenstone Caples</a></li>
+      </ul>
+      <div class="footer__col-title" style="margin-top:24px">Regions</div>
+      <ul class="footer__links">
+        <li><a href="#">Queenstown Basin</a></li>
+        <li><a href="#">Glenorchy & Beyond</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer__col-title">Info</div>
+      <ul class="footer__links">
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Safety</a></li>
+        <li><a href="#">Gift Vouchers</a></li>
+        <li><a href="#">Group Bookings</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__newsletter">
+      <a href="#" class="footer__newsletter-btn">Book now →</a>
+      <div class="footer__signup">
+        <div class="footer__signup-title">Join the Tūī Trail whānau</div>
+        <a href="#" class="footer__signup-btn">Subscribe →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <span>© 2026 Tūī Trail Co. All rights reserved</span>
+    <div class="footer__bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms & Conditions</a>
+      <a href="#">Sustainability</a>
+    </div>
+    <span>EN &nbsp; MI</span>
+  </div>
+</footer>
+
+<script>
+// Nav visibility on scroll
+let lastScroll = 0;
+const nav = document.getElementById('mainNav');
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.scrollY;
+  if (currentScroll > 500) {
+    nav.classList.add('visible', 'scrolled');
+  } else {
+    nav.classList.remove('visible', 'scrolled');
+  }
+  lastScroll = currentScroll;
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const delay = entry.target.dataset.delay || 0;
+      setTimeout(() => entry.target.classList.add('visible'), delay * 120);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Trip carousel progress bar
+const carousel = document.getElementById('tripsCarousel');
+const fill = document.getElementById('tripsFill');
+
+if (carousel && fill) {
+  carousel.addEventListener('scroll', () => {
+    const scrollPercent = carousel.scrollLeft / (carousel.scrollWidth - carousel.clientWidth);
+    fill.style.width = Math.max(15, Math.round(scrollPercent * 100)) + '%';
+  });
+}
+
+// Hero toggle interaction
+document.querySelectorAll('.hero__toggle-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.hero__toggle-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>

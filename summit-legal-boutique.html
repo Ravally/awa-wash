@@ -1,0 +1,2294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summit Legal Boutique — Clarity in Complexity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════
+   DESIGN SYSTEM
+   ═══════════════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy-deep: #0B1D3A;
+  --navy: #122744;
+  --navy-mid: #1A3355;
+  --navy-light: #234060;
+  --slate: #3A5070;
+  --white: #FFFFFF;
+  --off-white: #F4F6F9;
+  --cream: #E8ECF1;
+  --gold: #C4A55A;
+  --gold-light: #D4BC7A;
+  --gold-dark: #A88B3E;
+  --text-dark: #0F1923;
+  --text-body: #3D4E63;
+  --text-light: #8A9BB5;
+  --border: rgba(18, 39, 68, 0.08);
+  --border-light: rgba(255,255,255,0.12);
+
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-body);
+  background: var(--white);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+button { border: none; background: none; cursor: pointer; font-family: inherit; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.container-wide {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ═══════════════════════════════════════════════════
+   TYPOGRAPHY
+   ═══════════════════════════════════════════════════ */
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; color: var(--text-dark); line-height: 1.15; }
+h1 { font-size: clamp(3rem, 7vw, 5.5rem); letter-spacing: -0.02em; }
+h2 { font-size: clamp(2.2rem, 4.5vw, 3.5rem); letter-spacing: -0.01em; }
+h3 { font-size: clamp(1.4rem, 2.5vw, 1.85rem); }
+h4 { font-size: 1.25rem; }
+
+.label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.label-dark { color: var(--text-light); }
+.label-white { color: rgba(255,255,255,0.5); }
+
+/* ═══════════════════════════════════════════════════
+   BUTTONS
+   ═══════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.95rem 2.2rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: all 0.3s var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: var(--navy);
+  color: var(--white);
+}
+.btn-primary:hover { background: var(--navy-mid); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(11,29,58,0.3); }
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--navy-deep);
+}
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(196,165,90,0.35); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  border: 1.5px solid rgba(255,255,255,0.3);
+}
+.btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+.btn-outline-dark {
+  background: transparent;
+  color: var(--navy);
+  border: 1.5px solid var(--navy);
+}
+.btn-outline-dark:hover { background: var(--navy); color: var(--white); }
+
+.btn-arrow::after {
+  content: '→';
+  transition: transform 0.3s var(--ease-out);
+}
+.btn-arrow:hover::after { transform: translateX(4px); }
+
+/* ═══════════════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 1.5rem 0;
+  transition: all 0.4s var(--ease-out);
+}
+
+nav.scrolled {
+  background: rgba(11, 29, 58, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 0.8rem 0;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.nav-logo-mark {
+  width: 36px;
+  height: 36px;
+  position: relative;
+}
+
+.nav-logo-mark svg { width: 100%; height: 100%; }
+
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+
+.nav-logo-text span { display: block; font-size: 0.62rem; font-family: var(--font-body); letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: -2px; font-weight: 500; }
+
+.nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+
+.nav-links a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.04em;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav-links a:hover, .nav-links a.active { color: var(--white); }
+
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 1.5px;
+  background: var(--gold);
+}
+
+.nav-cta {
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  color: var(--gold) !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase;
+  border: 1px solid rgba(196,165,90,0.4);
+  padding: 0.55rem 1.3rem;
+  border-radius: 2px;
+  transition: all 0.3s var(--ease-out) !important;
+}
+
+.nav-cta:hover { background: var(--gold) !important; color: var(--navy-deep) !important; }
+
+.nav-mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+}
+
+.nav-mobile-toggle span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--white);
+  transition: all 0.3s;
+}
+
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--navy-deep);
+  z-index: 999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.mobile-menu.open { display: flex; opacity: 1; }
+
+.mobile-menu a {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--white);
+  transition: color 0.3s;
+}
+
+.mobile-menu a:hover { color: var(--gold); }
+
+.mobile-close {
+  position: absolute;
+  top: 1.5rem; right: 2rem;
+  color: var(--white);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* ═══════════════════════════════════════════════════
+   PAGE TRANSITIONS
+   ═══════════════════════════════════════════════════ */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ═══════════════════════════════════════════════════
+   HOME — HERO
+   ═══════════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  background: var(--navy-deep);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -30%; right: -15%;
+  width: 70vw; height: 70vw;
+  background: radial-gradient(circle, rgba(196,165,90,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(196,165,90,0.2), transparent);
+}
+
+/* Geometric accents */
+.hero-geo {
+  position: absolute;
+  pointer-events: none;
+}
+
+.hero-geo-1 {
+  top: 15%; right: 8%;
+  width: 300px; height: 300px;
+  border: 1px solid rgba(196,165,90,0.1);
+  transform: rotate(45deg);
+}
+
+.hero-geo-2 {
+  bottom: 20%; right: 15%;
+  width: 180px; height: 180px;
+  border: 1px solid rgba(255,255,255,0.04);
+  transform: rotate(15deg);
+}
+
+.hero-geo-3 {
+  top: 30%; right: 25%;
+  width: 8px; height: 8px;
+  background: var(--gold);
+  opacity: 0.4;
+  border-radius: 50%;
+}
+
+.hero-line {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(255,255,255,0.04), transparent);
+}
+
+.hero-line-1 { left: 25%; }
+.hero-line-2 { left: 50%; }
+.hero-line-3 { left: 75%; }
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding-top: 6rem;
+}
+
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.hero-label::before {
+  content: '';
+  width: 40px; height: 1px;
+  background: var(--gold);
+}
+
+.hero h1 {
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-sub {
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.8;
+  max-width: 540px;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  color: rgba(255,255,255,0.3);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.hero-scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(180deg, rgba(196,165,90,0.6), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.3); transform-origin: top; }
+}
+
+/* ═══════════════════════════════════════════════════
+   HOME — STATS BAR
+   ═══════════════════════════════════════════════════ */
+.stats-bar {
+  background: var(--navy);
+  border-bottom: 1px solid rgba(196,165,90,0.15);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
+}
+
+.stat-item {
+  padding: 2.5rem 1.5rem;
+  position: relative;
+}
+
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 25%; bottom: 25%;
+  width: 1px;
+  background: rgba(255,255,255,0.06);
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.stat-text {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════
+   HOME — INTRO
+   ═══════════════════════════════════════════════════ */
+.intro {
+  padding: 8rem 0;
+  background: var(--white);
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.intro-label { margin-bottom: 1.2rem; }
+
+.intro h2 { margin-bottom: 1.5rem; }
+.intro h2 em { font-style: italic; color: var(--gold-dark); }
+
+.intro-text {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  margin-bottom: 2rem;
+}
+
+.intro-image {
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.intro-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+.intro-image-accent {
+  position: absolute;
+  bottom: -20px; right: -20px;
+  width: 60%; height: 40%;
+  border: 2px solid var(--gold);
+  opacity: 0.2;
+  border-radius: 4px;
+  z-index: -1;
+}
+
+/* ═══════════════════════════════════════════════════
+   HOME — PRACTICE AREAS PREVIEW
+   ═══════════════════════════════════════════════════ */
+.practice-preview {
+  padding: 7rem 0;
+  background: var(--off-white);
+}
+
+.section-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 4rem;
+}
+
+.section-header .label { margin-bottom: 1rem; display: block; }
+.section-header h2 { margin-bottom: 1rem; }
+.section-header p { color: var(--text-light); font-size: 1.05rem; }
+
+.practice-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.practice-card {
+  background: var(--white);
+  padding: 2.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  transition: all 0.4s var(--ease-out);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.practice-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.practice-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(11,29,58,0.08);
+  border-color: transparent;
+}
+
+.practice-card:hover::before { transform: scaleX(1); }
+
+.practice-card-icon {
+  width: 48px; height: 48px;
+  background: var(--off-white);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  color: var(--navy);
+  transition: all 0.3s;
+}
+
+.practice-card:hover .practice-card-icon { background: var(--navy); color: var(--gold); }
+
+.practice-card h3 { margin-bottom: 0.8rem; font-size: 1.25rem; }
+
+.practice-card p {
+  font-size: 0.92rem;
+  color: var(--text-light);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.practice-card-link {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: gap 0.3s var(--ease-out);
+}
+
+.practice-card:hover .practice-card-link { gap: 0.8rem; color: var(--gold-dark); }
+
+/* ═══════════════════════════════════════════════════
+   HOME — TESTIMONIAL
+   ═══════════════════════════════════════════════════ */
+.testimonial-section {
+  padding: 7rem 0;
+  background: var(--navy-deep);
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial-section::before {
+  content: '"';
+  position: absolute;
+  top: -2rem; left: 5%;
+  font-family: var(--font-display);
+  font-size: 25rem;
+  color: rgba(196,165,90,0.04);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.testimonial-inner {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.testimonial-quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.testimonial-author {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 0.3rem;
+}
+
+.testimonial-role {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.4);
+}
+
+.testimonial-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2.5rem;
+}
+
+.testimonial-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.testimonial-dot.active { background: var(--gold); transform: scale(1.2); }
+
+/* ═══════════════════════════════════════════════════
+   HOME — CTA BAND
+   ═══════════════════════════════════════════════════ */
+.cta-band {
+  padding: 6rem 0;
+  background: var(--white);
+  text-align: center;
+}
+
+.cta-band h2 { margin-bottom: 1rem; }
+.cta-band h2 em { font-style: italic; color: var(--gold-dark); }
+.cta-band p { color: var(--text-light); margin-bottom: 2.5rem; font-size: 1.05rem; }
+
+/* ═══════════════════════════════════════════════════
+   ABOUT PAGE
+   ═══════════════════════════════════════════════════ */
+.page-hero {
+  padding: 10rem 0 5rem;
+  background: var(--navy-deep);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -20%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(196,165,90,0.05) 0%, transparent 70%);
+}
+
+.page-hero .label { margin-bottom: 1rem; display: block; }
+
+.page-hero h1 {
+  color: var(--white);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  margin-bottom: 1.2rem;
+}
+
+.page-hero h1 em { font-style: italic; color: var(--gold); }
+
+.page-hero-sub {
+  color: rgba(255,255,255,0.5);
+  font-size: 1.1rem;
+  max-width: 550px;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.about-story {
+  padding: 6rem 0;
+}
+
+.about-story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.about-story h2 { margin-bottom: 1.5rem; }
+.about-story h2 em { font-style: italic; color: var(--gold-dark); }
+
+.about-story p {
+  margin-bottom: 1.2rem;
+  font-size: 1.02rem;
+  line-height: 1.85;
+}
+
+.about-story p:last-child { margin-bottom: 0; }
+
+.about-values {
+  padding: 6rem 0;
+  background: var(--off-white);
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.value-card {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+}
+
+.value-icon {
+  width: 56px; height: 56px;
+  margin: 0 auto 1.5rem;
+  background: var(--navy);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: 1.2rem;
+}
+
+.value-card h4 { margin-bottom: 0.6rem; }
+.value-card p { font-size: 0.9rem; color: var(--text-light); line-height: 1.7; }
+
+.about-wellington {
+  padding: 6rem 0;
+}
+
+.wellington-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.wellington-image {
+  aspect-ratio: 16/10;
+  background: var(--off-white);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.wellington-image img { width: 100%; height: 100%; object-fit: cover; }
+
+.wellington-image-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 2rem;
+  background: linear-gradient(transparent, rgba(11,29,58,0.8));
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════════
+   PRACTICE AREAS PAGE
+   ═══════════════════════════════════════════════════ */
+.practice-full {
+  padding: 6rem 0;
+}
+
+.practice-area-block {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 4rem;
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+
+.practice-area-block:last-child { border-bottom: none; }
+
+.pa-left { position: sticky; top: 7rem; }
+
+.pa-number {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: var(--cream);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.pa-left h3 { margin-bottom: 0.8rem; }
+
+.pa-left .label { margin-bottom: 1.5rem; display: block; }
+
+.pa-right p {
+  font-size: 1.02rem;
+  line-height: 1.85;
+  margin-bottom: 1.2rem;
+}
+
+.pa-services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.pa-tag {
+  padding: 0.4rem 1rem;
+  background: var(--off-white);
+  border-radius: 2px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--navy);
+  border: 1px solid var(--border);
+}
+
+/* ═══════════════════════════════════════════════════
+   TEAM PAGE
+   ═══════════════════════════════════════════════════ */
+.team-section {
+  padding: 6rem 0;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.team-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all 0.4s var(--ease-out);
+}
+
+.team-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(11,29,58,0.1);
+  border-color: transparent;
+}
+
+.team-photo {
+  aspect-ratio: 3/3.5;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.team-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.team-photo-initials {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: rgba(196,165,90,0.15);
+}
+
+.team-info { padding: 1.8rem; }
+
+.team-info h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.2rem;
+}
+
+.team-role {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.team-bio {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+}
+
+.team-specialties {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.team-tag {
+  padding: 0.25rem 0.65rem;
+  background: var(--off-white);
+  border-radius: 2px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--slate);
+}
+
+.team-associates {
+  padding: 5rem 0;
+  background: var(--off-white);
+}
+
+.team-assoc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.assoc-card { text-align: center; }
+
+.assoc-photo {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  margin: 0 auto 1.2rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.assoc-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.assoc-photo-initials {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: rgba(196,165,90,0.2);
+}
+
+.assoc-card h4 { font-size: 1.1rem; margin-bottom: 0.2rem; }
+
+.assoc-card .team-role { margin-bottom: 0.5rem; }
+
+.assoc-card p { font-size: 0.85rem; color: var(--text-light); }
+
+/* ═══════════════════════════════════════════════════
+   HOME — TESTIMONIALS CAROUSEL (all testimonials)
+   ═══════════════════════════════════════════════════ */
+.testimonials-full {
+  padding: 6rem 0;
+  background: var(--off-white);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.testi-card {
+  background: var(--white);
+  padding: 2.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  position: relative;
+}
+
+.testi-card::before {
+  content: '"';
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: var(--cream);
+  position: absolute;
+  top: 1rem; right: 1.5rem;
+  line-height: 1;
+}
+
+.testi-stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 2px; }
+
+.testi-card p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  font-style: italic;
+  color: var(--text-body);
+  margin-bottom: 1.5rem;
+}
+
+.testi-author-row { display: flex; align-items: center; gap: 0.8rem; }
+
+.testi-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.testi-author-info strong { display: block; font-size: 0.85rem; color: var(--text-dark); }
+.testi-author-info span { font-size: 0.75rem; color: var(--text-light); }
+
+/* ═══════════════════════════════════════════════════
+   CONTACT PAGE
+   ═══════════════════════════════════════════════════ */
+.contact-section {
+  padding: 6rem 0;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 5rem;
+}
+
+.contact-info h2 { margin-bottom: 1.2rem; }
+.contact-info h2 em { font-style: italic; color: var(--gold-dark); }
+
+.contact-info > p {
+  color: var(--text-light);
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+
+.contact-detail {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-items: start;
+}
+
+.contact-detail-icon {
+  width: 40px; height: 40px;
+  background: var(--off-white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: var(--navy);
+  flex-shrink: 0;
+}
+
+.contact-detail strong { display: block; font-size: 0.85rem; color: var(--text-dark); margin-bottom: 0.2rem; }
+.contact-detail span { font-size: 0.9rem; color: var(--text-body); }
+
+.contact-form {
+  background: var(--off-white);
+  padding: 3rem;
+  border-radius: 4px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.04em;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  background: var(--white);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(11,29,58,0.06);
+}
+
+.form-group textarea { min-height: 140px; resize: vertical; }
+
+.contact-map {
+  margin-top: 4rem;
+  aspect-ratio: 21/6;
+  background: var(--navy-deep);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.contact-map-inner {
+  position: absolute; inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.map-pin {
+  width: 40px; height: 40px;
+  background: var(--gold);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  position: relative;
+}
+
+.map-pin::after {
+  content: '';
+  width: 16px; height: 16px;
+  background: var(--navy-deep);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.map-label {
+  color: rgba(255,255,255,0.4);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════ */
+footer {
+  background: var(--navy-deep);
+  padding: 5rem 0 2rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.footer-brand .nav-logo-text { margin-bottom: 1rem; }
+
+.footer-brand p {
+  color: rgba(255,255,255,0.35);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  max-width: 280px;
+}
+
+.footer-col h5 {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 1.2rem;
+}
+
+.footer-col a {
+  display: block;
+  color: rgba(255,255,255,0.55);
+  font-size: 0.88rem;
+  margin-bottom: 0.6rem;
+  transition: color 0.3s;
+}
+
+.footer-col a:hover { color: var(--gold); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-bottom p {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.25);
+}
+
+.footer-bottom a {
+  color: rgba(255,255,255,0.25);
+  font-size: 0.78rem;
+  transition: color 0.3s;
+}
+
+.footer-bottom a:hover { color: var(--gold); }
+
+.footer-legal { display: flex; gap: 1.5rem; }
+
+/* ═══════════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+.hero-animate {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeUp 0.8s var(--ease-out) forwards;
+}
+
+.hero-animate-1 { animation-delay: 0.1s; }
+.hero-animate-2 { animation-delay: 0.25s; }
+.hero-animate-3 { animation-delay: 0.4s; }
+.hero-animate-4 { animation-delay: 0.55s; }
+
+@keyframes heroFadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.35s; }
+.stagger-5 { transition-delay: 0.4s; }
+.stagger-6 { transition-delay: 0.5s; }
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .practice-cards { grid-template-columns: repeat(2, 1fr); }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .team-assoc-grid { grid-template-columns: repeat(2, 1fr); }
+  .values-grid { grid-template-columns: repeat(2, 1fr); }
+  .practice-area-block { grid-template-columns: 1fr; gap: 2rem; }
+  .pa-left { position: static; }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-mobile-toggle { display: flex; }
+
+  .hero-content { padding-top: 4rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-item:nth-child(2)::after { display: none; }
+
+  .intro-grid,
+  .about-story-grid,
+  .wellington-grid,
+  .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+  .practice-cards,
+  .testimonials-grid { grid-template-columns: 1fr; }
+
+  .team-grid { grid-template-columns: 1fr; }
+  .team-assoc-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .form-row { grid-template-columns: 1fr; }
+
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+
+  .values-grid { grid-template-columns: 1fr; }
+
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { text-align: center; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAVIGATION ═══════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" onclick="showPage('home')">
+      <div class="nav-logo-mark">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 2L32 10V26L18 34L4 26V10L18 2Z" stroke="rgba(196,165,90,0.6)" stroke-width="1.5" fill="none"/>
+          <path d="M18 8L26 13V23L18 28L10 23V13L18 8Z" fill="rgba(196,165,90,0.15)" stroke="rgba(196,165,90,0.4)" stroke-width="1"/>
+          <line x1="18" y1="2" x2="18" y2="8" stroke="rgba(196,165,90,0.3)" stroke-width="1"/>
+          <line x1="32" y1="10" x2="26" y2="13" stroke="rgba(196,165,90,0.3)" stroke-width="1"/>
+          <line x1="4" y1="10" x2="10" y2="13" stroke="rgba(196,165,90,0.3)" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="nav-logo-text">
+        Summit Legal
+        <span>Boutique</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" onclick="showPage('home')" class="active" data-page="home">Home</a></li>
+      <li><a href="#" onclick="showPage('about')" data-page="about">About</a></li>
+      <li><a href="#" onclick="showPage('practice')" data-page="practice">Practice Areas</a></li>
+      <li><a href="#" onclick="showPage('team')" data-page="team">Our Team</a></li>
+      <li><a href="#" onclick="showPage('contact')" class="nav-cta" data-page="contact">Get in Touch</a></li>
+    </ul>
+    <button class="nav-mobile-toggle" onclick="document.querySelector('.mobile-menu').classList.add('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu">
+  <button class="mobile-close" onclick="this.parentElement.classList.remove('open')">&times;</button>
+  <a href="#" onclick="showPage('home'); this.closest('.mobile-menu').classList.remove('open')">Home</a>
+  <a href="#" onclick="showPage('about'); this.closest('.mobile-menu').classList.remove('open')">About</a>
+  <a href="#" onclick="showPage('practice'); this.closest('.mobile-menu').classList.remove('open')">Practice Areas</a>
+  <a href="#" onclick="showPage('team'); this.closest('.mobile-menu').classList.remove('open')">Our Team</a>
+  <a href="#" onclick="showPage('contact'); this.closest('.mobile-menu').classList.remove('open')">Contact</a>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE 1: HOME
+     ═══════════════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-line hero-line-1"></div>
+    <div class="hero-line hero-line-2"></div>
+    <div class="hero-line hero-line-3"></div>
+    <div class="hero-geo hero-geo-1"></div>
+    <div class="hero-geo hero-geo-2"></div>
+    <div class="hero-geo hero-geo-3"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-label hero-animate hero-animate-1">
+          <span class="label label-white">Commercial Law — Wellington</span>
+        </div>
+        <h1 class="hero-animate hero-animate-2">Clarity in<br><em>complexity.</em></h1>
+        <p class="hero-sub hero-animate hero-animate-3">Summit Legal Boutique provides sharp, strategic commercial law counsel for New Zealand's most ambitious enterprises. We see through complexity to the decisions that matter.</p>
+        <div class="hero-actions hero-animate hero-animate-4">
+          <a href="#" class="btn btn-gold btn-arrow" onclick="showPage('contact')">Book a Consultation</a>
+          <a href="#" class="btn btn-outline btn-arrow" onclick="showPage('practice')">Our Expertise</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <section class="stats-bar">
+    <div class="container-wide">
+      <div class="stats-grid">
+        <div class="stat-item reveal stagger-1">
+          <div class="stat-number">22</div>
+          <div class="stat-text">Years of Practice</div>
+        </div>
+        <div class="stat-item reveal stagger-2">
+          <div class="stat-number">340+</div>
+          <div class="stat-text">Transactions Closed</div>
+        </div>
+        <div class="stat-item reveal stagger-3">
+          <div class="stat-number">$2.4B</div>
+          <div class="stat-text">Deal Value Advised</div>
+        </div>
+        <div class="stat-item reveal stagger-4">
+          <div class="stat-number">98%</div>
+          <div class="stat-text">Client Retention</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="intro">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="reveal-left">
+          <div class="label intro-label">Who We Are</div>
+          <h2>A boutique firm with<br><em>major-firm reach.</em></h2>
+          <p class="intro-text">Summit Legal Boutique was built on a simple conviction: that the sharpest commercial minds shouldn't be buried inside firms of hundreds. We offer senior-partner attention on every matter, backed by a network of specialists across the Pacific Rim.</p>
+          <p class="intro-text">Based in the heart of Wellington's legal quarter, we serve clients ranging from high-growth startups navigating their first capital raise to established corporates restructuring for the next decade.</p>
+          <a href="#" class="btn btn-outline-dark btn-arrow" onclick="showPage('about')">Our Story</a>
+        </div>
+        <div class="reveal-right">
+          <div class="intro-image">
+            <img src="https://picsum.photos/600/750?grayscale&random=1" alt="Summit Legal offices">
+            <div class="intro-image-accent"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Practice Areas Preview -->
+  <section class="practice-preview">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">What We Do</span>
+        <h2>Practice Areas</h2>
+        <p>Focused expertise across the full spectrum of commercial law.</p>
+      </div>
+      <div class="practice-cards">
+        <div class="practice-card reveal stagger-1" onclick="showPage('practice')">
+          <div class="practice-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Mergers &amp; Acquisitions</h3>
+          <p>End-to-end advisory on domestic and cross-border M&A, from due diligence through to post-completion integration.</p>
+          <span class="practice-card-link">Explore →</span>
+        </div>
+        <div class="practice-card reveal stagger-2" onclick="showPage('practice')">
+          <div class="practice-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <h3>Corporate Governance</h3>
+          <p>Board advisory, shareholder agreements, and governance frameworks that protect founders and investors alike.</p>
+          <span class="practice-card-link">Explore →</span>
+        </div>
+        <div class="practice-card reveal stagger-3" onclick="showPage('practice')">
+          <div class="practice-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h3>Commercial Contracts</h3>
+          <p>Structuring, drafting, and negotiating the agreements that underpin your most important commercial relationships.</p>
+          <span class="practice-card-link">Explore →</span>
+        </div>
+        <div class="practice-card reveal stagger-4" onclick="showPage('practice')">
+          <div class="practice-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3>International Trade</h3>
+          <p>Cross-border structuring, trade compliance, and regulatory navigation for companies expanding beyond New Zealand.</p>
+          <span class="practice-card-link">Explore →</span>
+        </div>
+        <div class="practice-card reveal stagger-5" onclick="showPage('practice')">
+          <div class="practice-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Regulatory &amp; Compliance</h3>
+          <p>Navigating New Zealand's regulatory landscape with pragmatic advice that keeps your business moving forward.</p>
+          <span class="practice-card-link">Explore →</span>
+        </div>
+        <div class="practice-card reveal stagger-6" onclick="showPage('practice')">
+          <div class="practice-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <h3>Capital Raising</h3>
+          <p>From seed rounds to institutional capital, legal structuring that gives both founders and investors confidence.</p>
+          <span class="practice-card-link">Explore →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="testimonial-section">
+    <div class="container">
+      <div class="testimonial-inner reveal">
+        <span class="label label-white" style="display:block; margin-bottom: 2rem;">Client Testimonials</span>
+        <div class="testimonial-quote">"Summit Legal brought a level of strategic clarity to our acquisition that we simply hadn't found at larger firms. They don't just draft documents — they see around corners."</div>
+        <div class="testimonial-author">Catherine Hale</div>
+        <div class="testimonial-role">CEO, Meridian Ventures — Wellington</div>
+        <div class="testimonial-dots">
+          <div class="testimonial-dot active"></div>
+          <div class="testimonial-dot"></div>
+          <div class="testimonial-dot"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Band -->
+  <section class="cta-band">
+    <div class="container reveal">
+      <h2>Ready for <em>clarity?</em></h2>
+      <p>The first conversation is always complimentary. Let's discuss what's ahead for your business.</p>
+      <a href="#" class="btn btn-primary btn-arrow" onclick="showPage('contact')">Schedule a Conversation</a>
+    </div>
+  </section>
+
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE 2: ABOUT
+     ═══════════════════════════════════════════════════ -->
+<div id="page-about" class="page">
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="label label-white hero-animate hero-animate-1">About Summit Legal</span>
+      <h1 class="hero-animate hero-animate-2">Built on <em>conviction.</em></h1>
+      <p class="page-hero-sub hero-animate hero-animate-3">A different kind of commercial law practice — one where every client has access to our most experienced minds, not just their most junior associates.</p>
+    </div>
+  </section>
+
+  <section class="about-story">
+    <div class="container">
+      <div class="about-story-grid">
+        <div class="reveal-left">
+          <span class="label">Our Story</span>
+          <h2>Founded on the belief that <em>less can be more.</em></h2>
+        </div>
+        <div class="reveal-right">
+          <p>Summit Legal Boutique was founded in 2003 by James Ashworth and Rachel Ngata, two former partners at one of New Zealand's largest commercial law firms. They shared a frustration: that in large firms, the partners who win the work aren't always the ones doing it.</p>
+          <p>They left to build something deliberately small and deliberately excellent. A firm where every client relationship is held by the people with the deepest expertise. Where no matter is too small for a partner's attention, and no transaction too complex for our focused team to handle.</p>
+          <p>Two decades later, Summit Legal has advised on over $2.4 billion in transactions, guided dozens of New Zealand companies into international markets, and built a reputation as the firm that Wellington's sharpest business minds turn to when the stakes are highest.</p>
+          <p>We remain deliberately boutique — not because we can't grow, but because staying small is how we stay exceptional.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-values">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">Our Values</span>
+        <h2>What guides us</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal stagger-1">
+          <div class="value-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          </div>
+          <h4>Clarity</h4>
+          <p>We cut through legal complexity to give our clients clear, actionable counsel. No jargon. No ambiguity. Just answers.</p>
+        </div>
+        <div class="value-card reveal stagger-2">
+          <div class="value-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h4>Conviction</h4>
+          <p>We don't sit on the fence. Our clients come to us for a view, and we give them one — backed by rigorous analysis.</p>
+        </div>
+        <div class="value-card reveal stagger-3">
+          <div class="value-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h4>Partnership</h4>
+          <p>We invest in understanding our clients' businesses as deeply as they do. Your goals become our goals.</p>
+        </div>
+        <div class="value-card reveal stagger-4">
+          <div class="value-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h4>Rigour</h4>
+          <p>Every piece of advice is underpinned by meticulous research and analysis. We prepare as if every matter is going to court.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-wellington">
+    <div class="container">
+      <div class="wellington-grid">
+        <div class="wellington-image reveal-left">
+          <img src="https://picsum.photos/800/500?random=2" alt="Wellington harbour view">
+          <div class="wellington-image-overlay">Wellington, New Zealand</div>
+        </div>
+        <div class="reveal-right">
+          <span class="label">Our Home</span>
+          <h2 style="margin-bottom: 1.2rem;">Rooted in <em>Wellington.</em></h2>
+          <p style="margin-bottom:1rem;">Wellington isn't just where we work — it's why we work the way we do. This city runs on government, policy, and enterprise. It attracts people who care about doing important things well.</p>
+          <p style="margin-bottom:1rem;">Our offices sit on Lambton Quay, minutes from Parliament, the High Court, and the headquarters of many of our longest-standing clients. But our reach extends across Aotearoa and into the Asia-Pacific through a carefully cultivated network of specialist firms.</p>
+          <p>We chose Wellington deliberately. It's a city built for the kind of focused, relationship-driven practice we believe in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container reveal">
+      <h2>Meet the <em>team.</em></h2>
+      <p>Get to know the people who'll be advising you — from day one.</p>
+      <a href="#" class="btn btn-primary btn-arrow" onclick="showPage('team')">Our People</a>
+    </div>
+  </section>
+
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE 3: PRACTICE AREAS
+     ═══════════════════════════════════════════════════ -->
+<div id="page-practice" class="page">
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="label label-white hero-animate hero-animate-1">Practice Areas</span>
+      <h1 class="hero-animate hero-animate-2">Deep expertise,<br><em>sharp focus.</em></h1>
+      <p class="page-hero-sub hero-animate hero-animate-3">We don't try to be everything to everyone. We focus on the areas of commercial law where we can offer genuinely exceptional counsel.</p>
+    </div>
+  </section>
+
+  <section class="practice-full">
+    <div class="container">
+
+      <div class="practice-area-block reveal">
+        <div class="pa-left">
+          <div class="pa-number">01</div>
+          <h3>Mergers &amp; Acquisitions</h3>
+          <span class="label label-dark">Transactions</span>
+        </div>
+        <div class="pa-right">
+          <p>Our M&A practice is the cornerstone of the firm. We advise buyers, sellers, and boards on transactions ranging from founder-led trade sales to complex multi-jurisdictional acquisitions. Our team has closed over 120 transactions in the past decade alone.</p>
+          <p>What sets us apart is continuity. The partner who scopes your deal is the same one reviewing the SPA at 2am. There's no handoff to a junior team at the eleventh hour. You get consistent strategic thinking from term sheet to completion.</p>
+          <div class="pa-services">
+            <span class="pa-tag">Due Diligence</span>
+            <span class="pa-tag">Deal Structuring</span>
+            <span class="pa-tag">Sale & Purchase Agreements</span>
+            <span class="pa-tag">Post-Completion</span>
+            <span class="pa-tag">Cross-Border M&A</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="practice-area-block reveal">
+        <div class="pa-left">
+          <div class="pa-number">02</div>
+          <h3>Corporate Governance</h3>
+          <span class="label label-dark">Advisory</span>
+        </div>
+        <div class="pa-right">
+          <p>Good governance isn't bureaucracy — it's the framework that lets ambitious companies move fast without breaking things. We help boards establish structures that protect their interests while enabling decisive action.</p>
+          <p>From constitution drafting to boardroom disputes, our governance team brings a practical sensibility. We've advised boards through IPO preparation, investor activism, and complex multi-stakeholder situations where the right governance framework made the difference.</p>
+          <div class="pa-services">
+            <span class="pa-tag">Board Advisory</span>
+            <span class="pa-tag">Shareholder Agreements</span>
+            <span class="pa-tag">Director Duties</span>
+            <span class="pa-tag">Constitutions</span>
+            <span class="pa-tag">Disputes & Remedies</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="practice-area-block reveal">
+        <div class="pa-left">
+          <div class="pa-number">03</div>
+          <h3>Commercial Contracts</h3>
+          <span class="label label-dark">Transactions</span>
+        </div>
+        <div class="pa-right">
+          <p>Every significant business relationship is built on a contract. We draft, negotiate, and advise on the agreements that underpin our clients' most important commercial arrangements — from long-term supply agreements to complex technology licensing deals.</p>
+          <p>Our approach is pragmatic. We understand that a contract that sits unsigned because it's "legally perfect" serves no one. We find the balance between robust protection and commercial reality, and we do it efficiently.</p>
+          <div class="pa-services">
+            <span class="pa-tag">Supply Agreements</span>
+            <span class="pa-tag">Technology & IP Licensing</span>
+            <span class="pa-tag">Distribution</span>
+            <span class="pa-tag">Franchise</span>
+            <span class="pa-tag">Joint Ventures</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="practice-area-block reveal">
+        <div class="pa-left">
+          <div class="pa-number">04</div>
+          <h3>Capital Raising &amp; Private Equity</h3>
+          <span class="label label-dark">Growth</span>
+        </div>
+        <div class="pa-right">
+          <p>Whether you're a startup closing a seed round or an established company seeking institutional capital, the legal structure of your raise matters enormously. We've advised on over 60 capital raises, from $500K angel rounds to $150M private equity transactions.</p>
+          <p>We act for both companies raising capital and investors deploying it, which gives us a rare dual perspective. We know what experienced investors look for, and we structure raises that give both sides confidence.</p>
+          <div class="pa-services">
+            <span class="pa-tag">Seed & Series Funding</span>
+            <span class="pa-tag">Private Equity</span>
+            <span class="pa-tag">Convertible Notes</span>
+            <span class="pa-tag">SAFE Agreements</span>
+            <span class="pa-tag">Investor Terms</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="practice-area-block reveal">
+        <div class="pa-left">
+          <div class="pa-number">05</div>
+          <h3>International Trade &amp; Expansion</h3>
+          <span class="label label-dark">Cross-Border</span>
+        </div>
+        <div class="pa-right">
+          <p>New Zealand companies increasingly look beyond our borders for growth. We help them navigate the legal complexity of international expansion — from establishing overseas entities to navigating foreign regulatory regimes and structuring cross-border transactions.</p>
+          <p>Through our network of specialist firms across Australia, Southeast Asia, and the Pacific, we coordinate multi-jurisdictional matters without the overhead of a global firm. Our clients get local expertise in each market, coordinated by a team that already knows their business.</p>
+          <div class="pa-services">
+            <span class="pa-tag">Overseas Structuring</span>
+            <span class="pa-tag">Trade Compliance</span>
+            <span class="pa-tag">Regulatory Navigation</span>
+            <span class="pa-tag">Cross-Border JVs</span>
+            <span class="pa-tag">Treaty Obligations</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="practice-area-block reveal">
+        <div class="pa-left">
+          <div class="pa-number">06</div>
+          <h3>Regulatory &amp; Compliance</h3>
+          <span class="label label-dark">Risk</span>
+        </div>
+        <div class="pa-right">
+          <p>New Zealand's regulatory environment is evolving rapidly. From new privacy legislation to strengthened anti-money laundering requirements, businesses face an increasingly complex compliance landscape. We help our clients stay ahead of these changes rather than reacting to them.</p>
+          <p>Our regulatory team includes a former Commerce Commission advisor and a specialist in financial services regulation, giving us practical insight into how regulators think and act.</p>
+          <div class="pa-services">
+            <span class="pa-tag">Privacy & Data</span>
+            <span class="pa-tag">AML/CFT</span>
+            <span class="pa-tag">Financial Regulation</span>
+            <span class="pa-tag">Commerce Act</span>
+            <span class="pa-tag">Licensing</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cta-band" style="background: var(--off-white);">
+    <div class="container reveal">
+      <h2>Have a matter to <em>discuss?</em></h2>
+      <p>We're always happy to talk through a potential engagement — no obligation.</p>
+      <a href="#" class="btn btn-primary btn-arrow" onclick="showPage('contact')">Get in Touch</a>
+    </div>
+  </section>
+
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE 4: TEAM
+     ═══════════════════════════════════════════════════ -->
+<div id="page-team" class="page">
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="label label-white hero-animate hero-animate-1">Our Team</span>
+      <h1 class="hero-animate hero-animate-2">The people behind<br><em>the practice.</em></h1>
+      <p class="page-hero-sub hero-animate hero-animate-3">Every member of our team was chosen for a combination of sharp legal minds and the commercial instinct to apply their expertise where it matters most.</p>
+    </div>
+  </section>
+
+  <!-- Partners -->
+  <section class="team-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">Partners</span>
+        <h2>Firm Leadership</h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-card reveal stagger-1">
+          <div class="team-photo">
+            <img src="https://picsum.photos/400/470?random=10" alt="James Ashworth">
+            <div class="team-photo-initials">JA</div>
+          </div>
+          <div class="team-info">
+            <h3>James Ashworth</h3>
+            <div class="team-role">Founding Partner</div>
+            <p class="team-bio">James brings 28 years of commercial law experience, with particular depth in M&A and private equity. Before founding Summit Legal, he led the corporate team at Russell McVeagh Wellington.</p>
+            <div class="team-specialties">
+              <span class="team-tag">M&A</span>
+              <span class="team-tag">Private Equity</span>
+              <span class="team-tag">Governance</span>
+            </div>
+          </div>
+        </div>
+        <div class="team-card reveal stagger-2">
+          <div class="team-photo">
+            <img src="https://picsum.photos/400/470?random=11" alt="Rachel Ngata">
+            <div class="team-photo-initials">RN</div>
+          </div>
+          <div class="team-info">
+            <h3>Rachel Ngata</h3>
+            <div class="team-role">Founding Partner</div>
+            <p class="team-bio">Rachel is recognised as one of Wellington's leading corporate governance lawyers. She advises boards across the energy, technology, and financial services sectors and sits on two NFP boards herself.</p>
+            <div class="team-specialties">
+              <span class="team-tag">Governance</span>
+              <span class="team-tag">Capital Markets</span>
+              <span class="team-tag">Energy</span>
+            </div>
+          </div>
+        </div>
+        <div class="team-card reveal stagger-3">
+          <div class="team-photo">
+            <img src="https://picsum.photos/400/470?random=12" alt="David Chen">
+            <div class="team-photo-initials">DC</div>
+          </div>
+          <div class="team-info">
+            <h3>David Chen</h3>
+            <div class="team-role">Partner — International</div>
+            <p class="team-bio">David heads our international trade and cross-border practice. Fluent in Mandarin and with extensive networks across Southeast Asia, he's the firm's bridge to the Pacific Rim.</p>
+            <div class="team-specialties">
+              <span class="team-tag">International Trade</span>
+              <span class="team-tag">Cross-Border</span>
+              <span class="team-tag">APAC</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Associates -->
+  <section class="team-associates">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">Associates &amp; Counsel</span>
+        <h2>The wider team</h2>
+      </div>
+      <div class="team-assoc-grid">
+        <div class="assoc-card reveal stagger-1">
+          <div class="assoc-photo">
+            <img src="https://picsum.photos/200/200?random=20" alt="Liam Torres">
+            <div class="assoc-photo-initials">LT</div>
+          </div>
+          <h4>Liam Torres</h4>
+          <div class="team-role">Senior Associate</div>
+          <p>M&A and commercial contracts, with a focus on technology sector transactions.</p>
+        </div>
+        <div class="assoc-card reveal stagger-2">
+          <div class="assoc-photo">
+            <img src="https://picsum.photos/200/200?random=21" alt="Priya Sharma">
+            <div class="assoc-photo-initials">PS</div>
+          </div>
+          <h4>Priya Sharma</h4>
+          <div class="team-role">Senior Associate</div>
+          <p>Regulatory compliance and financial services, former Commerce Commission advisor.</p>
+        </div>
+        <div class="assoc-card reveal stagger-3">
+          <div class="assoc-photo">
+            <img src="https://picsum.photos/200/200?random=22" alt="Tom Hargreaves">
+            <div class="assoc-photo-initials">TH</div>
+          </div>
+          <h4>Tom Hargreaves</h4>
+          <div class="team-role">Associate</div>
+          <p>Capital raising and startup advisory, with deep networks in the NZ venture ecosystem.</p>
+        </div>
+        <div class="assoc-card reveal stagger-4">
+          <div class="assoc-photo">
+            <img src="https://picsum.photos/200/200?random=23" alt="Maia Rewiti">
+            <div class="assoc-photo-initials">MR</div>
+          </div>
+          <h4>Maia Rewiti</h4>
+          <div class="team-role">Associate</div>
+          <p>Commercial contracts and intellectual property, specialising in creative industries.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials-full">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">Client Testimonials</span>
+        <h2>In their words</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testi-card reveal stagger-1">
+          <div class="testi-stars">★★★★★</div>
+          <p>"Summit Legal brought a level of strategic clarity to our acquisition that we simply hadn't found at larger firms. They don't just draft documents — they see around corners."</p>
+          <div class="testi-author-row">
+            <div class="testi-avatar">CH</div>
+            <div class="testi-author-info">
+              <strong>Catherine Hale</strong>
+              <span>CEO, Meridian Ventures</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal stagger-2">
+          <div class="testi-stars">★★★★★</div>
+          <p>"When we were navigating our Series B, Summit's dual perspective — having acted for both founders and investors — was invaluable. They understood exactly what our lead investor needed to see."</p>
+          <div class="testi-author-row">
+            <div class="testi-avatar">MK</div>
+            <div class="testi-author-info">
+              <strong>Marcus Ko</strong>
+              <span>Founder, Aotea Technologies</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal stagger-3">
+          <div class="testi-stars">★★★★★</div>
+          <p>"We've worked with Summit for nine years across three board restructures and a major acquisition. The consistency of having the same partners throughout is something you simply can't get at a large firm."</p>
+          <div class="testi-author-row">
+            <div class="testi-avatar">SR</div>
+            <div class="testi-author-info">
+              <strong>Sarah Richardson</strong>
+              <span>Chair, Coastal Energy Group</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container reveal">
+      <h2>Let's work <em>together.</em></h2>
+      <p>Reach out to start a conversation with our team.</p>
+      <a href="#" class="btn btn-primary btn-arrow" onclick="showPage('contact')">Get in Touch</a>
+    </div>
+  </section>
+
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE 5: CONTACT
+     ═══════════════════════════════════════════════════ -->
+<div id="page-contact" class="page">
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="label label-white hero-animate hero-animate-1">Contact Us</span>
+      <h1 class="hero-animate hero-animate-2">Start a <em>conversation.</em></h1>
+      <p class="page-hero-sub hero-animate hero-animate-3">The first consultation is always complimentary. Tell us about your situation, and we'll let you know how we can help.</p>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal-left">
+          <h2>Get in <em>touch.</em></h2>
+          <p>Whether you have an immediate legal need or simply want to explore how Summit Legal might support your business, we're always happy to talk.</p>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <strong>Office</strong>
+              <span>Level 14, Asteron Centre<br>55 Featherston Street<br>Wellington 6011, New Zealand</span>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <strong>Phone</strong>
+              <span>+64 4 472 3900</span>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <strong>Email</strong>
+              <span>enquiries@summitlegal.co.nz</span>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <strong>Office Hours</strong>
+              <span>Monday – Friday, 8:30am – 5:30pm NZST</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal-right">
+          <div class="contact-form">
+            <form onsubmit="event.preventDefault(); this.querySelector('.btn').textContent='Message Sent ✓'; this.querySelector('.btn').style.background='#2d6a4f';">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>First Name</label>
+                  <input type="text" placeholder="Your first name">
+                </div>
+                <div class="form-group">
+                  <label>Last Name</label>
+                  <input type="text" placeholder="Your last name">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" placeholder="you@company.co.nz">
+                </div>
+                <div class="form-group">
+                  <label>Phone</label>
+                  <input type="tel" placeholder="+64">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Area of Interest</label>
+                <select>
+                  <option value="" disabled selected>Select a practice area</option>
+                  <option>Mergers & Acquisitions</option>
+                  <option>Corporate Governance</option>
+                  <option>Commercial Contracts</option>
+                  <option>Capital Raising</option>
+                  <option>International Trade</option>
+                  <option>Regulatory & Compliance</option>
+                  <option>General Enquiry</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Tell us about your matter</label>
+                <textarea placeholder="A brief overview of your situation or what you'd like to discuss..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-arrow" style="width:100%; justify-content:center;">Send Enquiry</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-map reveal">
+        <div class="contact-map-inner">
+          <div class="map-pin"></div>
+          <div class="map-label">55 Featherston Street, Wellington</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo-text" style="margin-bottom: 1rem;">
+          Summit Legal
+          <span>Boutique</span>
+        </div>
+        <p>Clarity in complexity. Commercial law counsel for New Zealand's most ambitious enterprises, from the heart of Wellington.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Practice Areas</h5>
+        <a href="#" onclick="showPage('practice')">Mergers & Acquisitions</a>
+        <a href="#" onclick="showPage('practice')">Corporate Governance</a>
+        <a href="#" onclick="showPage('practice')">Commercial Contracts</a>
+        <a href="#" onclick="showPage('practice')">Capital Raising</a>
+        <a href="#" onclick="showPage('practice')">International Trade</a>
+        <a href="#" onclick="showPage('practice')">Regulatory & Compliance</a>
+      </div>
+      <div class="footer-col">
+        <h5>Firm</h5>
+        <a href="#" onclick="showPage('about')">About Us</a>
+        <a href="#" onclick="showPage('team')">Our Team</a>
+        <a href="#" onclick="showPage('contact')">Contact</a>
+        <a href="#">Careers</a>
+        <a href="#">News & Insights</a>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <a href="#">LinkedIn</a>
+        <a href="#">enquiries@summitlegal.co.nz</a>
+        <a href="#">+64 4 472 3900</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Summit Legal Boutique. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Engagement</a>
+        <a href="#">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════ JAVASCRIPT ═══════════════════ -->
+<script>
+// ——— Page Navigation ———
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+
+  document.querySelectorAll('.nav-links a[data-page]').forEach(a => {
+    a.classList.remove('active');
+    if (a.dataset.page === page) a.classList.add('active');
+  });
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Re-trigger hero animations
+  setTimeout(() => {
+    document.querySelectorAll('.page.active .hero-animate').forEach(el => {
+      el.style.animation = 'none';
+      el.offsetHeight; // trigger reflow
+      el.style.animation = '';
+    });
+    initRevealObserver();
+  }, 100);
+}
+
+// ——— Navbar scroll ———
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ——— Scroll reveal ———
+function initRevealObserver() {
+  const reveals = document.querySelectorAll('.page.active .reveal, .page.active .reveal-left, .page.active .reveal-right');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  reveals.forEach(el => {
+    el.classList.remove('visible');
+    observer.observe(el);
+  });
+}
+
+// ——— Testimonial carousel (home page) ———
+const testimonials = [
+  {
+    quote: '"Summit Legal brought a level of strategic clarity to our acquisition that we simply hadn\'t found at larger firms. They don\'t just draft documents — they see around corners."',
+    author: 'Catherine Hale',
+    role: 'CEO, Meridian Ventures — Wellington'
+  },
+  {
+    quote: '"When we were navigating our Series B, Summit\'s dual perspective — having acted for both founders and investors — was invaluable. They understood exactly what our lead investor needed to see."',
+    author: 'Marcus Ko',
+    role: 'Founder, Aotea Technologies'
+  },
+  {
+    quote: '"We\'ve worked with Summit for nine years across three board restructures and a major acquisition. The consistency of having the same partners throughout is something you can\'t get at a large firm."',
+    author: 'Sarah Richardson',
+    role: 'Chair, Coastal Energy Group'
+  }
+];
+
+let currentTestimonial = 0;
+
+function rotateTestimonial() {
+  currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+  const section = document.querySelector('.testimonial-section');
+  if (!section) return;
+  const quote = section.querySelector('.testimonial-quote');
+  const author = section.querySelector('.testimonial-author');
+  const role = section.querySelector('.testimonial-role');
+  const dots = section.querySelectorAll('.testimonial-dot');
+
+  quote.style.opacity = 0;
+  author.style.opacity = 0;
+  role.style.opacity = 0;
+
+  setTimeout(() => {
+    quote.textContent = testimonials[currentTestimonial].quote;
+    author.textContent = testimonials[currentTestimonial].author;
+    role.textContent = testimonials[currentTestimonial].role;
+    dots.forEach((d, i) => d.classList.toggle('active', i === currentTestimonial));
+    quote.style.opacity = 1;
+    author.style.opacity = 1;
+    role.style.opacity = 1;
+  }, 400);
+}
+
+setInterval(rotateTestimonial, 5000);
+
+document.querySelectorAll('.testimonial-dot').forEach((dot, i) => {
+  dot.addEventListener('click', () => {
+    currentTestimonial = i - 1; // Will be incremented in rotateTestimonial
+    rotateTestimonial();
+  });
+});
+
+// ——— Stat counter animation ———
+function animateCounters() {
+  document.querySelectorAll('.stat-number').forEach(stat => {
+    const text = stat.textContent;
+    const hasPrefix = text.startsWith('$');
+    const hasSuffix = text.includes('+') || text.includes('%') || text.includes('B');
+    const numStr = text.replace(/[^0-9.]/g, '');
+    const target = parseFloat(numStr);
+    if (isNaN(target)) return;
+
+    let suffix = '';
+    if (text.includes('+')) suffix = '+';
+    if (text.includes('%')) suffix = '%';
+    if (text.includes('B')) suffix = 'B';
+
+    const prefix = hasPrefix ? '$' : '';
+    const isDecimal = numStr.includes('.');
+    let current = 0;
+    const increment = target / 40;
+    const interval = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        current = target;
+        clearInterval(interval);
+      }
+      stat.textContent = prefix + (isDecimal ? current.toFixed(1) : Math.floor(current)) + suffix;
+    }, 40);
+  });
+}
+
+// Run counter when stats section is visible
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounters();
+      statsObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+const statsBar = document.querySelector('.stats-bar');
+if (statsBar) statsObserver.observe(statsBar);
+
+// ——— Add transition to testimonial text ———
+document.querySelectorAll('.testimonial-quote, .testimonial-author, .testimonial-role').forEach(el => {
+  el.style.transition = 'opacity 0.4s ease';
+});
+
+// ——— Init ———
+document.addEventListener('DOMContentLoaded', () => {
+  initRevealObserver();
+});
+</script>
+
+</body>
+</html>

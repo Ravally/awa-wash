@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little Fern Early Learning | Where Curious Minds Grow Wild</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   CSS CUSTOM PROPERTIES — LITTLE FERN PALETTE
+   Adapted from Maxima Therapy's green-dominant,
+   illustration-heavy, playful design language.
+   ============================================ */
+:root {
+  --color-bg: #F3EFE4;
+  --color-bg-light: #FAF8F2;
+  --color-dominant: #2D6A4F;
+  --color-dominant-light: #8FBD9F;
+  --color-dominant-lighter: #C8E6C9;
+  --color-dominant-dark: #1B4332;
+  --color-accent: #C75B39;
+  --color-accent-light: #E8A87C;
+  --color-accent-warm: #D4A373;
+  --color-yellow: #F2CC5B;
+  --color-blue: #5B8FA8;
+  --color-pink: #D4A5A5;
+  --color-text: #2B2B33;
+  --color-text-light: rgba(43, 43, 51, 0.7);
+  --color-white: #FFFFFF;
+  --color-cream: #F3EFE4;
+
+  --font-display: 'Baloo 2', cursive;
+  --font-body: 'Nunito', sans-serif;
+
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 30px;
+  --radius-xl: 40px;
+  --radius-pill: 999px;
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* ============================================
+   NAVIGATION — Floating pill-shaped nav
+   Mirrors Maxima's transparent nav with white pill
+   ============================================ */
+nav {
+  position: fixed;
+  top: 20px;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+}
+
+.nav-logo svg {
+  width: 48px;
+  height: 48px;
+}
+
+.nav-logo span {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-dominant);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-white);
+  padding: 8px 12px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.nav-links a {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  transition: all 0.25s ease;
+  color: var(--color-text);
+}
+
+.nav-links a:hover {
+  background: var(--color-bg);
+}
+
+.nav-cta {
+  background: var(--color-accent) !important;
+  color: var(--color-white) !important;
+  padding: 10px 24px !important;
+  margin-left: 4px;
+}
+
+.nav-cta:hover {
+  background: #b84e30 !important;
+  transform: translateY(-1px);
+}
+
+.nav-contact {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  margin-left: 8px;
+  transition: transform 0.2s ease;
+}
+
+.nav-contact:hover { transform: translateY(-2px); }
+
+.nav-contact svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--color-blue);
+}
+
+nav.scrolled .nav-logo span { color: var(--color-dominant-dark); }
+
+/* ============================================
+   HERO — Full-viewport carousel-style section
+   Mirrors Maxima's 110svh hero with illustration scene
+   ============================================ */
+.hero {
+  min-height: 110vh;
+  background: var(--color-yellow);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  padding-bottom: 0;
+}
+
+/* Illustration scene — hills, trees, clouds */
+.hero-scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* Sky gradient */
+.hero-scene::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--color-yellow) 0%, #E8D88A 60%, var(--color-dominant-light) 100%);
+}
+
+/* Rolling hills */
+.hill {
+  position: absolute;
+  bottom: 0;
+  border-radius: 50%;
+}
+
+.hill-1 {
+  width: 140%;
+  height: 600px;
+  background: var(--color-dominant);
+  left: -20%;
+  bottom: -200px;
+}
+
+.hill-2 {
+  width: 80%;
+  height: 500px;
+  background: var(--color-dominant-dark);
+  right: -10%;
+  bottom: -250px;
+}
+
+.hill-3 {
+  width: 60%;
+  height: 400px;
+  background: #3A7D5C;
+  left: 10%;
+  bottom: -220px;
+}
+
+/* CSS Trees */
+.tree {
+  position: absolute;
+  z-index: 5;
+}
+
+.tree-trunk {
+  width: 20px;
+  background: var(--color-accent-warm);
+  border-radius: 4px;
+  margin: 0 auto;
+}
+
+.tree-top {
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.tree-1 { bottom: 180px; left: 12%; }
+.tree-1 .tree-trunk { height: 60px; }
+.tree-1 .tree-top { width: 80px; height: 80px; background: var(--color-dominant); margin-bottom: -10px; }
+.tree-1 .tree-top-2 { width: 60px; height: 60px; background: var(--color-dominant-light); border-radius: 50%; margin: -30px auto 0; }
+
+.tree-2 { bottom: 200px; left: 25%; }
+.tree-2 .tree-trunk { height: 80px; width: 24px; }
+.tree-2 .tree-top { width: 100px; height: 100px; background: var(--color-dominant-dark); margin-bottom: -10px; }
+.tree-2 .tree-top-2 { width: 70px; height: 70px; background: #3A7D5C; border-radius: 50%; margin: -40px auto 0; }
+
+.tree-3 { bottom: 160px; right: 15%; }
+.tree-3 .tree-trunk { height: 50px; }
+.tree-3 .tree-top { width: 70px; height: 70px; background: var(--color-dominant-light); margin-bottom: -8px; }
+
+.tree-4 { bottom: 190px; right: 30%; }
+.tree-4 .tree-trunk { height: 70px; width: 22px; }
+.tree-4 .tree-top { width: 90px; height: 90px; background: var(--color-dominant); margin-bottom: -10px; }
+.tree-4 .tree-top-2 { width: 65px; height: 65px; background: var(--color-dominant-light); border-radius: 50%; margin: -35px auto 0; }
+
+/* Clouds */
+.cloud {
+  position: absolute;
+  background: var(--color-white);
+  border-radius: 100px;
+  z-index: 3;
+}
+
+.cloud::before, .cloud::after {
+  content: '';
+  position: absolute;
+  background: var(--color-white);
+  border-radius: 50%;
+}
+
+.cloud-1 {
+  width: 160px; height: 50px;
+  top: 15%; left: 8%;
+  animation: floatCloud 20s ease-in-out infinite;
+}
+.cloud-1::before { width: 70px; height: 70px; top: -35px; left: 25px; }
+.cloud-1::after { width: 50px; height: 50px; top: -25px; left: 75px; }
+
+.cloud-2 {
+  width: 120px; height: 40px;
+  top: 22%; right: 12%;
+  animation: floatCloud 25s ease-in-out infinite reverse;
+}
+.cloud-2::before { width: 55px; height: 55px; top: -28px; left: 20px; }
+.cloud-2::after { width: 40px; height: 40px; top: -20px; left: 55px; }
+
+.cloud-3 {
+  width: 140px; height: 45px;
+  top: 35%; left: 50%;
+  animation: floatCloud 22s ease-in-out infinite 3s;
+}
+.cloud-3::before { width: 60px; height: 60px; top: -30px; left: 25px; }
+.cloud-3::after { width: 45px; height: 45px; top: -22px; left: 70px; }
+
+@keyframes floatCloud {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(30px); }
+}
+
+/* Sun */
+.sun {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: var(--color-yellow);
+  border-radius: 50%;
+  top: 10%;
+  right: 20%;
+  z-index: 2;
+  box-shadow: 0 0 60px rgba(242, 204, 91, 0.5), 0 0 120px rgba(242, 204, 91, 0.2);
+}
+
+/* Hero CTA Card */
+.hero-card {
+  position: relative;
+  z-index: 10;
+  background: var(--color-accent);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  padding: 60px 50px 50px;
+  max-width: 580px;
+  width: 90%;
+  text-align: center;
+  margin-bottom: 0;
+  transform: translateY(2px);
+}
+
+.hero-card h1 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 800;
+  line-height: 0.95;
+  color: var(--color-white);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.hero-card .hero-tag {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--color-white);
+  color: var(--color-accent);
+  padding: 6px 18px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 20px;
+}
+
+.hero-card p {
+  font-size: 18px;
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
+  line-height: 1.5;
+  max-width: 400px;
+  margin: 0 auto 24px;
+}
+
+.hero-scroll-hint {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(255,255,255,0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  animation: bounceDown 2s ease-in-out infinite;
+}
+
+.hero-scroll-hint svg {
+  width: 16px;
+  height: 16px;
+  stroke: rgba(255,255,255,0.7);
+}
+
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* Character in hero */
+.hero-character {
+  position: absolute;
+  z-index: 8;
+  bottom: 280px;
+  right: 18%;
+}
+
+.character-body { position: relative; width: 80px; height: 100px; }
+
+.character-head {
+  width: 50px; height: 50px;
+  background: var(--color-accent-light);
+  border-radius: 50%;
+  margin: 0 auto;
+  position: relative;
+}
+.character-head::before {
+  content: '';
+  position: absolute;
+  width: 30px; height: 20px;
+  background: var(--color-accent-warm);
+  border-radius: 50% 50% 0 0;
+  top: -5px; left: 10px;
+}
+
+.character-torso {
+  width: 45px; height: 50px;
+  background: var(--color-accent);
+  border-radius: 0 0 15px 15px;
+  margin: -5px auto 0;
+}
+
+.character-arms {
+  position: absolute;
+  top: 55px; left: -10px;
+  width: 100px; height: 20px;
+}
+.character-arms::before, .character-arms::after {
+  content: '';
+  position: absolute;
+  width: 35px; height: 12px;
+  background: var(--color-accent-light);
+  border-radius: 6px;
+}
+.character-arms::before { left: 0; transform: rotate(-20deg); }
+.character-arms::after { right: 0; transform: rotate(20deg); }
+
+/* Second character */
+.hero-char-2 {
+  position: absolute;
+  z-index: 8;
+  bottom: 250px;
+  left: 15%;
+}
+
+.char2-head {
+  width: 40px; height: 40px;
+  background: var(--color-yellow);
+  border-radius: 50%;
+  margin: 0 auto;
+  position: relative;
+}
+.char2-head::before {
+  content: '';
+  position: absolute;
+  width: 24px; height: 16px;
+  background: var(--color-blue);
+  border-radius: 50% 50% 0 0;
+  top: -4px; left: 8px;
+}
+
+.char2-body {
+  width: 36px; height: 40px;
+  background: var(--color-blue);
+  border-radius: 0 0 12px 12px;
+  margin: -4px auto 0;
+}
+
+/* Bird */
+.bird {
+  position: absolute;
+  z-index: 7;
+  bottom: 300px;
+  left: 35%;
+}
+.bird-body {
+  width: 30px; height: 20px;
+  background: var(--color-yellow);
+  border-radius: 50% 50% 40% 40%;
+  position: relative;
+}
+.bird-body::before {
+  content: '';
+  position: absolute;
+  width: 12px; height: 12px;
+  background: var(--color-yellow);
+  border-radius: 50%;
+  top: -8px; right: 2px;
+}
+.bird-body::after {
+  content: '';
+  position: absolute;
+  width: 8px; height: 4px;
+  background: var(--color-accent);
+  border-radius: 0 4px 4px 0;
+  top: -4px; right: -6px;
+}
+
+/* ============================================
+   PROGRAMME CARDS — Stacked, slightly rotated
+   ============================================ */
+.programmes-section {
+  background: var(--color-dominant-light);
+  padding: 120px 40px 140px;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-eyebrow {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-dominant-dark);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.section-title-large {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 8vw, 100px);
+  font-weight: 800;
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--color-dominant-dark);
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.card-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.programme-card-group {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+}
+
+.programme-card-group::before {
+  content: '';
+  position: absolute;
+  inset: 10px -8px -10px 8px;
+  background: var(--color-accent);
+  border-radius: var(--radius-lg);
+  transform: rotate(2deg);
+  z-index: 0;
+}
+.programme-card-group::after {
+  content: '';
+  position: absolute;
+  inset: 6px -12px -6px 12px;
+  background: var(--color-blue);
+  border-radius: var(--radius-lg);
+  transform: rotate(-1.5deg);
+  z-index: 0;
+}
+
+.programme-card {
+  position: relative;
+  z-index: 1;
+  background: var(--color-dominant);
+  border-radius: var(--radius-lg);
+  padding: 50px 40px;
+  text-align: center;
+  color: var(--color-white);
+  transform: rotate(-1deg);
+  transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.programme-card:hover { transform: rotate(0deg) translateY(-4px); }
+.programme-card.card-accent { background: var(--color-accent); }
+.programme-card.card-blue { background: var(--color-blue); }
+
+.programme-card h3 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.programme-card .age-badge {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: rgba(255,255,255,0.2);
+  padding: 4px 14px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 20px;
+}
+
+.programme-card .card-icon {
+  width: 80px; height: 80px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.programme-card p {
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.9;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+@media (min-width: 900px) {
+  .card-stack {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 40px;
+  }
+  .programme-card-group { flex: 1; }
+  .programme-card-group:nth-child(2) { margin-top: 40px; }
+  .programme-card-group:nth-child(3) { margin-top: 80px; }
+}
+
+/* ============================================
+   BELIEF STATEMENT — Massive typographic section
+   ============================================ */
+.belief-section {
+  background: var(--color-dominant-light);
+  padding: 100px 40px 120px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.belief-text {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 80px);
+  font-weight: 800;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--color-dominant-dark);
+  max-width: 1100px;
+  margin: 0 auto 40px;
+}
+
+.btn-outline {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 14px 36px;
+  border: 2.5px solid var(--color-dominant-dark);
+  border-radius: var(--radius-pill);
+  color: var(--color-dominant-dark);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn-outline:hover {
+  background: var(--color-dominant-dark);
+  color: var(--color-white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(27, 67, 50, 0.3);
+}
+
+/* ============================================
+   BIG WORD — "explore" fills viewport
+   ============================================ */
+.big-word-section {
+  background: var(--color-dominant-light);
+  padding: 40px 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.big-word {
+  font-family: var(--font-display);
+  font-size: clamp(120px, 25vw, 400px);
+  font-weight: 800;
+  text-transform: lowercase;
+  color: var(--color-blue);
+  text-align: center;
+  line-height: 0.85;
+  position: relative;
+  z-index: 2;
+  opacity: 0.9;
+}
+
+/* Photo section */
+.photo-section {
+  position: relative;
+  height: 70vh;
+  min-height: 500px;
+  overflow: hidden;
+}
+.photo-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Rainbow overlay */
+.photo-overlay-rainbow {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 200px;
+  z-index: 3;
+}
+.rainbow-arc {
+  position: absolute;
+  border-radius: 50%;
+  border-style: solid;
+  border-bottom: none;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+}
+.rainbow-arc-1 { width: 360px; height: 180px; border-width: 20px; border-color: var(--color-dominant); }
+.rainbow-arc-2 { width: 310px; height: 155px; border-width: 18px; border-color: var(--color-dominant-light); }
+.rainbow-arc-3 { width: 264px; height: 132px; border-width: 16px; border-color: var(--color-yellow); }
+
+/* Photo overlay clouds */
+.photo-cloud {
+  position: absolute;
+  background: var(--color-white);
+  border-radius: 100px;
+  z-index: 4;
+}
+.photo-cloud::before, .photo-cloud::after {
+  content: '';
+  position: absolute;
+  background: var(--color-white);
+  border-radius: 50%;
+}
+.photo-cloud-1 { width: 140px; height: 45px; bottom: 20%; left: 5%; }
+.photo-cloud-1::before { width: 60px; height: 60px; top: -30px; left: 20px; }
+.photo-cloud-1::after { width: 45px; height: 45px; top: -22px; left: 60px; }
+.photo-cloud-2 { width: 120px; height: 38px; top: 30%; right: 8%; }
+.photo-cloud-2::before { width: 50px; height: 50px; top: -25px; left: 18px; }
+.photo-cloud-2::after { width: 38px; height: 38px; top: -18px; left: 52px; }
+
+/* Blob character */
+.photo-blob-character {
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  z-index: 4;
+}
+.blob-body {
+  width: 70px; height: 80px;
+  background: var(--color-blue);
+  border-radius: 40% 40% 45% 45%;
+  position: relative;
+  margin: 0 auto;
+}
+.blob-body::before {
+  content: '';
+  position: absolute;
+  width: 8px; height: 8px;
+  background: var(--color-white);
+  border-radius: 50%;
+  top: 25px; left: 18px;
+}
+.blob-body::after {
+  content: '';
+  position: absolute;
+  width: 8px; height: 8px;
+  background: var(--color-white);
+  border-radius: 50%;
+  top: 25px; right: 18px;
+}
+.blob-smile {
+  position: absolute;
+  width: 20px; height: 10px;
+  border-bottom: 3px solid var(--color-white);
+  border-radius: 0 0 50% 50%;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ============================================
+   OUR STORY — Two-column with massive text
+   ============================================ */
+.story-section {
+  background: var(--color-bg);
+  padding: 120px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.story-grid {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.story-big-text {
+  font-family: var(--font-display);
+  font-size: clamp(60px, 10vw, 140px);
+  font-weight: 800;
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: var(--color-dominant);
+  position: relative;
+}
+
+/* Inline illustration elements */
+.story-pencil {
+  display: inline-block;
+  width: 30px; height: 60px;
+  background: linear-gradient(180deg, var(--color-accent) 15%, var(--color-yellow) 15%, var(--color-yellow) 85%, var(--color-accent-warm) 85%);
+  border-radius: 2px 2px 0 0;
+  transform: rotate(-15deg);
+  margin: 0 -5px;
+  vertical-align: middle;
+  position: relative;
+}
+.story-pencil::before {
+  content: '';
+  position: absolute;
+  bottom: -10px; left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 14px solid var(--color-accent-warm);
+}
+
+.story-book {
+  display: inline-block;
+  width: 50px; height: 40px;
+  position: relative;
+  vertical-align: middle;
+  margin: 0 4px;
+}
+.story-book::before {
+  content: '';
+  position: absolute;
+  width: 22px; height: 35px;
+  background: var(--color-blue);
+  border-radius: 3px 0 0 3px;
+  left: 2px; top: 2px;
+  transform: rotate(-5deg);
+}
+.story-book::after {
+  content: '';
+  position: absolute;
+  width: 22px; height: 35px;
+  background: var(--color-pink);
+  border-radius: 0 3px 3px 0;
+  right: 2px; top: 2px;
+  transform: rotate(5deg);
+}
+
+.story-content { padding-top: 40px; }
+
+.story-content p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--color-text-light);
+  margin-bottom: 24px;
+  max-width: 500px;
+}
+
+.btn-filled {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 16px 36px;
+  background: var(--color-blue);
+  color: var(--color-white);
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn-filled:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(91, 143, 168, 0.4);
+}
+
+@media (max-width: 900px) {
+  .story-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================
+   ILLUSTRATION SCENE DIVIDER
+   ============================================ */
+.scene-divider {
+  position: relative;
+  height: 500px;
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+.scene-ground {
+  position: absolute;
+  bottom: 0; left: -5%; right: -5%;
+  height: 200px;
+  background: var(--color-dominant);
+  border-radius: 50% 50% 0 0;
+}
+.scene-ground-dark {
+  position: absolute;
+  bottom: 0; left: 20%; right: -5%;
+  height: 160px;
+  background: var(--color-dominant-dark);
+  border-radius: 50% 50% 0 0;
+}
+
+.scene-character-main {
+  position: absolute;
+  bottom: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  text-align: center;
+}
+
+.lg-head {
+  width: 70px; height: 70px;
+  background: var(--color-accent-light);
+  border-radius: 50%;
+  margin: 0 auto;
+  position: relative;
+}
+.lg-head::after {
+  content: '';
+  position: absolute;
+  width: 40px; height: 25px;
+  background: var(--color-accent-warm);
+  border-radius: 50% 50% 0 0;
+  top: -8px; left: 15px;
+}
+.lg-body-top {
+  width: 60px; height: 45px;
+  background: var(--color-yellow);
+  border-radius: 8px 8px 0 0;
+  margin: -5px auto 0;
+}
+.lg-body-bottom {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+.lg-leg {
+  width: 24px; height: 40px;
+  background: var(--color-accent);
+  border-radius: 0 0 8px 8px;
+}
+.lg-arm {
+  position: absolute;
+  width: 40px; height: 14px;
+  background: var(--color-accent-light);
+  border-radius: 8px;
+  top: 85px;
+}
+.lg-arm-left { left: -25px; transform: rotate(-25deg); }
+.lg-arm-right { right: -25px; transform: rotate(25deg); }
+
+.speech-bubble {
+  position: absolute;
+  bottom: 280px;
+  left: 50%;
+  transform: translateX(-30%);
+  background: var(--color-white);
+  border-radius: 30px;
+  padding: 12px 20px;
+  z-index: 6;
+}
+.speech-dots { display: flex; gap: 6px; }
+.speech-dots span {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--color-dominant-light);
+  animation: dotPulse 1.5s ease-in-out infinite;
+}
+.speech-dots span:nth-child(2) { animation-delay: 0.2s; }
+.speech-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes dotPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.scene-tree-left {
+  position: absolute;
+  bottom: 120px; left: 15%;
+  z-index: 4;
+}
+.scene-tree-right {
+  position: absolute;
+  bottom: 100px; right: 20%;
+  z-index: 4;
+}
+.scene-cloud-1 { position: absolute; top: 60px; left: 10%; }
+.scene-cloud-2 { position: absolute; top: 100px; right: 15%; }
+
+/* ============================================
+   TRUST / STATS
+   ============================================ */
+.trust-section {
+  background: var(--color-dominant-dark);
+  padding: 100px 40px;
+  color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+}
+
+.trust-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 50px;
+  text-align: center;
+}
+
+.trust-number {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 800;
+  color: var(--color-yellow);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.trust-label {
+  font-size: 15px;
+  font-weight: 600;
+  opacity: 0.8;
+  line-height: 1.4;
+}
+
+/* ============================================
+   PRICING
+   ============================================ */
+.pricing-section {
+  background: var(--color-bg);
+  padding: 120px 40px;
+}
+.pricing-section .section-title-large {
+  color: var(--color-dominant);
+  margin-bottom: 16px;
+}
+.pricing-subtitle {
+  text-align: center;
+  font-size: 18px;
+  color: var(--color-text-light);
+  margin-bottom: 60px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pricing-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.pricing-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+}
+.pricing-card.featured {
+  background: var(--color-dominant);
+  color: var(--color-white);
+}
+.pricing-card.featured .pricing-price { color: var(--color-yellow); }
+.pricing-card.featured .pricing-period { color: rgba(255,255,255,0.7); }
+.pricing-card.featured .pricing-detail { color: rgba(255,255,255,0.8); }
+.pricing-card.featured .pricing-detail strong { color: var(--color-white); }
+.pricing-card.featured .pricing-details { border-color: rgba(255,255,255,0.15); }
+.pricing-card.featured .pricing-ages { color: var(--color-accent-light); }
+
+.pricing-room {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+.pricing-ages {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+  margin-bottom: 20px;
+}
+.pricing-price {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--color-dominant);
+  line-height: 1;
+}
+.pricing-period {
+  font-size: 14px;
+  color: var(--color-text-light);
+  margin-bottom: 20px;
+}
+.pricing-details {
+  border-top: 1px solid rgba(0,0,0,0.08);
+  padding-top: 20px;
+  margin-top: 20px;
+}
+.pricing-detail {
+  font-size: 15px;
+  color: var(--color-text-light);
+  padding: 6px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.pricing-detail strong { font-weight: 700; color: var(--color-text); }
+
+.pricing-note {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 14px;
+  color: var(--color-text-light);
+  font-style: italic;
+}
+
+/* ============================================
+   TESTIMONIAL
+   ============================================ */
+.testimonial-section {
+  background: var(--color-dominant-lighter);
+  padding: 100px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.testimonial-card {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.testimonial-quote-mark {
+  font-family: var(--font-display);
+  font-size: 100px;
+  color: var(--color-dominant);
+  line-height: 0.5;
+  margin-bottom: 20px;
+  opacity: 0.4;
+}
+.testimonial-text {
+  font-family: var(--font-body);
+  font-size: clamp(18px, 2.5vw, 24px);
+  line-height: 1.7;
+  color: var(--color-text);
+  font-weight: 500;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+.testimonial-author {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-dominant-dark);
+}
+.testimonial-author span {
+  font-weight: 400;
+  color: var(--color-text-light);
+}
+
+/* ============================================
+   CTA
+   ============================================ */
+.cta-section {
+  background: var(--color-accent);
+  padding: 100px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section .cloud { opacity: 0.15; }
+
+.cta-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 800;
+  color: var(--color-white);
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+.cta-subtitle {
+  font-size: 18px;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 40px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-white {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 16px 36px;
+  background: var(--color-white);
+  color: var(--color-accent);
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn-white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.btn-ghost {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 14px 36px;
+  background: transparent;
+  color: var(--color-white);
+  border-radius: var(--radius-pill);
+  border: 2.5px solid rgba(255,255,255,0.5);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn-ghost:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+  background: var(--color-dominant-dark);
+  color: var(--color-white);
+  padding: 80px 40px 40px;
+}
+.footer-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+.footer-brand .nav-logo { margin-bottom: 16px; }
+.footer-brand .nav-logo span { color: var(--color-white); }
+.footer-brand p {
+  font-size: 15px;
+  opacity: 0.7;
+  line-height: 1.6;
+  max-width: 300px;
+}
+.footer-col h4 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--color-yellow);
+}
+.footer-col a {
+  display: block;
+  font-size: 15px;
+  opacity: 0.7;
+  padding: 4px 0;
+  transition: opacity 0.2s;
+}
+.footer-col a:hover { opacity: 1; }
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-bottom p { font-size: 14px; opacity: 0.5; }
+
+.footer-social { display: flex; gap: 12px; }
+.footer-social a {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.footer-social a:hover { background: rgba(255,255,255,0.2); }
+.footer-social svg { width: 18px; height: 18px; fill: var(--color-white); }
+
+@media (max-width: 768px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 500px) {
+  .footer-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================
+   SCROLL REVEAL ANIMATIONS
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.33, 1, 0.68, 1),
+              transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.12s; }
+.reveal-delay-2 { transition-delay: 0.24s; }
+.reveal-delay-3 { transition-delay: 0.36s; }
+
+.hero-animate { animation: fadeUp 0.8s cubic-bezier(0.33, 1, 0.68, 1) both; }
+.hero-animate-2 { animation-delay: 0.15s; }
+.hero-animate-3 { animation-delay: 0.3s; }
+.hero-animate-4 { animation-delay: 0.45s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; top: 12px; }
+  .nav-links { display: none; }
+  .hero-card { padding: 40px 30px 40px; }
+  .programmes-section { padding: 80px 20px 100px; }
+  .story-section { padding: 80px 20px; }
+  .story-big-text { font-size: clamp(50px, 14vw, 100px); }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+  .trust-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.nav-burger {
+  display: none;
+  width: 44px; height: 44px;
+  background: var(--color-white);
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  cursor: pointer;
+}
+@media (max-width: 768px) { .nav-burger { display: flex; } }
+.nav-burger span {
+  width: 18px; height: 2px;
+  background: var(--color-text);
+  position: relative;
+}
+.nav-burger span::before, .nav-burger span::after {
+  content: '';
+  position: absolute;
+  width: 18px; height: 2px;
+  background: var(--color-text);
+  left: 0;
+}
+.nav-burger span::before { top: -6px; }
+.nav-burger span::after { top: 6px; }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="24" r="24" fill="#2D6A4F"/>
+      <path d="M24 8C24 8 18 16 18 24C18 28 20 32 24 36" stroke="#8FBD9F" stroke-width="3" stroke-linecap="round"/>
+      <path d="M24 12C20 14 17 18 18 22" stroke="#8FBD9F" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M24 16C28 17 31 20 30 24" stroke="#C8E6C9" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M24 22C20 23 18 26 19 29" stroke="#C8E6C9" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M24 26C28 27 30 29 29 32" stroke="#8FBD9F" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+    <span>Little Fern</span>
+  </a>
+  <div class="nav-links">
+    <a href="#programmes">Programmes</a>
+    <a href="#about">Our Story</a>
+    <a href="#pricing">Fees</a>
+    <a href="#contact" class="nav-cta">Book a Visit</a>
+  </div>
+  <a href="#contact" class="nav-contact">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+      <polyline points="22,6 12,13 2,6"/>
+    </svg>
+  </a>
+  <div class="nav-burger"><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-scene">
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    <div class="sun"></div>
+
+    <div class="tree tree-1">
+      <div class="tree-top"></div>
+      <div class="tree-top-2"></div>
+      <div class="tree-trunk"></div>
+    </div>
+    <div class="tree tree-2">
+      <div class="tree-top"></div>
+      <div class="tree-top-2"></div>
+      <div class="tree-trunk"></div>
+    </div>
+    <div class="tree tree-3">
+      <div class="tree-top"></div>
+      <div class="tree-trunk"></div>
+    </div>
+    <div class="tree tree-4">
+      <div class="tree-top"></div>
+      <div class="tree-top-2"></div>
+      <div class="tree-trunk"></div>
+    </div>
+
+    <div class="bird">
+      <div class="bird-body"></div>
+    </div>
+
+    <div class="hill hill-3"></div>
+    <div class="hill hill-2"></div>
+    <div class="hill hill-1"></div>
+
+    <div class="hero-character">
+      <div class="character-body">
+        <div class="character-head"></div>
+        <div class="character-torso"></div>
+        <div class="character-arms"></div>
+      </div>
+    </div>
+
+    <div class="hero-char-2">
+      <div class="char2-head"></div>
+      <div class="char2-body"></div>
+    </div>
+  </div>
+
+  <div class="hero-card hero-animate">
+    <h1 class="hero-animate hero-animate-2">A Second Home For Your Little One</h1>
+    <div class="hero-tag hero-animate hero-animate-3">Wellington CBD</div>
+    <p class="hero-animate hero-animate-3">Nurturing Wellington's smallest explorers through nature-based play and Te Whāriki-inspired learning since 2019.</p>
+    <div class="hero-scroll-hint hero-animate hero-animate-4">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMMES -->
+<section class="programmes-section" id="programmes">
+  <div class="reveal">
+    <p class="section-eyebrow">Our Programmes</p>
+    <h2 class="section-title-large">Where Every Day Is An Adventure</h2>
+  </div>
+
+  <div class="card-stack">
+    <div class="programme-card-group reveal reveal-delay-1">
+      <div class="programme-card">
+        <div class="card-icon">
+          <svg width="70" height="70" viewBox="0 0 70 70" fill="none">
+            <circle cx="35" cy="28" r="22" fill="rgba(255,255,255,0.2)"/>
+            <circle cx="35" cy="25" r="14" fill="#F2CC5B"/>
+            <circle cx="30" cy="22" r="3" fill="#2B2B33"/>
+            <circle cx="40" cy="22" r="3" fill="#2B2B33"/>
+            <ellipse cx="35" cy="29" rx="4" ry="2.5" fill="#C75B39"/>
+            <path d="M22 40 C22 52 48 52 48 40" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+        <h3>Pīwakawaka Room</h3>
+        <div class="age-badge">3 months – 2 years</div>
+        <p>Our infant room with a 1:3 teacher ratio. Gentle routines, sensory play, and lots of cuddles in a calm, nurturing space.</p>
+      </div>
+    </div>
+
+    <div class="programme-card-group reveal reveal-delay-2">
+      <div class="programme-card card-accent">
+        <div class="card-icon">
+          <svg width="70" height="70" viewBox="0 0 70 70" fill="none">
+            <circle cx="35" cy="35" r="25" fill="rgba(255,255,255,0.2)"/>
+            <rect x="18" y="20" width="34" height="30" rx="6" fill="#F2CC5B"/>
+            <circle cx="28" cy="32" r="5" fill="#5B8FA8"/>
+            <circle cx="42" cy="32" r="5" fill="#2D6A4F"/>
+            <circle cx="35" cy="42" r="5" fill="#D4A5A5"/>
+          </svg>
+        </div>
+        <h3>Kererū Room</h3>
+        <div class="age-badge">2 – 3 years</div>
+        <p>Hands-on discovery for toddlers finding their voice. Art, music, water play, and early social skills in an environment designed for curious explorers.</p>
+      </div>
+    </div>
+
+    <div class="programme-card-group reveal reveal-delay-3">
+      <div class="programme-card card-blue">
+        <div class="card-icon">
+          <svg width="70" height="70" viewBox="0 0 70 70" fill="none">
+            <rect x="15" y="22" width="18" height="28" rx="3" fill="#F2CC5B" transform="rotate(-5 15 22)"/>
+            <rect x="37" y="22" width="18" height="28" rx="3" fill="#D4A5A5" transform="rotate(5 37 22)"/>
+            <rect x="32" y="20" width="6" height="30" rx="1" fill="rgba(255,255,255,0.3)"/>
+            <circle cx="35" cy="16" r="6" fill="#F2CC5B"/>
+          </svg>
+        </div>
+        <h3>Kākāpō Room</h3>
+        <div class="age-badge">3 – 5 years</div>
+        <p>Our preschool programme preparing tamariki for school through project-based learning, literacy foundations, and outdoor exploration.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BELIEF STATEMENT -->
+<section class="belief-section">
+  <div class="cloud" style="width:130px;height:42px;top:10%;left:5%;"></div>
+  <div class="cloud" style="width:110px;height:35px;bottom:15%;right:8%;"></div>
+  <div class="reveal">
+    <p class="belief-text">We believe children learn best when they're free to explore, question, and get their hands dirty.</p>
+    <a href="#about" class="btn-outline">Meet Our Teachers</a>
+  </div>
+</section>
+
+<!-- BIG WORD -->
+<section class="big-word-section">
+  <div class="big-word reveal">explore</div>
+  <div class="photo-section">
+    <img src="https://picsum.photos/seed/littlefern1/1600/900" alt="Children playing at Little Fern">
+    <div class="photo-overlay-rainbow">
+      <div class="rainbow-arc rainbow-arc-1"></div>
+      <div class="rainbow-arc rainbow-arc-2"></div>
+      <div class="rainbow-arc rainbow-arc-3"></div>
+    </div>
+    <div class="photo-cloud photo-cloud-1"></div>
+    <div class="photo-cloud photo-cloud-2"></div>
+    <div class="photo-blob-character">
+      <div class="blob-body"><div class="blob-smile"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR STORY -->
+<section class="story-section" id="about">
+  <div class="story-grid">
+    <div class="story-big-text reveal">
+      <span>The</span><br>
+      <span>Early</span>
+      <span class="story-pencil"></span><br>
+      <span>Years</span><br>
+      <span>Shape</span>
+      <span class="story-book"></span><br>
+      <span>Us</span>
+    </div>
+    <div class="story-content reveal reveal-delay-2">
+      <p>Little Fern Early Learning is a boutique early childhood centre in the heart of Wellington. Founded in 2019, we believe children learn best when they're free to explore, question, and get their hands dirty.</p>
+      <p>Our curriculum blends Te Whāriki — New Zealand's early childhood framework — with nature-based pedagogy, giving tamariki the space to develop at their own pace in an environment that feels like a second home.</p>
+      <a href="#contact" class="btn-filled">Book a Visit</a>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE DIVIDER -->
+<div class="scene-divider">
+  <div class="cloud scene-cloud-1" style="width:120px;height:38px;"></div>
+  <div class="cloud scene-cloud-2" style="width:100px;height:32px;"></div>
+  <div class="scene-tree-left">
+    <div style="width:70px;height:70px;background:var(--color-dominant);border-radius:50%;margin:0 auto;"></div>
+    <div style="width:50px;height:50px;background:var(--color-dominant-light);border-radius:50%;margin:-25px auto 0;"></div>
+    <div style="width:16px;height:50px;background:var(--color-accent-warm);border-radius:4px;margin:0 auto;"></div>
+  </div>
+  <div class="scene-tree-right">
+    <div style="width:60px;height:60px;background:var(--color-dominant-light);border-radius:50%;margin:0 auto;"></div>
+    <div style="width:14px;height:40px;background:var(--color-accent-warm);border-radius:4px;margin:0 auto;"></div>
+  </div>
+  <div class="scene-character-main">
+    <div class="speech-bubble">
+      <div class="speech-dots"><span></span><span></span><span></span></div>
+    </div>
+    <div class="lg-character" style="position:relative;">
+      <div class="lg-head"></div>
+      <div class="lg-body-top"></div>
+      <div class="lg-body-bottom"><div class="lg-leg"></div><div class="lg-leg"></div></div>
+      <div class="lg-arm lg-arm-left"></div>
+      <div class="lg-arm lg-arm-right"></div>
+    </div>
+  </div>
+  <div class="scene-ground-dark"></div>
+  <div class="scene-ground"></div>
+</div>
+
+<!-- TRUST STATS -->
+<section class="trust-section">
+  <div class="trust-grid">
+    <div class="trust-item reveal">
+      <div class="trust-number">75</div>
+      <div class="trust-label">Licensed places for tamariki</div>
+    </div>
+    <div class="trust-item reveal reveal-delay-1">
+      <div class="trust-number">1:3</div>
+      <div class="trust-label">Teacher ratio in our infant room</div>
+    </div>
+    <div class="trust-item reveal reveal-delay-2">
+      <div class="trust-number">7:30–5:30</div>
+      <div class="trust-label">Open Monday to Friday</div>
+    </div>
+    <div class="trust-item reveal reveal-delay-3">
+      <div class="trust-number">ERO</div>
+      <div class="trust-label">"Well Placed" — 2024 review</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="reveal">
+    <p class="section-eyebrow">Fees & Enrolment</p>
+    <h2 class="section-title-large">Investing In Their Future</h2>
+    <p class="pricing-subtitle">20 Hours ECE applied to eligible 3–5 year olds. WINZ subsidies accepted. All fees shown before subsidy.</p>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="pricing-card reveal reveal-delay-1">
+      <div class="pricing-room">Pīwakawaka</div>
+      <div class="pricing-ages">Under 2 years</div>
+      <div class="pricing-price">$85</div>
+      <div class="pricing-period">per day</div>
+      <div class="pricing-details">
+        <div class="pricing-detail"><span>3 days/week</span><strong>$240</strong></div>
+        <div class="pricing-detail"><span>5 days/week</span><strong>$385</strong></div>
+      </div>
+    </div>
+    <div class="pricing-card featured reveal reveal-delay-2">
+      <div class="pricing-room">Kererū</div>
+      <div class="pricing-ages">2 – 3 years</div>
+      <div class="pricing-price">$75</div>
+      <div class="pricing-period">per day</div>
+      <div class="pricing-details">
+        <div class="pricing-detail"><span>3 days/week</span><strong>$210</strong></div>
+        <div class="pricing-detail"><span>5 days/week</span><strong>$340</strong></div>
+      </div>
+    </div>
+    <div class="pricing-card reveal reveal-delay-3">
+      <div class="pricing-room">Kākāpō</div>
+      <div class="pricing-ages">3 – 5 years</div>
+      <div class="pricing-price">$65</div>
+      <div class="pricing-period">per day</div>
+      <div class="pricing-details">
+        <div class="pricing-detail"><span>3 days/week</span><strong>$185</strong></div>
+        <div class="pricing-detail"><span>5 days/week</span><strong>$295</strong></div>
+      </div>
+    </div>
+  </div>
+  <p class="pricing-note reveal">Full meal programme included — morning tea, lunch, afternoon tea. All prepared fresh on-site daily.</p>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial-section">
+  <div class="testimonial-card reveal">
+    <div class="testimonial-quote-mark">"</div>
+    <p class="testimonial-text">We looked at six centres before finding Little Fern. The moment we walked in, it just felt right — the teachers knew every child's name, the spaces were beautiful, and our daughter didn't want to leave. She's been there two years now and we couldn't be happier.</p>
+    <div class="testimonial-author">Sarah & Tom <span>— parents of Mila (age 4)</span></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cloud" style="width:160px;height:50px;top:15%;left:5%;position:absolute;opacity:0.15;"></div>
+  <div class="cloud" style="width:120px;height:40px;bottom:20%;right:8%;position:absolute;opacity:0.15;"></div>
+  <div class="reveal">
+    <h2 class="cta-title">Come See What Makes Us Special</h2>
+    <p class="cta-subtitle">Book a visit to meet our teachers, explore our spaces, and see why families choose Little Fern.</p>
+    <div class="cta-buttons">
+      <a href="#" class="btn-white">Book a Visit</a>
+      <a href="#" class="btn-ghost">Check Availability</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+          <circle cx="24" cy="24" r="24" fill="#2D6A4F"/>
+          <path d="M24 8C24 8 18 16 18 24C18 28 20 32 24 36" stroke="#8FBD9F" stroke-width="3" stroke-linecap="round"/>
+          <path d="M24 12C20 14 17 18 18 22" stroke="#8FBD9F" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M24 16C28 17 31 20 30 24" stroke="#C8E6C9" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M24 22C20 23 18 26 19 29" stroke="#C8E6C9" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M24 26C28 27 30 29 29 32" stroke="#8FBD9F" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <span>Little Fern</span>
+      </a>
+      <p>Where curious minds grow wild. A boutique early childhood centre in the heart of Wellington.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Programmes</h4>
+      <a href="#">Pīwakawaka (0–2)</a>
+      <a href="#">Kererū (2–3)</a>
+      <a href="#">Kākāpō (3–5)</a>
+      <a href="#">Fees & Enrolment</a>
+    </div>
+    <div class="footer-col">
+      <h4>About</h4>
+      <a href="#">Our Story</a>
+      <a href="#">Our Teachers</a>
+      <a href="#">Curriculum</a>
+      <a href="#">ERO Report</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="#">14 Courtenay Place, Te Aro</a>
+      <a href="#">Wellington 6011</a>
+      <a href="mailto:hello@littlefern.co.nz">hello@littlefern.co.nz</a>
+      <a href="tel:048302477">(04) 830 2477</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Little Fern Early Learning. All rights reserved. 20-hour ECE & WINZ subsidies accepted.</p>
+    <div class="footer-social">
+      <a href="#" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Scroll-triggered reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Nav scroll behavior
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>

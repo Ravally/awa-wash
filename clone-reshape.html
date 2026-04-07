@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neon Fitness 24/7 — No Excuses. Just Results.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & VARIABLES ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --color-bg: #111110;
+  --color-bg-alt: #1a1a18;
+  --color-bg-card: #222220;
+  --color-dominant: #39FF14;
+  --color-dominant-dim: rgba(57, 255, 20, 0.15);
+  --color-dominant-glow: rgba(57, 255, 20, 0.4);
+  --color-white: #ffffff;
+  --color-gray: #888886;
+  --color-gray-light: #b0b0ae;
+  --color-text: #ccccca;
+  --color-dark-overlay: rgba(0, 0, 0, 0.55);
+  --font: 'Outfit', sans-serif;
+  --nav-height: 72px;
+  --section-pad: 80px;
+  --container: 1200px;
+  --radius: 14px;
+  --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+.container { max-width: var(--container); margin: 0 auto; padding: 0 32px; }
+
+/* ===== NAVIGATION ===== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-height);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  transition: background var(--transition), box-shadow var(--transition);
+}
+nav.scrolled {
+  background: rgba(17, 17, 16, 0.95);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(57, 255, 20, 0.08);
+}
+nav .logo {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+nav .logo span { color: var(--color-dominant); }
+nav .nav-links {
+  display: flex;
+  gap: 32px;
+  margin-left: auto;
+  align-items: center;
+}
+nav .nav-links a {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--color-white);
+  transition: color var(--transition);
+  position: relative;
+}
+nav .nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--color-dominant);
+  transition: width var(--transition);
+}
+nav .nav-links a:hover { color: var(--color-dominant); }
+nav .nav-links a:hover::after { width: 100%; }
+nav .btn-nav {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 10px 28px;
+  border: 2px solid var(--color-dominant);
+  border-radius: 30px;
+  color: var(--color-white);
+  transition: all var(--transition);
+}
+nav .btn-nav:hover {
+  background: var(--color-dominant);
+  color: var(--color-bg);
+  box-shadow: 0 0 24px var(--color-dominant-glow);
+}
+nav .btn-nav::after { display: none; }
+
+/* Mobile menu toggle */
+.menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 101; }
+.menu-toggle span { width: 24px; height: 2px; background: var(--color-white); transition: var(--transition); }
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+/* Hero slider */
+.hero-slides {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.hero-slide {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+.hero-slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.6) 100%);
+}
+/* Slide 1: Dark gym floor with weights */
+.hero-slide:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&h=1080&fit=crop'); }
+/* Slide 2: Person lifting / intense training */
+.hero-slide:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=1920&h=1080&fit=crop'); }
+/* Slide 3: Group fitness class energy */
+.hero-slide:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1920&h=1080&fit=crop'); }
+/* Slide 4: Boxing / high-intensity */
+.hero-slide:nth-child(4) { background-image: url('https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=1920&h=1080&fit=crop'); }
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 80px;
+  max-width: 900px;
+}
+.hero-content .tagline {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--color-dominant);
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease-out 0.2s forwards;
+}
+.hero-content h1 {
+  font-size: clamp(48px, 7vw, 80px);
+  font-weight: 800;
+  color: var(--color-white);
+  line-height: 1;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease-out 0.4s forwards;
+}
+.hero-content h1 span {
+  color: var(--color-dominant);
+  text-shadow: 0 0 40px var(--color-dominant-glow);
+}
+.hero-content h2 {
+  font-size: clamp(48px, 7vw, 80px);
+  font-weight: 800;
+  color: var(--color-white);
+  line-height: 1;
+  letter-spacing: -1px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease-out 0.5s forwards;
+}
+.hero-content h2 span {
+  color: var(--color-dominant);
+  text-shadow: 0 0 40px var(--color-dominant-glow);
+}
+.hero-content p {
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--color-gray-light);
+  margin: 24px 0 36px;
+  max-width: 480px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease-out 0.6s forwards;
+}
+.btn-hero {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 16px 56px;
+  border: 2px solid var(--color-dominant);
+  border-radius: 40px;
+  color: var(--color-white);
+  transition: all var(--transition);
+  opacity: 0;
+  animation: fadeUp 0.8s ease-out 0.7s forwards;
+}
+.btn-hero:hover {
+  background: var(--color-dominant);
+  color: var(--color-bg);
+  box-shadow: 0 0 32px var(--color-dominant-glow);
+  transform: translateY(-2px);
+}
+
+/* Hero slider dots */
+.hero-dots {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 5;
+}
+.hero-dots .dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.hero-dots .dot.active {
+  background: var(--color-dominant);
+  box-shadow: 0 0 10px var(--color-dominant-glow);
+}
+
+/* Hero slider arrows */
+.hero-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 48px; height: 48px;
+  border: 2px solid rgba(255,255,255,0.25);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition);
+  color: var(--color-white);
+  font-size: 18px;
+  background: rgba(0,0,0,0.2);
+}
+.hero-arrow:hover {
+  border-color: var(--color-dominant);
+  color: var(--color-dominant);
+  box-shadow: 0 0 16px var(--color-dominant-glow);
+}
+.hero-arrow.prev { left: 30px; }
+.hero-arrow.next { right: 30px; }
+
+/* Floating CTAs (like reshape's Kup Karnet / Rezerwacja) */
+.floating-ctas {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.floating-cta {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  padding: 20px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.floating-cta.primary {
+  background: var(--color-dominant);
+  color: var(--color-bg);
+}
+.floating-cta.primary:hover {
+  box-shadow: -4px 0 24px var(--color-dominant-glow);
+}
+.floating-cta.secondary {
+  background: var(--color-bg-card);
+  color: var(--color-white);
+}
+.floating-cta.secondary small {
+  display: block;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: var(--color-gray);
+  margin-top: 8px;
+}
+.floating-cta.secondary:hover {
+  background: #2a2a28;
+}
+
+/* ===== SECTION: OFFER CARDS ===== */
+.section-offer {
+  padding: var(--section-pad) 0;
+  position: relative;
+}
+.offer-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-dominant);
+  margin-bottom: 40px;
+}
+.offer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.offer-card {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 40px;
+  background-size: cover;
+  background-position: center;
+  transition: transform var(--transition);
+  cursor: pointer;
+}
+.offer-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.1) 100%);
+  transition: background var(--transition);
+}
+.offer-card:hover { transform: scale(1.01); }
+.offer-card:hover::before {
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.15) 100%);
+}
+/* Card 1: Group class / studio environment */
+.offer-card:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&h=600&fit=crop'); }
+/* Card 2: Determined athlete / goal-focused */
+.offer-card:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1517963879433-6ad2b056d712?w=800&h=600&fit=crop'); }
+
+.offer-card-content { position: relative; z-index: 2; }
+.offer-card h3 {
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--color-white);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.offer-card h3 span {
+  display: block;
+  color: var(--color-dominant);
+}
+.offer-card p {
+  font-size: 14px;
+  color: var(--color-gray-light);
+  margin-bottom: 16px;
+}
+.offer-card .card-link {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-dominant);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap var(--transition);
+}
+.offer-card:hover .card-link { gap: 14px; }
+
+/* ===== SECTION: MISSION / STEPS ===== */
+.section-mission {
+  padding: var(--section-pad) 0;
+  position: relative;
+}
+.section-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-dominant);
+  margin-bottom: 32px;
+}
+.mission-heading {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 600;
+  color: var(--color-white);
+  line-height: 1.2;
+  max-width: 700px;
+  margin-bottom: 16px;
+}
+.mission-heading span { color: var(--color-dominant); }
+.mission-text {
+  font-size: 15px;
+  color: var(--color-gray);
+  max-width: 600px;
+  margin-bottom: 60px;
+  line-height: 1.7;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.step-card {
+  background: var(--color-bg-alt);
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.step-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--color-dominant);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.step-card:hover {
+  border-color: rgba(57, 255, 20, 0.15);
+  transform: translateY(-4px);
+}
+.step-card:hover::before { opacity: 1; }
+.step-number {
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--color-dominant);
+  opacity: 0.2;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.step-card h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 6px;
+}
+.step-card .step-sub {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-dominant);
+  margin-bottom: 14px;
+}
+.step-card p {
+  font-size: 14px;
+  color: var(--color-gray);
+  line-height: 1.6;
+}
+.step-card .more-link {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-dominant);
+  transition: letter-spacing var(--transition);
+}
+.step-card:hover .more-link { letter-spacing: 3px; }
+
+/* ===== SECTION: TIMETABLE ===== */
+.section-timetable {
+  padding: var(--section-pad) 0;
+  background: var(--color-bg-alt);
+}
+.timetable-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 48px;
+}
+.timetable-header h2 {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  color: var(--color-white);
+  line-height: 1.1;
+}
+.timetable-header h2 span { color: var(--color-dominant); }
+.timetable-header a {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-dominant);
+  border: 2px solid var(--color-dominant);
+  border-radius: 30px;
+  padding: 12px 32px;
+  transition: all var(--transition);
+}
+.timetable-header a:hover {
+  background: var(--color-dominant);
+  color: var(--color-bg);
+}
+.timetable-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.tt-day {
+  background: var(--color-bg-card);
+  padding: 20px 16px;
+  min-height: 300px;
+}
+.tt-day-name {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-dominant);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.tt-class {
+  margin-bottom: 14px;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background var(--transition);
+  cursor: pointer;
+}
+.tt-class:hover { background: rgba(57, 255, 20, 0.06); }
+.tt-class .time {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-dominant);
+  letter-spacing: 0.5px;
+}
+.tt-class .name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-white);
+  margin-top: 2px;
+}
+.tt-class .trainer {
+  font-size: 12px;
+  color: var(--color-gray);
+  margin-top: 2px;
+}
+
+/* ===== SECTION: PRICING ===== */
+.section-pricing {
+  padding: var(--section-pad) 0;
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.pricing-card {
+  background: var(--color-bg-alt);
+  border-radius: var(--radius);
+  padding: 44px 36px;
+  border: 1px solid rgba(255,255,255,0.05);
+  text-align: center;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.pricing-card.featured {
+  border-color: var(--color-dominant);
+  box-shadow: 0 0 40px rgba(57, 255, 20, 0.08);
+}
+.pricing-card.featured::before {
+  content: 'Most Popular';
+  position: absolute;
+  top: 16px; right: -32px;
+  background: var(--color-dominant);
+  color: var(--color-bg);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 6px 40px;
+  transform: rotate(45deg);
+}
+.pricing-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(57, 255, 20, 0.2);
+}
+.pricing-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 8px;
+}
+.pricing-card .price {
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--color-dominant);
+  line-height: 1;
+  margin: 20px 0 4px;
+}
+.pricing-card .price-sub {
+  font-size: 13px;
+  color: var(--color-gray);
+  margin-bottom: 28px;
+}
+.pricing-card ul {
+  text-align: left;
+  margin-bottom: 32px;
+}
+.pricing-card li {
+  font-size: 14px;
+  color: var(--color-gray-light);
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pricing-card li::before {
+  content: '✓';
+  color: var(--color-dominant);
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.btn-pricing {
+  display: inline-block;
+  width: 100%;
+  padding: 14px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: 2px solid var(--color-dominant);
+  border-radius: 30px;
+  color: var(--color-white);
+  text-align: center;
+  transition: all var(--transition);
+}
+.btn-pricing:hover {
+  background: var(--color-dominant);
+  color: var(--color-bg);
+  box-shadow: 0 0 24px var(--color-dominant-glow);
+}
+.pricing-card.featured .btn-pricing {
+  background: var(--color-dominant);
+  color: var(--color-bg);
+}
+.pricing-card.featured .btn-pricing:hover {
+  box-shadow: 0 0 32px var(--color-dominant-glow);
+  transform: translateY(-2px);
+}
+
+/* ===== SECTION: TRAINERS ===== */
+.section-trainers {
+  padding: var(--section-pad) 0;
+  background: var(--color-bg-alt);
+}
+.trainers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.trainer-card {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  background-size: cover;
+  background-position: center top;
+  cursor: pointer;
+}
+.trainer-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 50%);
+  transition: background var(--transition);
+}
+.trainer-card:hover::after {
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.2) 60%);
+}
+.trainer-info {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 28px;
+  z-index: 2;
+}
+.trainer-info h4 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-white);
+}
+.trainer-info .role {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-dominant);
+  margin-top: 4px;
+}
+.trainer-info p {
+  font-size: 13px;
+  color: var(--color-gray);
+  margin-top: 10px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+.trainer-card:hover .trainer-info p { max-height: 80px; }
+
+/* ===== SECTION: ABOUT / HISTORY ===== */
+.section-about {
+  padding: var(--section-pad) 0;
+  position: relative;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.about-image {
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: url('https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=800&h=600&fit=crop') center/cover;
+  position: relative;
+}
+.about-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--color-dominant);
+  border-radius: var(--radius);
+  opacity: 0.3;
+  transform: translate(12px, 12px);
+}
+.about-text h2 {
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 700;
+  color: var(--color-white);
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+.about-text h2 span { color: var(--color-dominant); }
+.about-text p {
+  font-size: 15px;
+  color: var(--color-gray);
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+
+/* ===== SECTION: PARTNERS ===== */
+.section-partners {
+  padding: var(--section-pad) 0;
+  background: var(--color-bg-alt);
+}
+.partners-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  margin-top: 48px;
+  flex-wrap: wrap;
+}
+.partner-logo {
+  width: 120px;
+  height: 60px;
+  background: var(--color-bg-card);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all var(--transition);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.partner-logo:hover {
+  color: var(--color-dominant);
+  border-color: rgba(57, 255, 20, 0.15);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  padding: 60px 0 30px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 48px;
+}
+.footer-brand .logo {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-white);
+  margin-bottom: 12px;
+}
+.footer-brand .logo span { color: var(--color-dominant); }
+.footer-brand p {
+  font-size: 14px;
+  color: var(--color-gray);
+  max-width: 300px;
+}
+.footer-links h5 {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-dominant);
+  margin-bottom: 16px;
+}
+.footer-links a {
+  display: block;
+  font-size: 14px;
+  color: var(--color-gray);
+  padding: 4px 0;
+  transition: color var(--transition);
+}
+.footer-links a:hover { color: var(--color-dominant); }
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+.footer-social a {
+  width: 42px; height: 42px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--color-gray-light);
+  transition: all var(--transition);
+}
+.footer-social a:hover {
+  border-color: var(--color-dominant);
+  color: var(--color-dominant);
+  box-shadow: 0 0 12px var(--color-dominant-glow);
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  font-size: 13px;
+  color: var(--color-gray);
+}
+.footer-bottom a {
+  color: var(--color-dominant);
+  margin-left: 24px;
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.33, 1, 0.68, 1), transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== KEYFRAMES ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--color-dominant-glow); }
+  50% { box-shadow: 0 0 20px 4px var(--color-dominant-glow); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  .timetable-grid { grid-template-columns: repeat(4, 1fr); }
+  .tt-day:nth-child(n+5) { display: none; }
+  .trainers-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  nav .nav-links { display: none; }
+  .menu-toggle { display: flex; position: absolute; right: 20px; }
+  .hero-content { padding: 0 32px; }
+  .offer-grid { grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .timetable-grid { grid-template-columns: repeat(2, 1fr); }
+  .tt-day:nth-child(n+3) { display: none; }
+  .trainers-grid { grid-template-columns: 1fr 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-top { flex-direction: column; gap: 32px; }
+  .floating-ctas { display: none; }
+  .hero-arrow { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="logo">NEON<span>FIT</span></div>
+  <div class="nav-links">
+    <a href="#classes">Classes</a>
+    <a href="#timetable">Timetable</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#trainers">Trainers</a>
+    <a href="#about">About</a>
+    <a href="#contact" class="btn-nav">Join Now</a>
+  </div>
+  <div class="menu-toggle">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- FLOATING CTAs -->
+<div class="floating-ctas">
+  <a class="floating-cta primary" href="#pricing">Join Now!</a>
+  <a class="floating-cta secondary" href="#timetable">Timetable<small>Book a class online</small></a>
+</div>
+
+<!-- HERO SLIDER -->
+<section class="hero">
+  <div class="hero-slides" id="heroSlider">
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+  </div>
+  <div class="hero-content">
+    <div class="tagline">Open 24/7 &bull; Lower Hutt</div>
+    <h1>No Excuses.</h1>
+    <h2>Just <span>Results.</span></h2>
+    <p>Unlock your potential at the Hutt Valley's most high-energy training studio. Group classes, open gym, and personal coaching — day or night.</p>
+    <a href="#pricing" class="btn-hero">See Memberships</a>
+  </div>
+  <div class="hero-arrow prev" onclick="changeSlide(-1)">&#8249;</div>
+  <div class="hero-arrow next" onclick="changeSlide(1)">&#8250;</div>
+  <div class="hero-dots" id="heroDots">
+    <div class="dot active" onclick="goToSlide(0)"></div>
+    <div class="dot" onclick="goToSlide(1)"></div>
+    <div class="dot" onclick="goToSlide(2)"></div>
+    <div class="dot" onclick="goToSlide(3)"></div>
+  </div>
+</section>
+
+<!-- OFFER CARDS -->
+<section class="section-offer" id="classes">
+  <div class="container">
+    <div class="offer-label reveal">What We Offer</div>
+    <div class="offer-grid">
+      <a class="offer-card reveal" data-delay="0" href="#timetable">
+        <div class="offer-card-content">
+          <h3>Our <span>Classes</span></h3>
+          <p>From HIIT to yoga, strength to spin — find the class that fires you up.</p>
+          <div class="card-link">Explore &rarr;</div>
+        </div>
+      </a>
+      <a class="offer-card reveal" data-delay="1" href="#pricing">
+        <div class="offer-card-content">
+          <h3>Your <span>Goals</span></h3>
+          <p>Weight loss, muscle gain, flexibility, endurance — we'll get you there.</p>
+          <div class="card-link">Explore &rarr;</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION / STEPS -->
+<section class="section-mission" id="mission">
+  <div class="container">
+    <div class="section-label reveal">Our Approach</div>
+    <h2 class="mission-heading reveal">The journey you take is what makes you <span>stronger.</span></h2>
+    <p class="mission-text reveal">Our mission is to make every rep count, every kilometre matter, and every session bring you closer to the version of yourself you've been chasing. Here's how we do it.</p>
+    <div class="steps-grid">
+      <div class="step-card reveal" data-delay="0">
+        <div class="step-number">01</div>
+        <h4>Assessment</h4>
+        <div class="step-sub">Know your baseline</div>
+        <p>We start with a full body composition scan and fitness assessment tailored to your current level and goals.</p>
+        <a href="#" class="more-link">Learn more</a>
+      </div>
+      <div class="step-card reveal" data-delay="1">
+        <div class="step-number">02</div>
+        <h4>Programme</h4>
+        <div class="step-sub">Built for you</div>
+        <p>Your coach designs a training and nutrition plan that fits your lifestyle — not someone else's template.</p>
+        <a href="#" class="more-link">Learn more</a>
+      </div>
+      <div class="step-card reveal" data-delay="2">
+        <div class="step-number">03</div>
+        <h4>Train</h4>
+        <div class="step-sub">With expert guidance</div>
+        <p>Motivation, technique correction, and specialist knowledge — our trainers keep you on track every session.</p>
+        <a href="#" class="more-link">Learn more</a>
+      </div>
+      <div class="step-card reveal" data-delay="3">
+        <div class="step-number">04</div>
+        <h4>Results</h4>
+        <div class="step-sub">Track your progress</div>
+        <p>Regular check-ins and data-driven adjustments keep your results trending upward, not plateauing.</p>
+        <a href="#" class="more-link">Learn more</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMETABLE -->
+<section class="section-timetable" id="timetable">
+  <div class="container">
+    <div class="timetable-header reveal">
+      <h2>Class <span>Timetable</span></h2>
+      <a href="#">Full Schedule</a>
+    </div>
+    <div class="timetable-grid reveal" data-delay="1">
+      <div class="tt-day">
+        <div class="tt-day-name">Mon</div>
+        <div class="tt-class"><div class="time">6:00 AM</div><div class="name">HIIT Burn</div><div class="trainer">Coach Tane</div></div>
+        <div class="tt-class"><div class="time">9:30 AM</div><div class="name">Yoga Flow</div><div class="trainer">Aroha M.</div></div>
+        <div class="tt-class"><div class="time">12:15 PM</div><div class="name">Express Core</div><div class="trainer">Jess K.</div></div>
+        <div class="tt-class"><div class="time">5:30 PM</div><div class="name">Spin</div><div class="trainer">Coach Tane</div></div>
+        <div class="tt-class"><div class="time">7:00 PM</div><div class="name">Strength Lab</div><div class="trainer">Rua T.</div></div>
+      </div>
+      <div class="tt-day">
+        <div class="tt-day-name">Tue</div>
+        <div class="tt-class"><div class="time">6:00 AM</div><div class="name">BoxFit</div><div class="trainer">Rua T.</div></div>
+        <div class="tt-class"><div class="time">9:30 AM</div><div class="name">Pilates</div><div class="trainer">Aroha M.</div></div>
+        <div class="tt-class"><div class="time">5:30 PM</div><div class="name">HIIT Burn</div><div class="trainer">Coach Tane</div></div>
+        <div class="tt-class"><div class="time">7:00 PM</div><div class="name">Kettlebells</div><div class="trainer">Jess K.</div></div>
+      </div>
+      <div class="tt-day">
+        <div class="tt-day-name">Wed</div>
+        <div class="tt-class"><div class="time">6:00 AM</div><div class="name">Spin</div><div class="trainer">Jess K.</div></div>
+        <div class="tt-class"><div class="time">9:30 AM</div><div class="name">Stretch & Restore</div><div class="trainer">Aroha M.</div></div>
+        <div class="tt-class"><div class="time">12:15 PM</div><div class="name">Express Core</div><div class="trainer">Coach Tane</div></div>
+        <div class="tt-class"><div class="time">5:30 PM</div><div class="name">Strength Lab</div><div class="trainer">Rua T.</div></div>
+        <div class="tt-class"><div class="time">7:00 PM</div><div class="name">Yoga Flow</div><div class="trainer">Aroha M.</div></div>
+      </div>
+      <div class="tt-day">
+        <div class="tt-day-name">Thu</div>
+        <div class="tt-class"><div class="time">6:00 AM</div><div class="name">HIIT Burn</div><div class="trainer">Coach Tane</div></div>
+        <div class="tt-class"><div class="time">9:30 AM</div><div class="name">BoxFit</div><div class="trainer">Rua T.</div></div>
+        <div class="tt-class"><div class="time">5:30 PM</div><div class="name">Spin</div><div class="trainer">Jess K.</div></div>
+        <div class="tt-class"><div class="time">7:00 PM</div><div class="name">Kettlebells</div><div class="trainer">Rua T.</div></div>
+      </div>
+      <div class="tt-day">
+        <div class="tt-day-name">Fri</div>
+        <div class="tt-class"><div class="time">6:00 AM</div><div class="name">Strength Lab</div><div class="trainer">Rua T.</div></div>
+        <div class="tt-class"><div class="time">9:30 AM</div><div class="name">Pilates</div><div class="trainer">Aroha M.</div></div>
+        <div class="tt-class"><div class="time">12:15 PM</div><div class="name">Express Core</div><div class="trainer">Jess K.</div></div>
+        <div class="tt-class"><div class="time">5:30 PM</div><div class="name">BoxFit</div><div class="trainer">Coach Tane</div></div>
+      </div>
+      <div class="tt-day">
+        <div class="tt-day-name">Sat</div>
+        <div class="tt-class"><div class="time">8:00 AM</div><div class="name">Weekend Warrior</div><div class="trainer">Coach Tane</div></div>
+        <div class="tt-class"><div class="time">9:30 AM</div><div class="name">Yoga Flow</div><div class="trainer">Aroha M.</div></div>
+        <div class="tt-class"><div class="time">11:00 AM</div><div class="name">Spin</div><div class="trainer">Jess K.</div></div>
+      </div>
+      <div class="tt-day">
+        <div class="tt-day-name">Sun</div>
+        <div class="tt-class"><div class="time">9:00 AM</div><div class="name">Stretch & Restore</div><div class="trainer">Aroha M.</div></div>
+        <div class="tt-class"><div class="time">10:30 AM</div><div class="name">Open Gym</div><div class="trainer">Self-guided</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section-pricing" id="pricing">
+  <div class="container">
+    <div class="section-label reveal">Memberships</div>
+    <h2 class="mission-heading reveal">Find the plan that <span>fits.</span></h2>
+    <div class="pricing-grid">
+      <div class="pricing-card reveal" data-delay="0">
+        <h3>Off-Peak</h3>
+        <div class="price">$32</div>
+        <div class="price-sub">per week</div>
+        <ul>
+          <li>Gym access 9 AM – 4 PM</li>
+          <li>Group classes (off-peak)</li>
+          <li>Locker & towel service</li>
+          <li>Free introductory assessment</li>
+        </ul>
+        <a href="#" class="btn-pricing">Get Started</a>
+      </div>
+      <div class="pricing-card featured reveal" data-delay="1">
+        <h3>All Access</h3>
+        <div class="price">$49</div>
+        <div class="price-sub">per week</div>
+        <ul>
+          <li>24/7 unlimited gym access</li>
+          <li>All group classes included</li>
+          <li>Monthly body composition scan</li>
+          <li>Personalised training plan</li>
+          <li>Locker & towel service</li>
+        </ul>
+        <a href="#" class="btn-pricing">Get Started</a>
+      </div>
+      <div class="pricing-card reveal" data-delay="2">
+        <h3>Premium</h3>
+        <div class="price">$72</div>
+        <div class="price-sub">per week</div>
+        <ul>
+          <li>Everything in All Access</li>
+          <li>2× PT sessions per week</li>
+          <li>Nutrition coaching</li>
+          <li>Priority class booking</li>
+          <li>Recovery zone access</li>
+        </ul>
+        <a href="#" class="btn-pricing">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAINERS -->
+<section class="section-trainers" id="trainers">
+  <div class="container">
+    <div class="section-label reveal">Our Team</div>
+    <h2 class="mission-heading reveal">Meet your <span>coaches.</span></h2>
+    <div class="trainers-grid">
+      <div class="trainer-card reveal" data-delay="0" style="background-image: url('https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=400&h=533&fit=crop&crop=top')">
+        <div class="trainer-info">
+          <h4>Tane Rawiri</h4>
+          <div class="role">Head Coach &bull; HIIT / Spin</div>
+          <p>12 years coaching experience. Specialises in high-intensity programming and athletic performance.</p>
+        </div>
+      </div>
+      <div class="trainer-card reveal" data-delay="1" style="background-image: url('https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=400&h=533&fit=crop&crop=top')">
+        <div class="trainer-info">
+          <h4>Aroha Mitchell</h4>
+          <div class="role">Yoga & Pilates Lead</div>
+          <p>Certified yoga therapist. Focuses on flexibility, mindful movement, and injury prevention.</p>
+        </div>
+      </div>
+      <div class="trainer-card reveal" data-delay="2" style="background-image: url('https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&h=533&fit=crop&crop=top')">
+        <div class="trainer-info">
+          <h4>Rua Te Kahika</h4>
+          <div class="role">Strength & Conditioning</div>
+          <p>Former competitive powerlifter. Builds programmes for muscle gain, body recomp, and functional strength.</p>
+        </div>
+      </div>
+      <div class="trainer-card reveal" data-delay="3" style="background-image: url('https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=400&h=533&fit=crop&crop=top')">
+        <div class="trainer-info">
+          <h4>Jess Kahurangi</h4>
+          <div class="role">BoxFit & Core Specialist</div>
+          <p>Kickboxing background. High-energy sessions that build stamina, coordination, and total body power.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section-about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image reveal"></div>
+      <div class="about-text">
+        <div class="section-label reveal">Our Space</div>
+        <h2 class="reveal">A warehouse gym <span>built different.</span></h2>
+        <p class="reveal">Neon Fitness 24/7 is housed in a converted industrial warehouse in the heart of Lower Hutt. Raw concrete, exposed steel, and neon-lit training zones — designed to push you beyond comfortable.</p>
+        <p class="reveal">Open around the clock, seven days a week. Whether you're an early riser, a lunch-break warrior, or a midnight grinder — the doors are always open and the lights are always on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="section-partners">
+  <div class="container">
+    <div class="section-label reveal" style="text-align:center;">Supported By</div>
+    <div class="partners-row reveal">
+      <div class="partner-logo">Hutt City</div>
+      <div class="partner-logo">SportNZ</div>
+      <div class="partner-logo">PhysioWorks</div>
+      <div class="partner-logo">NutriPro</div>
+      <div class="partner-logo">Massey Uni</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">NEON<span>FIT</span></div>
+        <p>24/7 gym and group training studio, Lower Hutt. No excuses. Just results.</p>
+        <div class="footer-social" style="margin-top: 20px;">
+          <a href="#">Fb</a>
+          <a href="#">Ig</a>
+          <a href="#">Yt</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h5>Quick Links</h5>
+        <a href="#classes">Our Classes</a>
+        <a href="#timetable">Timetable</a>
+        <a href="#pricing">Memberships</a>
+        <a href="#trainers">Trainers</a>
+        <a href="#about">About</a>
+      </div>
+      <div class="footer-links">
+        <h5>Contact</h5>
+        <a href="#">12 Rutherford Street, Lower Hutt 5010</a>
+        <a href="#">hello@neonfit.co.nz</a>
+        <a href="#">04 920 1247</a>
+      </div>
+      <div class="footer-links">
+        <h5>Hours</h5>
+        <a href="#">Gym: Open 24/7</a>
+        <a href="#">Staffed: 6 AM – 9 PM</a>
+        <a href="#">Classes: See Timetable</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Neon Fitness 24/7. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a><a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== HERO SLIDER =====
+let currentSlide = 0;
+const totalSlides = 4;
+const slider = document.getElementById('heroSlider');
+const dots = document.querySelectorAll('#heroDots .dot');
+
+function goToSlide(n) {
+  currentSlide = n;
+  slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+  dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+}
+function changeSlide(dir) {
+  currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
+  goToSlide(currentSlide);
+}
+setInterval(() => changeSlide(1), 5500);
+
+// ===== NAV SCROLL =====
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ===== SCROLL REVEAL =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const delay = entry.target.dataset.delay || 0;
+      setTimeout(() => entry.target.classList.add('visible'), delay * 140);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ===== SMOOTH SCROLL FOR ANCHORS =====
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>

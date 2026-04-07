@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Halo Skin Clinic — Your Skin, Elevated</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --rose-gold: #B76E79;
+  --rose-gold-light: #D4A5A5;
+  --rose-gold-pale: #F5E6E0;
+  --rose-gold-shimmer: linear-gradient(135deg, #B76E79, #D4A5A5, #C8847E);
+  --white: #FFFFFF;
+  --off-white: #FDFBFA;
+  --cream: #FAF7F5;
+  --text-dark: #2C2326;
+  --text-body: #5A4A50;
+  --text-light: #8A7A80;
+  --border-light: #EDE6E3;
+  --heading-font: 'Cormorant Garamond', Georgia, serif;
+  --body-font: 'Montserrat', -apple-system, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--body-font);
+  color: var(--text-body);
+  background: var(--white);
+  font-size: 15px;
+  line-height: 1.7;
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4 {
+  font-family: var(--heading-font);
+  color: var(--text-dark);
+  font-weight: 300;
+  line-height: 1.15;
+}
+
+h1 { font-size: clamp(42px, 7vw, 88px); letter-spacing: -0.02em; }
+h2 { font-size: clamp(32px, 4.5vw, 56px); letter-spacing: -0.01em; }
+h3 { font-size: clamp(22px, 2.5vw, 32px); }
+h4 { font-size: 18px; font-weight: 400; }
+
+p { max-width: 600px; }
+
+a { color: var(--rose-gold); text-decoration: none; transition: color 0.3s ease; }
+a:hover { color: var(--text-dark); }
+
+.label {
+  font-family: var(--body-font);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rose-gold);
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--body-font);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 18px 40px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--rose-gold);
+  color: var(--white);
+}
+.btn-primary:hover {
+  background: var(--text-dark);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(183, 110, 121, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--rose-gold);
+  border: 1px solid var(--rose-gold);
+}
+.btn-outline:hover {
+  background: var(--rose-gold);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.btn-text {
+  padding: 0;
+  color: var(--rose-gold);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+.btn-text::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--rose-gold);
+  transition: width 0.4s ease;
+}
+.btn-text:hover::after { width: 100%; }
+
+/* ===== NAVIGATION ===== */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 28px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+nav.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 18px 60px;
+  box-shadow: 0 1px 0 var(--border-light);
+}
+
+.nav-logo {
+  font-family: var(--heading-font);
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--text-dark);
+  letter-spacing: 0.05em;
+  text-decoration: none;
+}
+
+.nav-logo span { color: var(--rose-gold); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-body);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--rose-gold);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover { color: var(--rose-gold); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-book {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white) !important;
+  background: var(--rose-gold);
+  padding: 12px 28px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.nav-book:hover {
+  background: var(--text-dark);
+  color: var(--white) !important;
+}
+.nav-book::after { display: none; }
+
+/* Mobile menu */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+.nav-toggle span {
+  width: 24px;
+  height: 1.5px;
+  background: var(--text-dark);
+  transition: all 0.3s ease;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: var(--off-white);
+  overflow: hidden;
+}
+
+.hero-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.hero-text { z-index: 2; }
+
+.hero-text .label { margin-bottom: 24px; display: block; }
+
+.hero-text h1 {
+  margin-bottom: 30px;
+  color: var(--text-dark);
+}
+
+.hero-text h1 em {
+  font-style: italic;
+  color: var(--rose-gold);
+  font-weight: 300;
+}
+
+.hero-text p {
+  font-size: 16px;
+  color: var(--text-light);
+  margin-bottom: 48px;
+  line-height: 1.8;
+}
+
+.hero-buttons { display: flex; gap: 16px; align-items: center; }
+
+.hero-visual {
+  position: relative;
+  height: 600px;
+}
+
+.hero-image-main {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 0 0 80px;
+}
+
+.hero-accent {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: var(--rose-gold-pale);
+  opacity: 0.5;
+  top: -40px;
+  right: -40px;
+  z-index: -1;
+}
+
+.hero-accent-2 {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 1px solid var(--rose-gold-light);
+  opacity: 0.4;
+  bottom: 60px;
+  left: -40px;
+}
+
+.hero-stat {
+  position: absolute;
+  bottom: 40px;
+  right: -20px;
+  background: var(--white);
+  padding: 24px 32px;
+  box-shadow: 0 20px 60px rgba(44, 35, 38, 0.08);
+  z-index: 3;
+}
+
+.hero-stat .number {
+  font-family: var(--heading-font);
+  font-size: 36px;
+  color: var(--rose-gold);
+  font-weight: 300;
+}
+
+.hero-stat .stat-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 60px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.scroll-line {
+  width: 40px;
+  height: 1px;
+  background: var(--rose-gold-light);
+  position: relative;
+  overflow: hidden;
+}
+.scroll-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--rose-gold);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0% { left: -100%; }
+  50% { left: 0; }
+  100% { left: 100%; }
+}
+.scroll-indicator span {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+/* ===== ABOUT / PHILOSOPHY ===== */
+.about {
+  padding: 160px 60px;
+  background: var(--white);
+}
+
+.about-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 120px;
+  align-items: center;
+}
+
+.about-images {
+  position: relative;
+  height: 550px;
+}
+
+.about-img-1 {
+  width: 70%;
+  height: 400px;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.about-img-2 {
+  width: 55%;
+  height: 300px;
+  object-fit: cover;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border: 6px solid var(--white);
+}
+
+.about-line {
+  position: absolute;
+  bottom: 120px;
+  left: 50%;
+  width: 1px;
+  height: 80px;
+  background: var(--rose-gold-light);
+}
+
+.about-text .label { margin-bottom: 20px; display: block; }
+.about-text h2 { margin-bottom: 32px; }
+.about-text h2 em { font-style: italic; color: var(--rose-gold); }
+
+.about-text p { margin-bottom: 20px; color: var(--text-body); }
+
+.about-values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.value-item {
+  padding-top: 20px;
+  border-top: 1px solid var(--border-light);
+}
+
+.value-item h4 {
+  font-family: var(--heading-font);
+  font-size: 20px;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.value-item p {
+  font-size: 13px;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/* ===== SERVICES ===== */
+.services {
+  padding: 160px 60px;
+  background: var(--cream);
+  position: relative;
+}
+
+.services-header {
+  max-width: 1400px;
+  margin: 0 auto 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.services-header-text .label { margin-bottom: 20px; display: block; }
+.services-header-text h2 { max-width: 500px; }
+.services-header-text h2 em { font-style: italic; color: var(--rose-gold); }
+
+.services-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.service-card {
+  background: var(--white);
+  padding: 48px 40px;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--rose-gold-shimmer);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.service-card:hover::before { transform: scaleX(1); }
+.service-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(44, 35, 38, 0.06); }
+
+.service-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--rose-gold-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+  font-size: 22px;
+}
+
+.service-card h3 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.service-card p {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-bottom: 24px;
+  line-height: 1.7;
+}
+
+.service-price {
+  font-family: var(--heading-font);
+  font-size: 18px;
+  color: var(--rose-gold);
+  margin-bottom: 20px;
+  display: block;
+}
+
+/* ===== RESULTS / GALLERY ===== */
+.results {
+  padding: 160px 60px;
+  background: var(--white);
+}
+
+.results-header {
+  max-width: 1400px;
+  margin: 0 auto 80px;
+  text-align: center;
+}
+
+.results-header .label { margin-bottom: 20px; display: block; }
+.results-header h2 { margin: 0 auto 20px; }
+.results-header h2 em { font-style: italic; color: var(--rose-gold); }
+.results-header p { margin: 0 auto; color: var(--text-light); max-width: 520px; }
+
+.gallery-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--cream);
+}
+
+.ba-container {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+  user-select: none;
+}
+
+.ba-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ba-after {
+  clip-path: inset(0 50% 0 0);
+  z-index: 2;
+}
+
+.ba-slider {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: var(--white);
+  z-index: 3;
+  cursor: ew-resize;
+  transform: translateX(-50%);
+}
+
+.ba-slider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+
+.ba-slider::after {
+  content: '◂ ▸';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+  color: var(--rose-gold);
+  letter-spacing: 2px;
+  z-index: 4;
+  white-space: nowrap;
+}
+
+.ba-labels {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 20px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.ba-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: rgba(44, 35, 38, 0.5);
+  backdrop-filter: blur(4px);
+  padding: 6px 14px;
+}
+
+.gallery-caption {
+  padding: 24px;
+}
+
+.gallery-caption h4 {
+  font-family: var(--heading-font);
+  font-size: 20px;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.gallery-caption p {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+/* Testimonial strip */
+.testimonials {
+  padding: 120px 60px;
+  background: var(--text-dark);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonials::before {
+  content: '"';
+  font-family: var(--heading-font);
+  font-size: 300px;
+  color: rgba(183, 110, 121, 0.08);
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 1;
+}
+
+.testimonial-content {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.testimonial-content blockquote {
+  font-family: var(--heading-font);
+  font-size: clamp(22px, 3vw, 32px);
+  color: var(--white);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.5;
+  margin-bottom: 32px;
+}
+
+.testimonial-author {
+  color: var(--rose-gold-light);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+.testimonial-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.testimonial-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.testimonial-dots span.active {
+  background: var(--rose-gold);
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* ===== BOOKING ===== */
+.booking {
+  padding: 160px 60px;
+  background: var(--off-white);
+}
+
+.booking-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.booking-text .label { margin-bottom: 20px; display: block; }
+.booking-text h2 { margin-bottom: 24px; }
+.booking-text h2 em { font-style: italic; color: var(--rose-gold); }
+.booking-text > p { margin-bottom: 48px; color: var(--text-light); }
+
+.booking-perks {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.perk {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.perk-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--rose-gold-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 16px;
+}
+
+.perk-text h4 {
+  font-family: var(--body-font);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.perk-text p { font-size: 13px; color: var(--text-light); }
+
+/* Booking form */
+.booking-form {
+  background: var(--white);
+  padding: 56px;
+  box-shadow: 0 30px 80px rgba(44, 35, 38, 0.06);
+}
+
+.booking-form h3 {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.booking-form .form-sub {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-light);
+  margin-bottom: 40px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 0;
+  border: none;
+  border-bottom: 1px solid var(--border-light);
+  background: transparent;
+  font-family: var(--body-font);
+  font-size: 14px;
+  color: var(--text-dark);
+  transition: border-color 0.3s ease;
+  outline: none;
+  font-weight: 300;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-bottom-color: var(--rose-gold);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-light);
+  font-weight: 300;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.form-submit {
+  width: 100%;
+  margin-top: 16px;
+  justify-content: center;
+}
+
+/* ===== CONTACT BAR ===== */
+.contact-bar {
+  padding: 80px 60px;
+  background: var(--cream);
+}
+
+.contact-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px;
+}
+
+.contact-item .label { margin-bottom: 12px; display: block; }
+
+.contact-item p {
+  font-size: 15px;
+  color: var(--text-dark);
+  font-weight: 400;
+}
+
+.contact-item a {
+  font-size: 15px;
+  color: var(--text-dark);
+  font-weight: 400;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  padding: 80px 60px 40px;
+  background: var(--text-dark);
+  color: rgba(255,255,255,0.5);
+}
+
+.footer-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 60px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-brand .nav-logo { color: var(--white); font-size: 24px; display: block; margin-bottom: 20px; }
+.footer-brand p { font-size: 14px; line-height: 1.7; max-width: 280px; }
+
+.footer-col h4 {
+  font-family: var(--body-font);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--rose-gold-light);
+  margin-bottom: 24px;
+}
+
+.footer-col ul { list-style: none; }
+
+.footer-col ul li { margin-bottom: 12px; }
+
+.footer-col ul li a {
+  color: rgba(255,255,255,0.5);
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+.footer-col ul li a:hover { color: var(--white); }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 32px;
+  font-size: 12px;
+}
+
+.footer-social {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-social a {
+  color: rgba(255,255,255,0.4);
+  font-size: 13px;
+  transition: color 0.3s ease;
+}
+.footer-social a:hover { color: var(--rose-gold-light); }
+
+/* ===== ANIMATIONS ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.9s cubic-bezier(0.33, 1, 0.68, 1),
+              transform 0.9s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.9s cubic-bezier(0.33, 1, 0.68, 1),
+              transform 0.9s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.9s cubic-bezier(0.33, 1, 0.68, 1),
+              transform 0.9s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.hero-animate {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: heroFade 0.8s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+.hero-animate:nth-child(1) { animation-delay: 0.2s; }
+.hero-animate:nth-child(2) { animation-delay: 0.4s; }
+.hero-animate:nth-child(3) { animation-delay: 0.6s; }
+.hero-animate:nth-child(4) { animation-delay: 0.8s; }
+
+@keyframes heroFade {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-visual {
+  opacity: 0;
+  transform: scale(0.96);
+  animation: heroVisual 1s cubic-bezier(0.33, 1, 0.68, 1) 0.5s forwards;
+}
+
+@keyframes heroVisual {
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .hero-content { grid-template-columns: 1fr; gap: 60px; }
+  .hero-visual { height: 400px; }
+  .about-inner { grid-template-columns: 1fr; gap: 60px; }
+  .about-images { height: 400px; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .booking-inner { grid-template-columns: 1fr; gap: 60px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .contact-inner { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  nav { padding: 20px 28px; }
+  nav.scrolled { padding: 16px 28px; }
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+
+  .hero { padding-top: 100px; }
+  .hero-content { padding: 0 28px; }
+  .hero-stat { display: none; }
+
+  section { padding-left: 28px !important; padding-right: 28px !important; }
+
+  .services-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .ba-container { height: 300px; }
+  .form-row { grid-template-columns: 1fr; }
+  .booking-form { padding: 36px 28px; }
+  .about-values { grid-template-columns: 1fr; }
+
+  .services-header { flex-direction: column; align-items: flex-start; gap: 24px; }
+
+  .footer-top { grid-template-columns: 1fr; }
+  .contact-inner { grid-template-columns: 1fr; }
+
+  .hero-buttons { flex-direction: column; align-items: flex-start; }
+}
+
+/* ===== SMOOTH ACCENTS ===== */
+.rose-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--rose-gold-light);
+  margin: 20px 0;
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <a href="#" class="nav-logo">Halo<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Treatments</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#booking">Contact</a></li>
+    <li><a href="#booking" class="nav-book">Book Now</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-text">
+      <span class="label hero-animate">Auckland's Premier Skin Clinic</span>
+      <h1 class="hero-animate">Your skin, <em>elevated.</em></h1>
+      <p class="hero-animate">Bespoke cosmetic treatments in the heart of Auckland CBD. We combine medical-grade precision with a gentle, results-driven philosophy — because radiant skin begins with expert care.</p>
+      <div class="hero-buttons hero-animate">
+        <a href="#booking" class="btn btn-primary">Book Consultation</a>
+        <a href="#services" class="btn-text">View Treatments →</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="https://picsum.photos/id/64/800/900" alt="Luxurious skin treatment" class="hero-image-main">
+      <div class="hero-accent"></div>
+      <div class="hero-accent-2"></div>
+      <div class="hero-stat">
+        <div class="number">12+</div>
+        <div class="stat-label">Years of Excellence</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-images reveal-left">
+      <img src="https://picsum.photos/id/1027/600/700" alt="Halo clinic interior" class="about-img-1">
+      <img src="https://picsum.photos/id/1005/500/500" alt="Skin specialist consultation" class="about-img-2">
+      <div class="about-line"></div>
+    </div>
+    <div class="about-text">
+      <span class="label reveal">Our Philosophy</span>
+      <h2 class="reveal">Where science meets <em>skin artistry</em></h2>
+      <div class="rose-divider reveal"></div>
+      <p class="reveal">Founded by Dr. Lina Chen, Halo Skin Clinic was born from a belief that exceptional skincare should feel as good as it looks. Our Auckland CBD studio is a sanctuary — a place where clinical expertise meets calm, considered care.</p>
+      <p class="reveal">Every treatment plan is crafted after a thorough skin analysis, because no two faces tell the same story. We listen first, then elevate.</p>
+      <div class="about-values">
+        <div class="value-item reveal">
+          <h4>Medical Grade</h4>
+          <p>Only clinically proven devices and pharmaceutical-grade products enter our treatment rooms.</p>
+        </div>
+        <div class="value-item reveal">
+          <h4>Bespoke Plans</h4>
+          <p>No cookie-cutter protocols. Your treatment plan is uniquely yours, evolving with your skin.</p>
+        </div>
+        <div class="value-item reveal">
+          <h4>Gentle Approach</h4>
+          <p>We believe in subtle, cumulative results — never the overdone look. Natural radiance, always.</p>
+        </div>
+        <div class="value-item reveal">
+          <h4>Ongoing Care</h4>
+          <p>Your journey doesn't end at the door. Follow-up guidance and aftercare come standard.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div class="services-header-text">
+      <span class="label reveal">Treatments</span>
+      <h2 class="reveal">Curated treatments for <em>every concern</em></h2>
+    </div>
+    <a href="#booking" class="btn btn-outline reveal">Book a Treatment</a>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal" data-delay="0">
+      <div class="service-icon">✦</div>
+      <h3>Dermal Fillers</h3>
+      <p>Restore volume and sculpt natural contours with premium hyaluronic acid fillers. Subtle enhancements that let your beauty speak for itself.</p>
+      <span class="service-price">From $490</span>
+      <a href="#booking" class="btn-text">Learn more →</a>
+    </div>
+    <div class="service-card reveal" data-delay="1">
+      <div class="service-icon">◯</div>
+      <h3>Anti-Wrinkle</h3>
+      <p>Precision muscle-relaxant treatments to soften expression lines. Our micro-dosing technique ensures a refreshed, never-frozen result.</p>
+      <span class="service-price">From $290</span>
+      <a href="#booking" class="btn-text">Learn more →</a>
+    </div>
+    <div class="service-card reveal" data-delay="2">
+      <div class="service-icon">◇</div>
+      <h3>Laser Rejuvenation</h3>
+      <p>Advanced fractional laser technology to address pigmentation, scarring, and texture concerns. Reveal smoother, more even-toned skin.</p>
+      <span class="service-price">From $350</span>
+      <a href="#booking" class="btn-text">Learn more →</a>
+    </div>
+    <div class="service-card reveal" data-delay="3">
+      <div class="service-icon">△</div>
+      <h3>Chemical Peels</h3>
+      <p>Medical-grade peels tailored to your skin type — from gentle lunchtime refreshers to deeper resurfacing treatments for lasting transformation.</p>
+      <span class="service-price">From $180</span>
+      <a href="#booking" class="btn-text">Learn more →</a>
+    </div>
+    <div class="service-card reveal" data-delay="4">
+      <div class="service-icon">◠</div>
+      <h3>Microneedling</h3>
+      <p>Collagen induction therapy with SkinPen — the gold standard for improving fine lines, pores, and acne scarring naturally.</p>
+      <span class="service-price">From $320</span>
+      <a href="#booking" class="btn-text">Learn more →</a>
+    </div>
+    <div class="service-card reveal" data-delay="5">
+      <div class="service-icon">❋</div>
+      <h3>HydraFacial</h3>
+      <p>The ultimate skin reset. Cleanse, extract, and hydrate in one luxurious session — perfect before a special event or as monthly maintenance.</p>
+      <span class="service-price">From $250</span>
+      <a href="#booking" class="btn-text">Learn more →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Results Gallery -->
+<section class="results" id="results">
+  <div class="results-header">
+    <span class="label reveal">Before & After</span>
+    <h2 class="reveal">Real results, <em>real confidence</em></h2>
+    <p class="reveal">Slide to compare. Every result shown is from an actual Halo Skin Clinic client, with their consent.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item reveal" data-delay="0">
+      <div class="ba-container" data-ba="true">
+        <img src="https://picsum.photos/id/1011/600/500?grayscale" alt="Before treatment" class="ba-image ba-before">
+        <img src="https://picsum.photos/id/1011/600/500" alt="After treatment" class="ba-image ba-after">
+        <div class="ba-slider"></div>
+        <div class="ba-labels">
+          <span class="ba-label">Before</span>
+          <span class="ba-label">After</span>
+        </div>
+      </div>
+      <div class="gallery-caption">
+        <h4>Dermal Filler — Cheeks & Lips</h4>
+        <p>3 sessions over 4 months</p>
+      </div>
+    </div>
+    <div class="gallery-item reveal" data-delay="1">
+      <div class="ba-container" data-ba="true">
+        <img src="https://picsum.photos/id/1012/600/500?grayscale" alt="Before treatment" class="ba-image ba-before">
+        <img src="https://picsum.photos/id/1012/600/500" alt="After treatment" class="ba-image ba-after">
+        <div class="ba-slider"></div>
+        <div class="ba-labels">
+          <span class="ba-label">Before</span>
+          <span class="ba-label">After</span>
+        </div>
+      </div>
+      <div class="gallery-caption">
+        <h4>Laser Rejuvenation — Full Face</h4>
+        <p>6 sessions over 8 months</p>
+      </div>
+    </div>
+    <div class="gallery-item reveal" data-delay="2">
+      <div class="ba-container" data-ba="true">
+        <img src="https://picsum.photos/id/1025/600/500?grayscale" alt="Before treatment" class="ba-image ba-before">
+        <img src="https://picsum.photos/id/1025/600/500" alt="After treatment" class="ba-image ba-after">
+        <div class="ba-slider"></div>
+        <div class="ba-labels">
+          <span class="ba-label">Before</span>
+          <span class="ba-label">After</span>
+        </div>
+      </div>
+      <div class="gallery-caption">
+        <h4>Chemical Peel — Pigmentation</h4>
+        <p>4 sessions over 3 months</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonial -->
+<section class="testimonials">
+  <div class="testimonial-content reveal">
+    <blockquote id="testimonial-text">"I've never felt more confident in my own skin. The team at Halo made me feel completely at ease from the very first consultation. The results speak for themselves."</blockquote>
+    <p class="testimonial-author" id="testimonial-author">— Sarah M., Parnell</p>
+    <div class="testimonial-dots">
+      <span class="active" data-index="0"></span>
+      <span data-index="1"></span>
+      <span data-index="2"></span>
+    </div>
+  </div>
+</section>
+
+<!-- Booking -->
+<section class="booking" id="booking">
+  <div class="booking-inner">
+    <div class="booking-text">
+      <span class="label reveal">Get Started</span>
+      <h2 class="reveal">Begin your skin <em>journey</em></h2>
+      <p class="reveal">Every great result starts with a conversation. Book your complimentary consultation — we'll assess your skin, discuss your goals, and design a personalised plan together.</p>
+      <div class="booking-perks">
+        <div class="perk reveal">
+          <div class="perk-icon">✓</div>
+          <div class="perk-text">
+            <h4>Free Initial Consultation</h4>
+            <p>30 minutes with a senior clinician to map out your skin goals.</p>
+          </div>
+        </div>
+        <div class="perk reveal">
+          <div class="perk-icon">✓</div>
+          <div class="perk-text">
+            <h4>Personalised Treatment Plan</h4>
+            <p>No obligation — receive a tailored plan with transparent pricing.</p>
+          </div>
+        </div>
+        <div class="perk reveal">
+          <div class="perk-icon">✓</div>
+          <div class="perk-text">
+            <h4>Flexible Scheduling</h4>
+            <p>Early morning, late evening, and Saturday appointments available.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="booking-form reveal-right">
+      <h3>Book Online</h3>
+      <p class="form-sub">Fill in your details and we'll confirm within 2 hours.</p>
+      <form onsubmit="handleBooking(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Your first name" required>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Your last name" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" placeholder="+64 21 000 0000">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Treatment Interest</label>
+            <select>
+              <option value="">Select a treatment</option>
+              <option>Dermal Fillers</option>
+              <option>Anti-Wrinkle</option>
+              <option>Laser Rejuvenation</option>
+              <option>Chemical Peels</option>
+              <option>Microneedling</option>
+              <option>HydraFacial</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Preferred Date</label>
+            <input type="date">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Tell Us About Your Skin Goals</label>
+          <textarea rows="3" placeholder="What would you like to achieve?"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary form-submit">Request Appointment</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Bar -->
+<section class="contact-bar">
+  <div class="contact-inner">
+    <div class="contact-item reveal">
+      <span class="label">Visit Us</span>
+      <p>Level 3, 48 Queen Street<br>Auckland CBD 1010</p>
+    </div>
+    <div class="contact-item reveal">
+      <span class="label">Opening Hours</span>
+      <p>Mon — Fri: 8am – 7pm<br>Saturday: 9am – 4pm</p>
+    </div>
+    <div class="contact-item reveal">
+      <span class="label">Phone</span>
+      <p><a href="tel:+6492801234">09 280 1234</a></p>
+    </div>
+    <div class="contact-item reveal">
+      <span class="label">Email</span>
+      <p><a href="mailto:hello@haloskinclinic.co.nz">hello@haloskinclinic.co.nz</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">Halo<span>.</span></a>
+        <p>Auckland's destination for results-driven cosmetic treatments. Medical precision, elevated care.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Treatments</h4>
+        <ul>
+          <li><a href="#services">Dermal Fillers</a></li>
+          <li><a href="#services">Anti-Wrinkle</a></li>
+          <li><a href="#services">Laser Rejuvenation</a></li>
+          <li><a href="#services">Chemical Peels</a></li>
+          <li><a href="#services">Microneedling</a></li>
+          <li><a href="#services">HydraFacial</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Clinic</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#results">Before & After</a></li>
+          <li><a href="#booking">Book Online</a></li>
+          <li><a href="#">Skin Journal</a></li>
+          <li><a href="#">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">TikTok</a></li>
+          <li><a href="#">Google Reviews</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Halo Skin Clinic. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== NAV SCROLL =====
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ===== SCROLL REVEAL =====
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const delay = entry.target.dataset.delay || 0;
+      setTimeout(() => entry.target.classList.add('visible'), delay * 120);
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+  revealObserver.observe(el);
+});
+
+// ===== BEFORE/AFTER SLIDER =====
+document.querySelectorAll('.ba-container[data-ba]').forEach(container => {
+  const slider = container.querySelector('.ba-slider');
+  const afterImg = container.querySelector('.ba-after');
+  let isDragging = false;
+
+  function updateSlider(x) {
+    const rect = container.getBoundingClientRect();
+    let percent = ((x - rect.left) / rect.width) * 100;
+    percent = Math.max(5, Math.min(95, percent));
+    slider.style.left = percent + '%';
+    afterImg.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+  }
+
+  slider.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    e.preventDefault();
+  });
+
+  slider.addEventListener('touchstart', (e) => {
+    isDragging = true;
+  }, { passive: true });
+
+  window.addEventListener('mousemove', (e) => {
+    if (isDragging) updateSlider(e.clientX);
+  });
+
+  window.addEventListener('touchmove', (e) => {
+    if (isDragging) updateSlider(e.touches[0].clientX);
+  }, { passive: true });
+
+  window.addEventListener('mouseup', () => isDragging = false);
+  window.addEventListener('touchend', () => isDragging = false);
+
+  // Click to move
+  container.addEventListener('click', (e) => {
+    updateSlider(e.clientX);
+  });
+});
+
+// ===== TESTIMONIAL ROTATOR =====
+const testimonials = [
+  {
+    text: '"I\'ve never felt more confident in my own skin. The team at Halo made me feel completely at ease from the very first consultation. The results speak for themselves."',
+    author: '— Sarah M., Parnell'
+  },
+  {
+    text: '"After years of feeling self-conscious about my skin texture, three sessions of laser treatment gave me results I didn\'t think were possible. Dr. Chen is exceptional."',
+    author: '— James T., Ponsonby'
+  },
+  {
+    text: '"The HydraFacial has become my monthly ritual. My skin has never looked this healthy and luminous. The clinic is beautiful and the team is genuinely warm."',
+    author: '— Aroha K., Grey Lynn'
+  }
+];
+
+let currentTestimonial = 0;
+const textEl = document.getElementById('testimonial-text');
+const authorEl = document.getElementById('testimonial-author');
+const dots = document.querySelectorAll('.testimonial-dots span');
+
+function showTestimonial(index) {
+  textEl.style.opacity = 0;
+  authorEl.style.opacity = 0;
+  setTimeout(() => {
+    textEl.textContent = testimonials[index].text;
+    authorEl.textContent = testimonials[index].author;
+    textEl.style.opacity = 1;
+    authorEl.style.opacity = 1;
+    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+  }, 400);
+}
+
+textEl.style.transition = 'opacity 0.4s ease';
+authorEl.style.transition = 'opacity 0.4s ease';
+
+dots.forEach(dot => {
+  dot.addEventListener('click', () => {
+    currentTestimonial = parseInt(dot.dataset.index);
+    showTestimonial(currentTestimonial);
+  });
+});
+
+setInterval(() => {
+  currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+  showTestimonial(currentTestimonial);
+}, 6000);
+
+// ===== BOOKING FORM =====
+function handleBooking(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type="submit"]');
+  btn.textContent = 'Request Sent ✓';
+  btn.style.background = '#2C2326';
+  setTimeout(() => {
+    btn.textContent = 'Request Appointment';
+    btn.style.background = '';
+    e.target.reset();
+  }, 3000);
+}
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
