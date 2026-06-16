@@ -710,6 +710,22 @@ nav {
   color: var(--dark);
 }
 
+/* equal-height service cards: align title, description and price consistently */
+.service-card {
+  display: flex;
+  flex-direction: column;
+}
+.service-card h3 {
+  min-height: 2.4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.service-price {
+  margin-top: auto;
+}
+
 .service-price small {
   font-family: var(--font-body);
   font-size: 12px;
@@ -1417,6 +1433,18 @@ footer::before {
         <h3>Moss &amp; Mould Treatment</h3>
         <p>Long-lasting chemical treatment that kills growth at the root and prevents regrowth for months.</p>
         <div class="service-price">From $260 <small>+GST</small></div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-img"><img src="photos/586754158_122151241394805937_8546472267080894843_n.jpg" alt="Commercial building exterior cleaned"></div>
+        <h3>Commercial &amp; Industrial</h3>
+        <p>Roof and building washing for commercial and industrial properties, warehouses, offices, body corporates and more. Priced by the square metre.</p>
+        <div class="service-price">Per m² <small>custom quote</small></div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-img"><img src="photos/646772115_122161193648805937_8512006745497934559_n.jpg" alt="Home with large clean windows"></div>
+        <h3>Window Cleaning</h3>
+        <p>Streak-free window cleaning inside and out, leaving your glass crystal clear. Quoted on inspection so you only pay for what you need.</p>
+        <div class="service-price">Quote <small>on inspection</small></div>
       </div>
     </div>
   </div>
