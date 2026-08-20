@@ -1246,6 +1246,12 @@ footer::before {
   .photo-item { width: 150px; height: 150px; font-size: 36px; }
   .footer-bottom { flex-direction: column; gap: 12px; }
 }
+
+/* Center header logo on the page (desktop only) */
+.nav-inner{position:relative}
+.nav-logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);margin:0}
+.nav-links-right{justify-self:end}
+@media (max-width:900px){.nav-logo{position:static;top:auto;left:auto;transform:none}}
 </style>
 </head>
 <body>

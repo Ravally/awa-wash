@@ -811,6 +811,12 @@ footer::before {
   .founder-photo { width: 280px; height: 200px; }
   .founder-quote { font-size: clamp(22px, 5vw, 36px); }
 }
+
+/* Center header logo on the page (desktop only) */
+.nav-inner{position:relative}
+.nav-logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);margin:0}
+.nav-links-right{justify-self:end}
+@media (max-width:900px){.nav-logo{position:static;top:auto;left:auto;transform:none}}
 </style>
 </head>
 <body>

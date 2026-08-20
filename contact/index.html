@@ -653,6 +653,12 @@ footer::before {
   .contact-hero { padding: 60px 0 120px; min-height: 350px; }
   .contact-form-card { padding: 32px 24px; }
 }
+
+/* Center header logo on the page (desktop only) */
+.nav-inner{position:relative}
+.nav-logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);margin:0}
+.nav-links-right{justify-self:end}
+@media (max-width:900px){.nav-logo{position:static;top:auto;left:auto;transform:none}}
 </style>
 </head>
 <body>
