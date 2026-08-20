@@ -728,10 +728,10 @@ footer::before {
 }
 
 /* Center header logo on the page (desktop only) */
-.nav-inner{position:relative}
+.nav-inner{display:flex;align-items:center;position:relative}
+.nav-links-right{margin-left:auto}
 .nav-logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);margin:0}
-.nav-links-right{justify-self:end}
-@media (max-width:900px){.nav-logo{position:static;top:auto;left:auto;transform:none}}
+@media (max-width:900px){.nav-inner{display:flex}.nav-logo{position:static;top:auto;left:auto;transform:none}.nav-links-right{margin-left:0}}
 </style>
 </head>
 <body>
