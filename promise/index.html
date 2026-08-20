@@ -727,11 +727,11 @@ footer::before {
   .eco-tree { width: 36px; height: 36px; font-size: 20px; }
 }
 
-/* Center header logo on the page (desktop only) */
-.nav-inner{display:flex;align-items:center;position:relative}
-.nav-links-right{margin-left:auto}
-.nav-logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);margin:0}
-@media (max-width:900px){.nav-inner{display:flex}.nav-logo{position:static;top:auto;left:auto;transform:none}.nav-links-right{margin-left:0}}
+/* Center logo + balanced nav (desktop only) */
+.nav-inner{display:flex;align-items:center;justify-content:center;gap:44px;position:relative}
+.nav-logo{margin:0}
+.nav-cta-wrap{position:absolute;right:0;top:50%;transform:translateY(-50%)}
+@media (max-width:900px){.nav-inner{justify-content:space-between;gap:0}.nav-logo{margin:0}.nav-cta-wrap{position:static;top:auto;transform:none}}
 </style>
 </head>
 <body>
