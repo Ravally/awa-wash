@@ -791,10 +791,12 @@ footer::before {
         <h2>Get Your Free Quote</h2>
         <p>Fill out the form below and Kurt will get back to you within one business day with an honest, no-obligation quote.</p>
 
-        <form action="https://formsubmit.co/awawashltd@gmail.com" method="POST">
+        <form id="quote-request-form" action="https://formsubmit.co/awawashltd@gmail.com" method="POST">
           <input type="hidden" name="_subject" value="New Quote Request from Awa Wash Website">
-          <input type="hidden" name="_next" value="https://awawash.co.nz//contact?sent=true">
-          <input type="hidden" name="_captcha" value="true">
+          <input type="hidden" name="_next" value="https://awawash.co.nz/contact/?sent=true">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_autoresponse" value="Thanks for getting in touch with Awa Wash. We have your quote request and Blue will come back to you within one business day. If it is urgent, call or text 022 319 6385. Awa Wash Ltd, Kapiti Coast and greater Wellington. Clean Home. Greener Aotearoa.">
           <input type="text" name="_honey" style="display:none">
           <div class="form-row">
             <div class="form-group">
@@ -850,17 +852,68 @@ footer::before {
             <button type="submit" class="btn-pill btn-gold">Send My Quote Request</button>
           </div>
           <p class="form-note">We'll never share your details. All prices exclude GST.</p>
-          <div id="form-success" style="display:none; background: #2D5A3D; color: #F5F0E8; padding: 24px; border-radius: 12px; text-align: center; margin-top: 16px;">
+          </form>
+<div id="form-success" style="display:none; background: #2D5A3D; color: #F5F0E8; padding: 24px; border-radius: 12px; text-align: center; margin-top: 16px;">
             <h3 style="font-family: 'Bungee', cursive; font-size: 20px; margin-bottom: 8px;">Quote Request Sent!</h3>
-            <p style="font-size: 16px;">Thanks for getting in touch. Kurt will get back to you within one business day.</p>
+            <p style="font-size: 16px;">Thanks for getting in touch. Blue will get back to you within one business day. We have sent a confirmation to your email so you know it came through.</p>
+            <p style="font-size: 16px; margin-top: 10px;">Need us sooner? Call or text <a href="tel:+64223196385" style="color:#FFD600;">022 319 6385</a>.</p>
           </div>
-        </form>
+          <div id="form-slow" style="display:none; background: #8C2F1F; color: #F5F0E8; padding: 24px; border-radius: 12px; text-align: center; margin-top: 16px;">
+            <h3 style="font-family: 'Bungee', cursive; font-size: 20px; margin-bottom: 8px;">Still Sending</h3>
+            <p style="font-size: 16px;">This is taking longer than it should. If you do not get a confirmation email shortly, call or text <a href="tel:+64223196385" style="color:#FFD600;">022 319 6385</a> or email <a href="mailto:awawashltd@gmail.com" style="color:#FFD600;">awawashltd@gmail.com</a> and we will pick it up from there.</p>
+          </div>
+          <iframe id="form-target" name="form-target" title="Form submission" style="display:none;width:0;height:0;border:0" aria-hidden="true"></iframe>
+
         <script>
-        if (window.location.search.includes('sent=true')) {
-          document.getElementById('form-success').style.display = 'block';
-          document.querySelector('form').style.display = 'none';
-          document.getElementById('form-success').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
+        // The form posts into the hidden frame above, so the customer never leaves this page.
+        // The confirmation sits outside the form, because hiding the form would hide it too.
+        (function () {
+          var form = document.getElementById('quote-request-form');
+          var success = document.getElementById('form-success');
+          var slow = document.getElementById('form-slow');
+          var frame = document.getElementById('form-target');
+          if (!form || !success) { return; }
+
+          function confirmSent() {
+            form.style.display = 'none';
+            slow.style.display = 'none';
+            success.style.display = 'block';
+            success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+
+          // Someone arriving back from the no-JavaScript path.
+          if (window.location.search.indexOf('sent=true') !== -1) { confirmSent(); }
+
+          if (!frame) { return; }
+          var sending = false;
+          var timer = null;
+          var button = form.querySelector('button[type="submit"]');
+          var buttonLabel = button ? button.textContent : '';
+
+          // Only post into the frame when scripting is available, so a no-JavaScript
+          // submit still follows the normal redirect back to this page.
+          form.target = 'form-target';
+
+          form.addEventListener('submit', function () {
+            sending = true;
+            slow.style.display = 'none';
+            if (button) { button.disabled = true; button.textContent = 'Sending...'; }
+            timer = window.setTimeout(function () {
+              if (!sending) { return; }
+              sending = false;
+              if (button) { button.disabled = false; button.textContent = buttonLabel; }
+              slow.style.display = 'block';
+              slow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 15000);
+          });
+
+          frame.addEventListener('load', function () {
+            if (!sending) { return; }   // ignore the frame's own initial load
+            sending = false;
+            window.clearTimeout(timer);
+            confirmSent();
+          });
+        })();
         </script>
       </div>
 
