@@ -858,18 +858,61 @@ footer::before {
             <p style="font-size: 16px;">Thanks for getting in touch. Blue will get back to you within one business day. We have sent a confirmation to your email so you know it came through.</p>
             <p style="font-size: 16px; margin-top: 10px;">Need us sooner? Call or text <a href="tel:+64223196385" style="color:#FFD600;">022 319 6385</a>.</p>
           </div>
+          <div id="form-slow" style="display:none; background: #8C2F1F; color: #F5F0E8; padding: 24px; border-radius: 12px; text-align: center; margin-top: 16px;">
+            <h3 style="font-family: 'Bungee', cursive; font-size: 20px; margin-bottom: 8px;">Still Sending</h3>
+            <p style="font-size: 16px;">This is taking longer than it should. If you do not get a confirmation email shortly, call or text <a href="tel:+64223196385" style="color:#FFD600;">022 319 6385</a> or email <a href="mailto:awawashltd@gmail.com" style="color:#FFD600;">awawashltd@gmail.com</a> and we will pick it up from there.</p>
+          </div>
+          <iframe id="form-target" name="form-target" title="Form submission" style="display:none;width:0;height:0;border:0" aria-hidden="true"></iframe>
 
         <script>
-        // The form posts to FormSubmit and comes straight back to this page with ?sent=true.
-        // The confirmation lives outside the form, because hiding the form would hide it too.
+        // The form posts into the hidden frame above, so the customer never leaves this page.
+        // The confirmation sits outside the form, because hiding the form would hide it too.
         (function () {
-          if (window.location.search.indexOf('sent=true') === -1) { return; }
           var form = document.getElementById('quote-request-form');
           var success = document.getElementById('form-success');
+          var slow = document.getElementById('form-slow');
+          var frame = document.getElementById('form-target');
           if (!form || !success) { return; }
-          form.style.display = 'none';
-          success.style.display = 'block';
-          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+          function confirmSent() {
+            form.style.display = 'none';
+            slow.style.display = 'none';
+            success.style.display = 'block';
+            success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+
+          // Someone arriving back from the no-JavaScript path.
+          if (window.location.search.indexOf('sent=true') !== -1) { confirmSent(); }
+
+          if (!frame) { return; }
+          var sending = false;
+          var timer = null;
+          var button = form.querySelector('button[type="submit"]');
+          var buttonLabel = button ? button.textContent : '';
+
+          // Only post into the frame when scripting is available, so a no-JavaScript
+          // submit still follows the normal redirect back to this page.
+          form.target = 'form-target';
+
+          form.addEventListener('submit', function () {
+            sending = true;
+            slow.style.display = 'none';
+            if (button) { button.disabled = true; button.textContent = 'Sending...'; }
+            timer = window.setTimeout(function () {
+              if (!sending) { return; }
+              sending = false;
+              if (button) { button.disabled = false; button.textContent = buttonLabel; }
+              slow.style.display = 'block';
+              slow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 15000);
+          });
+
+          frame.addEventListener('load', function () {
+            if (!sending) { return; }   // ignore the frame's own initial load
+            sending = false;
+            window.clearTimeout(timer);
+            confirmSent();
+          });
         })();
         </script>
       </div>
