@@ -855,66 +855,21 @@ footer::before {
           </form>
 <div id="form-success" style="display:none; background: #2D5A3D; color: #F5F0E8; padding: 24px; border-radius: 12px; text-align: center; margin-top: 16px;">
             <h3 style="font-family: 'Bungee', cursive; font-size: 20px; margin-bottom: 8px;">Quote Request Sent!</h3>
-            <p style="font-size: 16px;">Thanks for getting in touch. Blue will get back to you within one business day. We have emailed you a copy so you know it came through.</p>
-          </div>
-          <div id="form-error" style="display:none; background: #8C2F1F; color: #F5F0E8; padding: 24px; border-radius: 12px; text-align: center; margin-top: 16px;">
-            <h3 style="font-family: 'Bungee', cursive; font-size: 20px; margin-bottom: 8px;">That Did Not Send</h3>
-            <p style="font-size: 16px;">Sorry, something went wrong at our end and your request was not sent. Please call or text <a href="tel:+64223196385" style="color:#FFD600;">022 319 6385</a>, or email <a href="mailto:awawashltd@gmail.com" style="color:#FFD600;">awawashltd@gmail.com</a> and we will sort it straight away.</p>
+            <p style="font-size: 16px;">Thanks for getting in touch. Blue will get back to you within one business day. We have sent a confirmation to your email so you know it came through.</p>
+            <p style="font-size: 16px; margin-top: 10px;">Need us sooner? Call or text <a href="tel:+64223196385" style="color:#FFD600;">022 319 6385</a>.</p>
           </div>
 
         <script>
+        // The form posts to FormSubmit and comes straight back to this page with ?sent=true.
+        // The confirmation lives outside the form, because hiding the form would hide it too.
         (function () {
+          if (window.location.search.indexOf('sent=true') === -1) { return; }
           var form = document.getElementById('quote-request-form');
           var success = document.getElementById('form-success');
-          var error = document.getElementById('form-error');
-          var button = form.querySelector('button[type="submit"]');
-          var buttonLabel = button.textContent;
-
-          // Someone coming back from the no-JavaScript fallback path.
-          if (window.location.search.indexOf('sent=true') !== -1) {
-            form.style.display = 'none';
-            success.style.display = 'block';
-            success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-
-          function showSuccess() {
-            form.style.display = 'none';
-            success.style.display = 'block';
-            success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-
-          function showError() {
-            error.style.display = 'block';
-            button.disabled = false;
-            button.textContent = buttonLabel;
-            error.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-
-          form.addEventListener('submit', function (event) {
-            // Without fetch, let the browser post the form the old way.
-            if (!window.fetch || !window.FormData) { return; }
-            event.preventDefault();
-            error.style.display = 'none';
-            button.disabled = true;
-            button.textContent = 'Sending...';
-
-            var payload = {};
-            new FormData(form).forEach(function (value, key) { payload[key] = value; });
-
-            fetch('https://formsubmit.co/ajax/awawashltd@gmail.com', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-              body: JSON.stringify(payload)
-            })
-              .then(function (response) {
-                if (!response.ok) { throw new Error('Request failed: ' + response.status); }
-                return response.json();
-              })
-              .then(function (data) {
-                if (data && String(data.success) === 'true') { showSuccess(); } else { showError(); }
-              })
-              .catch(function () { showError(); });
-          });
+          if (!form || !success) { return; }
+          form.style.display = 'none';
+          success.style.display = 'block';
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
         })();
         </script>
       </div>
